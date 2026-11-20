@@ -10,12 +10,22 @@ const elementos = {
 
 let jogadores = [];
 
+
+/* =========================
+   INICIALIZAÇÃO
+========================= */
+
 document.addEventListener("DOMContentLoaded", iniciar);
 
 async function iniciar() {
     configurarEventos();
     await carregarDados();
 }
+
+
+/* =========================
+   CARREGAMENTO DO CSV
+========================= */
 
 async function carregarDados() {
     atualizarStatus("Carregando jogadores...");
@@ -26,7 +36,9 @@ async function carregarDados() {
         });
 
         if (!resposta.ok) {
-            throw new Error(`Erro ao carregar dados.csv: ${resposta.status}`);
+            throw new Error(
+                `Erro ao carregar dados.csv: ${resposta.status}`
+            );
         }
 
         const texto = await resposta.text();
@@ -43,11 +55,13 @@ async function carregarDados() {
         aplicarFiltros();
 
     } catch (erro) {
-        console.error(erro);
+        console.error("Erro ao carregar dados:", erro);
 
         jogadores = [];
+
         elementos.lista.innerHTML = "";
         elementos.total.textContent = "0";
+        elementos.semResultados.hidden = true;
 
         atualizarStatus(
             "Não foi possível carregar os dados dos jogadores."
@@ -56,33 +70,49 @@ async function carregarDados() {
 }
 
 
-/* LEITURA DO CSV */
+/* =========================
+   LEITOR CSV
+========================= */
 
 function parseCSV(texto) {
     const linhas = [];
+
     let linha = [];
     let campo = "";
     let dentroAspas = false;
 
     for (let i = 0; i < texto.length; i++) {
+
         const caractere = texto[i];
 
         if (caractere === '"') {
-            if (dentroAspas && texto[i + 1] === '"') {
+
+            if (
+                dentroAspas &&
+                texto[i + 1] === '"'
+            ) {
                 campo += '"';
                 i++;
             } else {
                 dentroAspas = !dentroAspas;
             }
 
-        } else if (caractere === "," && !dentroAspas) {
+        } else if (
+            caractere === "," &&
+            !dentroAspas
+        ) {
+
             linha.push(campo);
             campo = "";
 
         } else if (
-            (caractere === "\n" || caractere === "\r") &&
+            (
+                caractere === "\n" ||
+                caractere === "\r"
+            ) &&
             !dentroAspas
         ) {
+
             if (
                 caractere === "\r" &&
                 texto[i + 1] === "\n"
@@ -92,7 +122,12 @@ function parseCSV(texto) {
 
             linha.push(campo);
 
-            if (linha.some(valor => valor.trim() !== "")) {
+            if (
+                linha.some(
+                    valor =>
+                        String(valor).trim() !== ""
+                )
+            ) {
                 linhas.push(linha);
             }
 
@@ -100,14 +135,25 @@ function parseCSV(texto) {
             campo = "";
 
         } else {
+
             campo += caractere;
+
         }
     }
 
-    if (campo.length > 0 || linha.length > 0) {
+    if (
+        campo.length > 0 ||
+        linha.length > 0
+    ) {
+
         linha.push(campo);
 
-        if (linha.some(valor => valor.trim() !== "")) {
+        if (
+            linha.some(
+                valor =>
+                    String(valor).trim() !== ""
+            )
+        ) {
             linhas.push(linha);
         }
     }
@@ -116,80 +162,202 @@ function parseCSV(texto) {
 }
 
 
-/* AGRUPAR JOGOS POR JOGADOR */
+/* =========================
+   AGRUPAMENTO DOS JOGADORES
+========================= */
 
 function agruparJogadores(linhas) {
-    const cabecalhos = linhas[0].map(c =>
-        c.replace(/^\uFEFF/, "").trim().toLowerCase()
+
+    const cabecalhos = linhas[0].map(
+        cabecalho =>
+            String(cabecalho)
+                .replace(/^\uFEFF/, "")
+                .trim()
+                .toLowerCase()
     );
 
     const indice = {};
 
-    cabecalhos.forEach((nome, i) => {
-        indice[nome] = i;
-    });
+    cabecalhos.forEach(
+        (nome, posicao) => {
+            indice[nome] = posicao;
+        }
+    );
+
+    const colunasObrigatorias = [
+        "nome",
+        "time",
+        "data",
+        "adversario",
+        "pts",
+        "reb",
+        "ast",
+        "tpm",
+        "stl",
+        "blk"
+    ];
+
+    const faltando =
+        colunasObrigatorias.filter(
+            coluna =>
+                indice[coluna] === undefined
+        );
+
+    if (faltando.length > 0) {
+        throw new Error(
+            "Colunas ausentes no CSV: " +
+            faltando.join(", ")
+        );
+    }
 
     const mapa = new Map();
 
     linhas.slice(1).forEach(colunas => {
-        const nome = valorCSV(colunas, indice.nome);
+
+        const nome =
+            valorCSV(colunas, indice.nome);
 
         if (!nome) {
             return;
         }
 
-        const time = valorCSV(colunas, indice.time);
+        const time =
+            valorCSV(colunas, indice.time);
 
         if (!mapa.has(nome)) {
-            mapa.set(nome, {
+
+            mapa.set(
                 nome,
-                time,
-                jogos: []
-            });
+                {
+                    nome,
+                    time,
+                    jogos: []
+                }
+            );
         }
 
-        mapa.get(nome).jogos.push({
-            data: valorCSV(colunas, indice.data),
-            adversario: valorCSV(colunas, indice.adversario),
-            casa_fora: valorCSV(colunas, indice.casa_fora),
-            minutos: numeroCSV(colunas, indice.minutos),
-            pts: numeroCSV(colunas, indice.pts),
-            reb: numeroCSV(colunas, indice.reb),
-            ast: numeroCSV(colunas, indice.ast),
-            tpm: numeroCSV(colunas, indice.tpm),
-            stl: numeroCSV(colunas, indice.stl),
-            blk: numeroCSV(colunas, indice.blk)
+        const jogador =
+            mapa.get(nome);
+
+        jogador.jogos.push({
+            data:
+                valorCSV(
+                    colunas,
+                    indice.data
+                ),
+
+            adversario:
+                valorCSV(
+                    colunas,
+                    indice.adversario
+                ),
+
+            casa_fora:
+                valorCSV(
+                    colunas,
+                    indice.casa_fora
+                ),
+
+            minutos:
+                numeroCSV(
+                    colunas,
+                    indice.minutos
+                ),
+
+            pts:
+                numeroCSV(
+                    colunas,
+                    indice.pts
+                ),
+
+            reb:
+                numeroCSV(
+                    colunas,
+                    indice.reb
+                ),
+
+            ast:
+                numeroCSV(
+                    colunas,
+                    indice.ast
+                ),
+
+            tpm:
+                numeroCSV(
+                    colunas,
+                    indice.tpm
+                ),
+
+            stl:
+                numeroCSV(
+                    colunas,
+                    indice.stl
+                ),
+
+            blk:
+                numeroCSV(
+                    colunas,
+                    indice.blk
+                )
         });
     });
 
-    return Array.from(mapa.values())
+    return Array.from(
+        mapa.values()
+    )
         .map(jogador => ({
             ...jogador,
-            jogos: jogador.jogos.slice(0, 10)
+
+            jogos:
+                ordenarJogosPorData(
+                    jogador.jogos
+                ).slice(0, 10)
         }))
-        .sort((a, b) =>
-            a.nome.localeCompare(b.nome, "pt-BR")
+        .sort(
+            (a, b) =>
+                a.nome.localeCompare(
+                    b.nome,
+                    "pt-BR"
+                )
         );
 }
 
+
+/* =========================
+   UTILIDADES CSV
+========================= */
+
 function valorCSV(colunas, posicao) {
+
     if (posicao === undefined) {
         return "";
     }
 
-    return String(colunas[posicao] ?? "").trim();
+    return String(
+        colunas[posicao] ?? ""
+    ).trim();
 }
 
+
 function numeroCSV(colunas, posicao) {
-    const valor = valorCSV(colunas, posicao);
+
+    const valor =
+        valorCSV(
+            colunas,
+            posicao
+        );
 
     if (valor === "") {
         return null;
     }
 
-    const numero = Number(
-        valor.replace(",", ".")
-    );
+    const tratado =
+        valor
+            .replace(/\s/g, "")
+            .replace(",", ".");
+
+    const numero =
+        Number(tratado);
 
     return Number.isFinite(numero)
         ? numero
@@ -197,9 +365,48 @@ function numeroCSV(colunas, posicao) {
 }
 
 
-/* FILTROS */
+/* =========================
+   ORDENAÇÃO DOS JOGOS
+========================= */
+
+function ordenarJogosPorData(jogos) {
+
+    return [...jogos].sort(
+        (a, b) => {
+
+            const dataA =
+                converterData(a.data);
+
+            const dataB =
+                converterData(b.data);
+
+            if (!dataA && !dataB) {
+                return 0;
+            }
+
+            if (!dataA) {
+                return 1;
+            }
+
+            if (!dataB) {
+                return -1;
+            }
+
+            return (
+                dataB.getTime() -
+                dataA.getTime()
+            );
+        }
+    );
+}
+
+
+/* =========================
+   FILTROS
+========================= */
 
 function configurarEventos() {
+
     elementos.busca.addEventListener(
         "input",
         aplicarFiltros
@@ -211,43 +418,72 @@ function configurarEventos() {
     );
 }
 
+
 function aplicarFiltros() {
-    const busca = normalizarTexto(
-        elementos.busca.value
-    );
+
+    const busca =
+        normalizarTexto(
+            elementos.busca.value
+        );
 
     const time =
         elementos.filtroTime.value;
 
-    const filtrados = jogadores.filter(jogador => {
-        const correspondeNome =
-            normalizarTexto(jogador.nome)
-                .includes(busca);
+    const filtrados =
+        jogadores.filter(
+            jogador => {
 
-        const correspondeTime =
-            !time || jogador.time === time;
+                const correspondeNome =
+                    normalizarTexto(
+                        jogador.nome
+                    ).includes(busca);
 
-        return correspondeNome && correspondeTime;
-    });
+                const correspondeTime =
+                    !time ||
+                    jogador.time === time;
 
-    renderizarJogadores(filtrados);
+                return (
+                    correspondeNome &&
+                    correspondeTime
+                );
+            }
+        );
+
+    renderizarJogadores(
+        filtrados
+    );
 }
 
+
 function preencherFiltroTimes() {
-    const times = [
-        ...new Set(
-            jogadores
-                .map(j => j.time)
-                .filter(Boolean)
-        )
-    ].sort();
+
+    const times =
+        [
+            ...new Set(
+                jogadores
+                    .map(
+                        jogador =>
+                            jogador.time
+                    )
+                    .filter(Boolean)
+            )
+        ].sort(
+            (a, b) =>
+                a.localeCompare(
+                    b,
+                    "pt-BR"
+                )
+        );
 
     elementos.filtroTime.innerHTML =
         '<option value="">Todos os times</option>';
 
     times.forEach(time => {
+
         const opcao =
-            document.createElement("option");
+            document.createElement(
+                "option"
+            );
 
         opcao.value = time;
         opcao.textContent = time;
@@ -258,30 +494,43 @@ function preencherFiltroTimes() {
 }
 
 
-/* CARDS */
+/* =========================
+   RENDERIZAÇÃO
+========================= */
 
 function renderizarJogadores(lista) {
+
     elementos.lista.innerHTML = "";
 
     elementos.total.textContent =
         lista.length;
 
-    if (!lista.length) {
-        elementos.semResultados.hidden = false;
+    if (lista.length === 0) {
+
+        elementos.semResultados.hidden =
+            false;
 
         atualizarStatus(
-            "Nenhum jogador encontrado."
+            jogadores.length === 0
+                ? "Nenhum dado disponível."
+                : "Nenhum jogador corresponde aos filtros."
         );
 
         return;
     }
 
-    elementos.semResultados.hidden = true;
+    elementos.semResultados.hidden =
+        true;
 
     lista.forEach(jogador => {
-        elementos.lista.appendChild(
-            criarCardJogador(jogador)
-        );
+
+        const card =
+            criarCardJogador(
+                jogador
+            );
+
+        elementos.lista
+            .appendChild(card);
     });
 
     atualizarStatus(
@@ -289,25 +538,41 @@ function renderizarJogadores(lista) {
     );
 }
 
+
+/* =========================
+   CARD DO JOGADOR
+========================= */
+
 function criarCardJogador(jogador) {
+
     const fragmento =
-        elementos.template.content.cloneNode(true);
+        elementos.template.content
+            .cloneNode(true);
 
-    fragmento
-        .querySelector(".jogador-nome")
-        .textContent = jogador.nome;
+    definirTexto(
+        fragmento,
+        ".jogador-nome",
+        jogador.nome
+    );
 
-    fragmento
-        .querySelector(".jogador-time")
-        .textContent = jogador.time;
+    definirTexto(
+        fragmento,
+        ".jogador-time",
+        jogador.time || "-"
+    );
 
-    fragmento
-        .querySelector(".jogador-jogos")
-        .textContent =
-            `${jogador.jogos.length} jogos recentes`;
+    definirTexto(
+        fragmento,
+        ".jogador-jogos",
+        jogador.jogos.length === 1
+            ? "1 jogo recente"
+            : `${jogador.jogos.length} jogos recentes`
+    );
 
     const medias =
-        calcularMedias(jogador.jogos);
+        calcularMedias(
+            jogador.jogos
+        );
 
     definirTexto(
         fragmento,
@@ -329,6 +594,12 @@ function criarCardJogador(jogador) {
 
     definirTexto(
         fragmento,
+        ".media-tpm",
+        medias.tpm
+    );
+
+    definirTexto(
+        fragmento,
         ".media-stl",
         medias.stl
     );
@@ -339,31 +610,59 @@ function criarCardJogador(jogador) {
         medias.blk
     );
 
-    const corpo =
-        fragmento.querySelector(".jogos-corpo");
-
-    jogador.jogos.forEach(jogo => {
-        corpo.appendChild(
-            criarLinhaJogo(jogo)
+    const corpoTabela =
+        fragmento.querySelector(
+            ".jogos-corpo"
         );
-    });
+
+    if (jogador.jogos.length === 0) {
+
+        corpoTabela.appendChild(
+            criarLinhaSemJogos()
+        );
+
+    } else {
+
+        jogador.jogos.forEach(
+            jogo => {
+
+                corpoTabela.appendChild(
+                    criarLinhaJogo(
+                        jogo
+                    )
+                );
+            }
+        );
+    }
 
     return fragmento;
 }
 
-function definirTexto(fragmento, seletor, valor) {
+
+function definirTexto(
+    fragmento,
+    seletor,
+    valor
+) {
+
     const elemento =
-        fragmento.querySelector(seletor);
+        fragmento.querySelector(
+            seletor
+        );
 
     if (elemento) {
-        elemento.textContent = valor;
+        elemento.textContent =
+            valor;
     }
 }
 
 
-/* JOGOS */
+/* =========================
+   LINHAS DE JOGO
+========================= */
 
 function criarLinhaJogo(jogo) {
+
     const linha =
         document.createElement("tr");
 
@@ -373,84 +672,209 @@ function criarLinhaJogo(jogo) {
         formatarNumero(jogo.pts),
         formatarNumero(jogo.reb),
         formatarNumero(jogo.ast),
+        formatarNumero(jogo.tpm),
         formatarNumero(jogo.stl),
         formatarNumero(jogo.blk)
     ];
 
     valores.forEach(valor => {
+
         const celula =
-            document.createElement("td");
+            document.createElement(
+                "td"
+            );
 
-        celula.textContent = valor;
+        celula.textContent =
+            valor;
 
-        linha.appendChild(celula);
+        linha.appendChild(
+            celula
+        );
     });
 
     return linha;
 }
 
 
-/* MÉDIAS */
+function criarLinhaSemJogos() {
+
+    const linha =
+        document.createElement("tr");
+
+    const celula =
+        document.createElement("td");
+
+    celula.colSpan = 8;
+
+    celula.textContent =
+        "Nenhum jogo disponível.";
+
+    celula.style.textAlign =
+        "center";
+
+    linha.appendChild(celula);
+
+    return linha;
+}
+
+
+/* =========================
+   MÉDIAS DOS ÚLTIMOS 10
+========================= */
 
 function calcularMedias(jogos) {
+
     return {
-        pts: calcularMedia(jogos, "pts"),
-        reb: calcularMedia(jogos, "reb"),
-        ast: calcularMedia(jogos, "ast"),
-        tpm: calcularMedia(jogos, "tpm"),
-        stl: calcularMedia(jogos, "stl"),
-        blk: calcularMedia(jogos, "blk")
+        pts:
+            calcularMedia(
+                jogos,
+                "pts"
+            ),
+
+        reb:
+            calcularMedia(
+                jogos,
+                "reb"
+            ),
+
+        ast:
+            calcularMedia(
+                jogos,
+                "ast"
+            ),
+
+        tpm:
+            calcularMedia(
+                jogos,
+                "tpm"
+            ),
+
+        stl:
+            calcularMedia(
+                jogos,
+                "stl"
+            ),
+
+        blk:
+            calcularMedia(
+                jogos,
+                "blk"
+            )
     };
 }
 
-function calcularMedia(jogos, campo) {
-    const valores = jogos
-        .map(jogo => jogo[campo])
-        .filter(valor =>
-            typeof valor === "number"
-            && Number.isFinite(valor)
-        );
 
-    if (!valores.length) {
+function calcularMedia(
+    jogos,
+    campo
+) {
+
+    const valores =
+        jogos
+            .map(
+                jogo =>
+                    jogo[campo]
+            )
+            .filter(
+                valor =>
+                    typeof valor ===
+                        "number" &&
+                    Number.isFinite(
+                        valor
+                    )
+            );
+
+    if (valores.length === 0) {
         return "-";
     }
 
     const soma =
         valores.reduce(
-            (total, valor) =>
+            (
+                total,
+                valor
+            ) =>
                 total + valor,
             0
         );
 
-    return (soma / valores.length)
+    return (
+        soma /
+        valores.length
+    )
         .toFixed(1)
         .replace(".", ",");
 }
 
 
-/* FORMATAÇÃO */
+/* =========================
+   DATAS
+========================= */
 
-function formatarNumero(valor) {
-    if (
-        valor === null ||
-        valor === undefined
-    ) {
-        return "-";
+function converterData(valor) {
+
+    if (!valor) {
+        return null;
     }
 
-    return valor.toLocaleString("pt-BR");
+    const texto =
+        String(valor).trim();
+
+    /*
+       Formato esperado do CSV:
+       Nov 18, 2026
+    */
+
+    let data =
+        new Date(texto);
+
+    if (
+        !Number.isNaN(
+            data.getTime()
+        )
+    ) {
+        return data;
+    }
+
+    /*
+       Fallback:
+       dd/mm/aaaa
+    */
+
+    const partes =
+        texto.match(
+            /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/
+        );
+
+    if (partes) {
+
+        data =
+            new Date(
+                Number(partes[3]),
+                Number(partes[2]) - 1,
+                Number(partes[1])
+            );
+
+        if (
+            !Number.isNaN(
+                data.getTime()
+            )
+        ) {
+            return data;
+        }
+    }
+
+    return null;
 }
 
+
 function formatarData(valor) {
-    if (!valor) {
-        return "-";
-    }
 
     const data =
-        new Date(valor);
+        converterData(valor);
 
-    if (Number.isNaN(data.getTime())) {
-        return valor;
+    if (!data) {
+        return valor || "-";
     }
 
     return data.toLocaleDateString(
@@ -458,14 +882,42 @@ function formatarData(valor) {
     );
 }
 
+
+/* =========================
+   FORMATAÇÃO
+========================= */
+
+function formatarNumero(valor) {
+
+    if (
+        valor === null ||
+        valor === undefined ||
+        !Number.isFinite(valor)
+    ) {
+        return "-";
+    }
+
+    return valor.toLocaleString(
+        "pt-BR"
+    );
+}
+
+
 function normalizarTexto(valor) {
+
     return String(valor || "")
         .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
+        .replace(
+            /[\u0300-\u036f]/g,
+            ""
+        )
         .toLowerCase()
         .trim();
 }
 
+
 function atualizarStatus(texto) {
-    elementos.status.textContent = texto;
+
+    elementos.status.textContent =
+        texto;
 }
