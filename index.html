@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NBA Player Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="topo">
+        <div class="container">
+            <div>
+                <h1>NBA Player Tracker</h1>
+                <p>Últimos jogos dos jogadores selecionados</p>
+            </div>
+
+            <div class="contador">
+                <strong id="total-jogadores">0</strong>
+                <span>jogadores</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="filtros">
+
+            <div class="campo-busca">
+                <label for="busca-jogador">Buscar jogador</label>
+
+                <input
+                    type="search"
+                    id="busca-jogador"
+                    placeholder="Ex.: Luka Doncic"
+                    autocomplete="off"
+                >
+            </div>
+
+            <div class="campo-time">
+                <label for="filtro-time">Time</label>
+
+                <select id="filtro-time">
+                    <option value="">Todos os times</option>
+                </select>
+            </div>
+
+        </section>
+
+        <section class="status">
+            <span id="status-texto">
+                Carregando jogadores...
+            </span>
+        </section>
+
+        <section
+            id="lista-jogadores"
+            class="lista-jogadores"
+        >
+        </section>
+
+        <section
+            id="sem-resultados"
+            class="sem-resultados"
+            hidden
+        >
+            Nenhum jogador encontrado.
+        </section>
+
+    </main>
+
+    <template id="template-jogador">
+
+        <article class="jogador-card">
+
+            <div class="jogador-cabecalho">
+
+                <div class="jogador-identificacao">
+
+                    <div class="jogador-time"></div>
+
+                    <div>
+                        <h2 class="jogador-nome"></h2>
+
+                        <span class="jogador-jogos">
+                            Últimos jogos
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="medias">
+
+                    <div class="media">
+                        <span>PTS</span>
+                        <strong class="media-pts">-</strong>
+                    </div>
+
+                    <div class="media">
+                        <span>REB</span>
+                        <strong class="media-reb">-</strong>
+                    </div>
+
+                    <div class="media">
+                        <span>AST</span>
+                        <strong class
