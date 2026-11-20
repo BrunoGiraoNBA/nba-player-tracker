@@ -10,9 +10,6 @@ const elementos = {
 
 let jogadores = [];
 
-
-/* INICIALIZAÇÃO */
-
 document.addEventListener("DOMContentLoaded", iniciar);
 
 async function iniciar() {
@@ -20,32 +17,27 @@ async function iniciar() {
     await carregarDados();
 }
 
-
-/* CARREGAMENTO DOS DADOS */
-
 async function carregarDados() {
     atualizarStatus("Carregando jogadores...");
 
     try {
-        const resposta = await fetch("./dados.json", {
+        const resposta = await fetch("./dados.csv", {
             cache: "no-store"
         });
 
         if (!resposta.ok) {
-            throw new Error(
-                `Não foi possível abrir dados.json. Erro ${resposta.status}.`
-            );
+            throw new Error(`Erro ao carregar dados.csv: ${resposta.status}`);
         }
 
-        const dados = await resposta.json();
+        const texto = await resposta.text();
 
-        if (!Array.isArray(dados)) {
-            throw new Error(
-                "O conteúdo de dados.json precisa ser uma lista de jogadores."
-            );
+        const linhas = parseCSV(texto);
+
+        if (linhas.length < 2) {
+            throw new Error("dados.csv está vazio.");
         }
 
-        jogadores = normalizarJogadores(dados);
+        jogadores = agruparJogadores(linhas);
 
         preencherFiltroTimes();
         aplicarFiltros();
@@ -56,93 +48,229 @@ async function carregarDados() {
         jogadores = [];
         elementos.lista.innerHTML = "";
         elementos.total.textContent = "0";
-        elementos.semResultados.hidden = true;
 
         atualizarStatus(
-            "Os dados ainda não foram adicionados. Falta criar o arquivo dados.json."
+            "Não foi possível carregar os dados dos jogadores."
         );
     }
 }
 
 
-/* NORMALIZAÇÃO */
+/* LEITURA DO CSV */
 
-function normalizarJogadores(dados) {
-    return dados.map((jogador) => {
-        const jogos = Array.isArray(jogador.jogos)
-            ? jogador.jogos.slice(0, 10)
-            : [];
+function parseCSV(texto) {
+    const linhas = [];
+    let linha = [];
+    let campo = "";
+    let dentroAspas = false;
 
-        return {
-            nome: String(jogador.nome || "Jogador sem nome"),
-            time: String(jogador.time || "SEM"),
-            jogos
-        };
-    });
+    for (let i = 0; i < texto.length; i++) {
+        const caractere = texto[i];
+
+        if (caractere === '"') {
+            if (dentroAspas && texto[i + 1] === '"') {
+                campo += '"';
+                i++;
+            } else {
+                dentroAspas = !dentroAspas;
+            }
+
+        } else if (caractere === "," && !dentroAspas) {
+            linha.push(campo);
+            campo = "";
+
+        } else if (
+            (caractere === "\n" || caractere === "\r") &&
+            !dentroAspas
+        ) {
+            if (
+                caractere === "\r" &&
+                texto[i + 1] === "\n"
+            ) {
+                i++;
+            }
+
+            linha.push(campo);
+
+            if (linha.some(valor => valor.trim() !== "")) {
+                linhas.push(linha);
+            }
+
+            linha = [];
+            campo = "";
+
+        } else {
+            campo += caractere;
+        }
+    }
+
+    if (campo.length > 0 || linha.length > 0) {
+        linha.push(campo);
+
+        if (linha.some(valor => valor.trim() !== "")) {
+            linhas.push(linha);
+        }
+    }
+
+    return linhas;
 }
 
 
-/* EVENTOS */
+/* AGRUPAR JOGOS POR JOGADOR */
 
-function configurarEventos() {
-    elementos.busca.addEventListener("input", aplicarFiltros);
-    elementos.filtroTime.addEventListener("change", aplicarFiltros);
+function agruparJogadores(linhas) {
+    const cabecalhos = linhas[0].map(c =>
+        c.replace(/^\uFEFF/, "").trim().toLowerCase()
+    );
+
+    const indice = {};
+
+    cabecalhos.forEach((nome, i) => {
+        indice[nome] = i;
+    });
+
+    const mapa = new Map();
+
+    linhas.slice(1).forEach(colunas => {
+        const nome = valorCSV(colunas, indice.nome);
+
+        if (!nome) {
+            return;
+        }
+
+        const time = valorCSV(colunas, indice.time);
+
+        if (!mapa.has(nome)) {
+            mapa.set(nome, {
+                nome,
+                time,
+                jogos: []
+            });
+        }
+
+        mapa.get(nome).jogos.push({
+            data: valorCSV(colunas, indice.data),
+            adversario: valorCSV(colunas, indice.adversario),
+            casa_fora: valorCSV(colunas, indice.casa_fora),
+            minutos: numeroCSV(colunas, indice.minutos),
+            pts: numeroCSV(colunas, indice.pts),
+            reb: numeroCSV(colunas, indice.reb),
+            ast: numeroCSV(colunas, indice.ast),
+            tpm: numeroCSV(colunas, indice.tpm),
+            stl: numeroCSV(colunas, indice.stl),
+            blk: numeroCSV(colunas, indice.blk)
+        });
+    });
+
+    return Array.from(mapa.values())
+        .map(jogador => ({
+            ...jogador,
+            jogos: jogador.jogos.slice(0, 10)
+        }))
+        .sort((a, b) =>
+            a.nome.localeCompare(b.nome, "pt-BR")
+        );
+}
+
+function valorCSV(colunas, posicao) {
+    if (posicao === undefined) {
+        return "";
+    }
+
+    return String(colunas[posicao] ?? "").trim();
+}
+
+function numeroCSV(colunas, posicao) {
+    const valor = valorCSV(colunas, posicao);
+
+    if (valor === "") {
+        return null;
+    }
+
+    const numero = Number(
+        valor.replace(",", ".")
+    );
+
+    return Number.isFinite(numero)
+        ? numero
+        : null;
 }
 
 
 /* FILTROS */
 
-function aplicarFiltros() {
-    const textoBusca = normalizarTexto(elementos.busca.value);
-    const timeSelecionado = elementos.filtroTime.value;
+function configurarEventos() {
+    elementos.busca.addEventListener(
+        "input",
+        aplicarFiltros
+    );
 
-    const jogadoresFiltrados = jogadores.filter((jogador) => {
+    elementos.filtroTime.addEventListener(
+        "change",
+        aplicarFiltros
+    );
+}
+
+function aplicarFiltros() {
+    const busca = normalizarTexto(
+        elementos.busca.value
+    );
+
+    const time =
+        elementos.filtroTime.value;
+
+    const filtrados = jogadores.filter(jogador => {
         const correspondeNome =
-            normalizarTexto(jogador.nome).includes(textoBusca);
+            normalizarTexto(jogador.nome)
+                .includes(busca);
 
         const correspondeTime =
-            !timeSelecionado || jogador.time === timeSelecionado;
+            !time || jogador.time === time;
 
         return correspondeNome && correspondeTime;
     });
 
-    renderizarJogadores(jogadoresFiltrados);
+    renderizarJogadores(filtrados);
 }
 
-
 function preencherFiltroTimes() {
-    const times = [...new Set(
-        jogadores
-            .map((jogador) => jogador.time)
-            .filter(Boolean)
-    )].sort((a, b) => a.localeCompare(b, "pt-BR"));
+    const times = [
+        ...new Set(
+            jogadores
+                .map(j => j.time)
+                .filter(Boolean)
+        )
+    ].sort();
 
     elementos.filtroTime.innerHTML =
         '<option value="">Todos os times</option>';
 
-    times.forEach((time) => {
-        const opcao = document.createElement("option");
+    times.forEach(time => {
+        const opcao =
+            document.createElement("option");
+
         opcao.value = time;
         opcao.textContent = time;
 
-        elementos.filtroTime.appendChild(opcao);
+        elementos.filtroTime
+            .appendChild(opcao);
     });
 }
 
 
-/* RENDERIZAÇÃO */
+/* CARDS */
 
-function renderizarJogadores(listaJogadores) {
+function renderizarJogadores(lista) {
     elementos.lista.innerHTML = "";
-    elementos.total.textContent = listaJogadores.length;
 
-    if (listaJogadores.length === 0) {
+    elementos.total.textContent =
+        lista.length;
+
+    if (!lista.length) {
         elementos.semResultados.hidden = false;
 
         atualizarStatus(
-            jogadores.length === 0
-                ? "Nenhum dado disponível."
-                : "Nenhum jogador corresponde aos filtros."
+            "Nenhum jogador encontrado."
         );
 
         return;
@@ -150,59 +278,94 @@ function renderizarJogadores(listaJogadores) {
 
     elementos.semResultados.hidden = true;
 
-    listaJogadores.forEach((jogador) => {
-        const card = criarCardJogador(jogador);
-        elementos.lista.appendChild(card);
+    lista.forEach(jogador => {
+        elementos.lista.appendChild(
+            criarCardJogador(jogador)
+        );
     });
 
     atualizarStatus(
-        `${listaJogadores.length} jogador(es) exibido(s).`
+        `${lista.length} jogador(es) exibido(s).`
     );
 }
-
 
 function criarCardJogador(jogador) {
     const fragmento =
         elementos.template.content.cloneNode(true);
 
-    fragmento.querySelector(".jogador-nome").textContent =
-        jogador.nome;
+    fragmento
+        .querySelector(".jogador-nome")
+        .textContent = jogador.nome;
 
-    fragmento.querySelector(".jogador-time").textContent =
-        jogador.time;
+    fragmento
+        .querySelector(".jogador-time")
+        .textContent = jogador.time;
 
-    const quantidadeJogos = jogador.jogos.length;
+    fragmento
+        .querySelector(".jogador-jogos")
+        .textContent =
+            `${jogador.jogos.length} jogos recentes`;
 
-    fragmento.querySelector(".jogador-jogos").textContent =
-        quantidadeJogos === 1
-            ? "1 jogo recente"
-            : `${quantidadeJogos} jogos recentes`;
+    const medias =
+        calcularMedias(jogador.jogos);
 
-    const medias = calcularMedias(jogador.jogos);
+    definirTexto(
+        fragmento,
+        ".media-pts",
+        medias.pts
+    );
 
-    fragmento.querySelector(".media-pts").textContent = medias.pts;
-    fragmento.querySelector(".media-reb").textContent = medias.reb;
-    fragmento.querySelector(".media-ast").textContent = medias.ast;
-    fragmento.querySelector(".media-stl").textContent = medias.stl;
-    fragmento.querySelector(".media-blk").textContent = medias.blk;
+    definirTexto(
+        fragmento,
+        ".media-reb",
+        medias.reb
+    );
 
-    const corpoTabela =
+    definirTexto(
+        fragmento,
+        ".media-ast",
+        medias.ast
+    );
+
+    definirTexto(
+        fragmento,
+        ".media-stl",
+        medias.stl
+    );
+
+    definirTexto(
+        fragmento,
+        ".media-blk",
+        medias.blk
+    );
+
+    const corpo =
         fragmento.querySelector(".jogos-corpo");
 
-    if (jogador.jogos.length === 0) {
-        corpoTabela.appendChild(criarLinhaSemJogos());
-    } else {
-        jogador.jogos.forEach((jogo) => {
-            corpoTabela.appendChild(criarLinhaJogo(jogo));
-        });
-    }
+    jogador.jogos.forEach(jogo => {
+        corpo.appendChild(
+            criarLinhaJogo(jogo)
+        );
+    });
 
     return fragmento;
 }
 
+function definirTexto(fragmento, seletor, valor) {
+    const elemento =
+        fragmento.querySelector(seletor);
+
+    if (elemento) {
+        elemento.textContent = valor;
+    }
+}
+
+
+/* JOGOS */
 
 function criarLinhaJogo(jogo) {
-    const linha = document.createElement("tr");
+    const linha =
+        document.createElement("tr");
 
     const valores = [
         formatarData(jogo.data),
@@ -214,9 +377,12 @@ function criarLinhaJogo(jogo) {
         formatarNumero(jogo.blk)
     ];
 
-    valores.forEach((valor) => {
-        const celula = document.createElement("td");
+    valores.forEach(valor => {
+        const celula =
+            document.createElement("td");
+
         celula.textContent = valor;
+
         linha.appendChild(celula);
     });
 
@@ -224,58 +390,39 @@ function criarLinhaJogo(jogo) {
 }
 
 
-function criarLinhaSemJogos() {
-    const linha = document.createElement("tr");
-    const celula = document.createElement("td");
-
-    celula.colSpan = 7;
-    celula.textContent = "Nenhum jogo disponível.";
-    celula.style.textAlign = "center";
-
-    linha.appendChild(celula);
-
-    return linha;
-}
-
-
-/* CÁLCULO DAS MÉDIAS */
+/* MÉDIAS */
 
 function calcularMedias(jogos) {
-    if (!jogos.length) {
-        return {
-            pts: "-",
-            reb: "-",
-            ast: "-",
-            stl: "-",
-            blk: "-"
-        };
-    }
-
     return {
         pts: calcularMedia(jogos, "pts"),
         reb: calcularMedia(jogos, "reb"),
         ast: calcularMedia(jogos, "ast"),
+        tpm: calcularMedia(jogos, "tpm"),
         stl: calcularMedia(jogos, "stl"),
         blk: calcularMedia(jogos, "blk")
     };
 }
 
-
 function calcularMedia(jogos, campo) {
     const valores = jogos
-        .map((jogo) => Number(jogo[campo]))
-        .filter((valor) => Number.isFinite(valor));
+        .map(jogo => jogo[campo])
+        .filter(valor =>
+            typeof valor === "number"
+            && Number.isFinite(valor)
+        );
 
     if (!valores.length) {
         return "-";
     }
 
-    const total = valores.reduce(
-        (soma, valor) => soma + valor,
-        0
-    );
+    const soma =
+        valores.reduce(
+            (total, valor) =>
+                total + valor,
+            0
+        );
 
-    return (total / valores.length)
+    return (soma / valores.length)
         .toFixed(1)
         .replace(".", ",");
 }
@@ -283,43 +430,33 @@ function calcularMedia(jogos, campo) {
 
 /* FORMATAÇÃO */
 
+function formatarNumero(valor) {
+    if (
+        valor === null ||
+        valor === undefined
+    ) {
+        return "-";
+    }
+
+    return valor.toLocaleString("pt-BR");
+}
+
 function formatarData(valor) {
     if (!valor) {
         return "-";
     }
 
-    const texto = String(valor);
-
-    if (/^\d{2}\/\d{2}\/\d{4}$/.test(texto)) {
-        return texto;
-    }
-
-    const data = new Date(texto);
+    const data =
+        new Date(valor);
 
     if (Number.isNaN(data.getTime())) {
-        return texto;
+        return valor;
     }
 
-    return data.toLocaleDateString("pt-BR");
+    return data.toLocaleDateString(
+        "pt-BR"
+    );
 }
-
-
-function formatarNumero(valor) {
-    if (
-        valor === null ||
-        valor === undefined ||
-        valor === ""
-    ) {
-        return "-";
-    }
-
-    const numero = Number(valor);
-
-    return Number.isFinite(numero)
-        ? numero.toLocaleString("pt-BR")
-        : String(valor);
-}
-
 
 function normalizarTexto(valor) {
     return String(valor || "")
@@ -329,7 +466,6 @@ function normalizarTexto(valor) {
         .trim();
 }
 
-
-function atualizarStatus(mensagem) {
-    elementos.status.textContent = mensagem;
+function atualizarStatus(texto) {
+    elementos.status.textContent = texto;
 }
