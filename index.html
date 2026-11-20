@@ -12,32 +12,153 @@
 
 <body>
 
-    <header class="topo">
-        <div class="container topo-conteudo">
+<header class="topo">
+    <div class="container topo-conteudo">
 
-            <div>
-                <h1>NBA Player Tracker</h1>
-                <p>Últimos 10 jogos dos jogadores selecionados</p>
+        <div>
+            <h1>NBA Player Tracker</h1>
+            <p>Últimos 10 jogos dos jogadores selecionados</p>
+        </div>
+
+        <div class="contador">
+            <strong id="total-jogadores">0</strong>
+            <span>jogadores</span>
+        </div>
+
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="filtros">
+
+        <div class="campo-busca">
+            <label for="busca-jogador">Buscar jogador</label>
+
+            <input
+                type="search"
+                id="busca-jogador"
+                placeholder="Ex.: Luka Doncic"
+                autocomplete="off"
+            >
+        </div>
+
+        <div class="campo-time">
+            <label for="filtro-time">Time</label>
+
+            <select id="filtro-time">
+                <option value="">Todos os times</option>
+            </select>
+        </div>
+
+    </section>
+
+    <section class="status">
+        <span id="status-texto">
+            Carregando jogadores...
+        </span>
+    </section>
+
+    <section
+        id="lista-jogadores"
+        class="lista-jogadores">
+    </section>
+
+    <section
+        id="sem-resultados"
+        class="sem-resultados"
+        hidden>
+        Nenhum jogador encontrado.
+    </section>
+
+</main>
+
+
+<template id="template-jogador">
+
+    <article class="jogador-card">
+
+        <div class="jogador-cabecalho">
+
+            <div class="jogador-identificacao">
+
+                <div class="jogador-time"></div>
+
+                <div>
+                    <h2 class="jogador-nome"></h2>
+
+                    <span class="jogador-jogos">
+                        Últimos 10 jogos
+                    </span>
+                </div>
+
             </div>
 
-            <div class="contador">
-                <strong id="total-jogadores">0</strong>
-                <span>jogadores</span>
+            <div class="medias">
+
+                <div class="media">
+                    <span>PTS</span>
+                    <strong class="media-pts">-</strong>
+                </div>
+
+                <div class="media">
+                    <span>REB</span>
+                    <strong class="media-reb">-</strong>
+                </div>
+
+                <div class="media">
+                    <span>AST</span>
+                    <strong class="media-ast">-</strong>
+                </div>
+
+                <div class="media">
+                    <span>3PM</span>
+                    <strong class="media-tpm">-</strong>
+                </div>
+
+                <div class="media">
+                    <span>STL</span>
+                    <strong class="media-stl">-</strong>
+                </div>
+
+                <div class="media">
+                    <span>BLK</span>
+                    <strong class="media-blk">-</strong>
+                </div>
+
             </div>
 
         </div>
-    </header>
 
-    <main class="container">
+        <div class="tabela-container">
 
-        <section class="filtros">
+            <table class="tabela-jogos">
 
-            <div class="campo-busca">
-                <label for="busca-jogador">Buscar jogador</label>
-                <input
-                    type="search"
-                    id="busca-jogador"
-                    placeholder="Ex.: Luka Doncic"
-                    autocomplete="off"
-                >
-          
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Adversário</th>
+                        <th>PTS</th>
+                        <th>REB</th>
+                        <th>AST</th>
+                        <th>3PM</th>
+                        <th>STL</th>
+                        <th>BLK</th>
+                    </tr>
+                </thead>
+
+                <tbody class="jogos-corpo">
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </article>
+
+</template>
+
+<script src="script.js"></script>
+
+</body>
+</html>
