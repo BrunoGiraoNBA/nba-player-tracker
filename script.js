@@ -27,7 +27,47 @@ const elementos = {
     template: document.getElementById("template-jogador")
 };
 
+
 let jogadores = [];
+
+
+/* ==================================================
+   NOMES COMPLETOS DOS TIMES
+================================================== */
+
+const nomesTimes = {
+    ATL: "Atlanta Hawks",
+    BOS: "Boston Celtics",
+    BRK: "Brooklyn Nets",
+    CHI: "Chicago Bulls",
+    CHO: "Charlotte Hornets",
+    CLE: "Cleveland Cavaliers",
+    DAL: "Dallas Mavericks",
+    DEN: "Denver Nuggets",
+    DET: "Detroit Pistons",
+    GSW: "Golden State Warriors",
+    HOU: "Houston Rockets",
+    IND: "Indiana Pacers",
+    LAC: "LA Clippers",
+    LAL: "Los Angeles Lakers",
+    MEM: "Memphis Grizzlies",
+    MIA: "Miami Heat",
+    MIL: "Milwaukee Bucks",
+    MIN: "Minnesota Timberwolves",
+    NOP: "New Orleans Pelicans",
+    NYK: "New York Knicks",
+    OKC: "Oklahoma City Thunder",
+    ORL: "Orlando Magic",
+    PHI: "Philadelphia 76ers",
+    PHO: "Phoenix Suns",
+    POR: "Portland Trail Blazers",
+    SAC: "Sacramento Kings",
+    SAS: "San Antonio Spurs",
+    TOR: "Toronto Raptors",
+    UTA: "Utah Jazz",
+    WAS: "Washington Wizards"
+};
+
 
 const estado = {
     timesSelecionados: new Set(),
@@ -73,7 +113,9 @@ async function carregarDados() {
         const linhas = parseCSV(texto, separador);
 
         if (linhas.length < 2) {
-            throw new Error("dados.csv não possui registros.");
+            throw new Error(
+                "dados.csv não possui registros."
+            );
         }
 
         jogadores = agruparJogadores(linhas);
@@ -89,7 +131,10 @@ async function carregarDados() {
         atualizarTodaInterface();
 
     } catch (erro) {
-        console.error("Erro ao carregar dados:", erro);
+        console.error(
+            "Erro ao carregar dados:",
+            erro
+        );
 
         jogadores = [];
 
@@ -109,7 +154,8 @@ async function carregarDados() {
 ================================================== */
 
 function detectarSeparador(texto) {
-    const primeiraLinha = texto.split(/\r?\n/)[0] || "";
+    const primeiraLinha =
+        texto.split(/\r?\n/)[0] || "";
 
     const quantidadePontoVirgula =
         (primeiraLinha.match(/;/g) || []).length;
@@ -117,7 +163,8 @@ function detectarSeparador(texto) {
     const quantidadeVirgula =
         (primeiraLinha.match(/,/g) || []).length;
 
-    return quantidadePontoVirgula > quantidadeVirgula
+    return quantidadePontoVirgula >
+        quantidadeVirgula
         ? ";"
         : ",";
 }
@@ -134,7 +181,11 @@ function parseCSV(texto, separador) {
     let campo = "";
     let dentroAspas = false;
 
-    for (let i = 0; i < texto.length; i++) {
+    for (
+        let i = 0;
+        i < texto.length;
+        i++
+    ) {
         const caractere = texto[i];
 
         if (caractere === '"') {
@@ -144,6 +195,7 @@ function parseCSV(texto, separador) {
             ) {
                 campo += '"';
                 i++;
+
             } else {
                 dentroAspas = !dentroAspas;
             }
@@ -223,9 +275,11 @@ function agruparJogadores(linhas) {
 
     const indice = {};
 
-    cabecalhos.forEach((nome, posicao) => {
-        indice[nome] = posicao;
-    });
+    cabecalhos.forEach(
+        (nome, posicao) => {
+            indice[nome] = posicao;
+        }
+    );
 
     const obrigatorias = [
         "nome",
@@ -240,71 +294,133 @@ function agruparJogadores(linhas) {
         "blk"
     ];
 
-    const faltando = obrigatorias.filter(
-        coluna => indice[coluna] === undefined
-    );
+    const faltando =
+        obrigatorias.filter(
+            coluna =>
+                indice[coluna] === undefined
+        );
 
     if (faltando.length > 0) {
         throw new Error(
-            "Colunas ausentes: " + faltando.join(", ")
+            "Colunas ausentes: " +
+            faltando.join(", ")
         );
     }
 
     const mapa = new Map();
 
-    linhas.slice(1).forEach(colunas => {
-        const nome = valorCSV(colunas, indice.nome);
+    linhas.slice(1).forEach(
+        colunas => {
+            const nome =
+                valorCSV(
+                    colunas,
+                    indice.nome
+                );
 
-        if (!nome) {
-            return;
-        }
+            if (!nome) {
+                return;
+            }
 
-        const time = valorCSV(colunas, indice.time);
+            const time =
+                valorCSV(
+                    colunas,
+                    indice.time
+                );
 
-        if (!mapa.has(nome)) {
-            mapa.set(nome, {
-                nome,
-                time,
-                jogos: []
+            if (!mapa.has(nome)) {
+                mapa.set(
+                    nome,
+                    {
+                        nome,
+                        time,
+                        jogos: []
+                    }
+                );
+            }
+
+            mapa.get(nome).jogos.push({
+                data:
+                    valorCSV(
+                        colunas,
+                        indice.data
+                    ),
+
+                adversario:
+                    valorCSV(
+                        colunas,
+                        indice.adversario
+                    ),
+
+                casa_fora:
+                    valorCSV(
+                        colunas,
+                        indice.casa_fora
+                    ),
+
+                minutos:
+                    numeroCSV(
+                        colunas,
+                        indice.minutos
+                    ),
+
+                pts:
+                    numeroCSV(
+                        colunas,
+                        indice.pts
+                    ),
+
+                reb:
+                    numeroCSV(
+                        colunas,
+                        indice.reb
+                    ),
+
+                ast:
+                    numeroCSV(
+                        colunas,
+                        indice.ast
+                    ),
+
+                tpm:
+                    numeroCSV(
+                        colunas,
+                        indice.tpm
+                    ),
+
+                stl:
+                    numeroCSV(
+                        colunas,
+                        indice.stl
+                    ),
+
+                blk:
+                    numeroCSV(
+                        colunas,
+                        indice.blk
+                    )
             });
         }
+    );
 
-        mapa.get(nome).jogos.push({
-            data: valorCSV(colunas, indice.data),
+    return Array.from(
+        mapa.values()
+    )
+        .map(
+            jogador => ({
+                ...jogador,
 
-            adversario: valorCSV(
-                colunas,
-                indice.adversario
-            ),
-
-            casa_fora: valorCSV(
-                colunas,
-                indice.casa_fora
-            ),
-
-            minutos: numeroCSV(
-                colunas,
-                indice.minutos
-            ),
-
-            pts: numeroCSV(colunas, indice.pts),
-            reb: numeroCSV(colunas, indice.reb),
-            ast: numeroCSV(colunas, indice.ast),
-            tpm: numeroCSV(colunas, indice.tpm),
-            stl: numeroCSV(colunas, indice.stl),
-            blk: numeroCSV(colunas, indice.blk)
-        });
-    });
-
-    return Array.from(mapa.values())
-        .map(jogador => ({
-            ...jogador,
-            jogos: ordenarJogos(
-                jogador.jogos
-            ).slice(0, 10)
-        }))
-        .sort((a, b) =>
-            a.nome.localeCompare(b.nome, "pt-BR")
+                jogos:
+                    ordenarJogos(
+                        jogador.jogos
+                    ).slice(0, 10)
+            })
+        )
+        .sort(
+            (a, b) =>
+                a.nome.localeCompare(
+                    b.nome,
+                    "pt-BR"
+                )
         );
 }
 
@@ -313,7 +429,10 @@ function agruparJogadores(linhas) {
    VALORES CSV
 ================================================== */
 
-function valorCSV(colunas, posicao) {
+function valorCSV(
+    colunas,
+    posicao
+) {
     if (posicao === undefined) {
         return "";
     }
@@ -324,18 +443,26 @@ function valorCSV(colunas, posicao) {
 }
 
 
-function numeroCSV(colunas, posicao) {
-    const valor = valorCSV(colunas, posicao);
+function numeroCSV(
+    colunas,
+    posicao
+) {
+    const valor =
+        valorCSV(
+            colunas,
+            posicao
+        );
 
     if (valor === "") {
         return null;
     }
 
-    const numero = Number(
-        valor
-            .replace(/\s/g, "")
-            .replace(",", ".")
-    );
+    const numero =
+        Number(
+            valor
+                .replace(/\s/g, "")
+                .replace(",", ".")
+        );
 
     return Number.isFinite(numero)
         ? numero
@@ -352,26 +479,38 @@ function converterData(valor) {
         return null;
     }
 
-    const texto = String(valor).trim();
+    const texto =
+        String(valor).trim();
 
-    let data = new Date(texto);
+    let data =
+        new Date(texto);
 
-    if (!Number.isNaN(data.getTime())) {
+    if (
+        !Number.isNaN(
+            data.getTime()
+        )
+    ) {
         return data;
     }
 
-    const partes = texto.match(
-        /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/
-    );
-
-    if (partes) {
-        data = new Date(
-            Number(partes[3]),
-            Number(partes[2]) - 1,
-            Number(partes[1])
+    const partes =
+        texto.match(
+            /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/
         );
 
-        if (!Number.isNaN(data.getTime())) {
+    if (partes) {
+        data =
+            new Date(
+                Number(partes[3]),
+                Number(partes[2]) - 1,
+                Number(partes[1])
+            );
+
+        if (
+            !Number.isNaN(
+                data.getTime()
+            )
+        ) {
             return data;
         }
     }
@@ -381,24 +520,35 @@ function converterData(valor) {
 
 
 function ordenarJogos(jogos) {
-    return [...jogos].sort((a, b) => {
-        const dataA = converterData(a.data);
-        const dataB = converterData(b.data);
+    return [...jogos].sort(
+        (a, b) => {
+            const dataA =
+                converterData(a.data);
 
-        if (!dataA && !dataB) {
-            return 0;
+            const dataB =
+                converterData(b.data);
+
+            if (
+                !dataA &&
+                !dataB
+            ) {
+                return 0;
+            }
+
+            if (!dataA) {
+                return 1;
+            }
+
+            if (!dataB) {
+                return -1;
+            }
+
+            return (
+                dataB.getTime() -
+                dataA.getTime()
+            );
         }
-
-        if (!dataA) {
-            return 1;
-        }
-
-        if (!dataB) {
-            return -1;
-        }
-
-        return dataB.getTime() - dataA.getTime();
-    });
+    );
 }
 
 
@@ -427,6 +577,7 @@ function configurarEventos() {
         evento => {
             if (evento.key === "Enter") {
                 evento.preventDefault();
+
                 adicionarJogadorSelecionado();
             }
         }
@@ -444,12 +595,18 @@ function configurarEventos() {
 
     elementos.mostrarTodos.addEventListener(
         "click",
-        () => alterarModoExibicao("filtrados")
+        () =>
+            alterarModoExibicao(
+                "filtrados"
+            )
     );
 
     elementos.mostrarSelecionados.addEventListener(
         "click",
-        () => alterarModoExibicao("selecionados")
+        () =>
+            alterarModoExibicao(
+                "selecionados"
+            )
     );
 
     elementos.limparTudo.addEventListener(
@@ -467,52 +624,81 @@ function criarOpcoesTimes() {
     const times = [
         ...new Set(
             jogadores
-                .map(jogador => jogador.time)
+                .map(
+                    jogador =>
+                        jogador.time
+                )
                 .filter(Boolean)
         )
-    ].sort((a, b) =>
-        a.localeCompare(b, "pt-BR")
+    ].sort(
+        (a, b) =>
+            a.localeCompare(
+                b,
+                "pt-BR"
+            )
     );
 
     elementos.listaTimes.innerHTML = "";
 
-    times.forEach(time => {
-        const item = document.createElement("div");
-        item.className = "time-opcao";
+    times.forEach(
+        time => {
+            const item =
+                document.createElement(
+                    "div"
+                );
 
-        const input = document.createElement("input");
-        input.type = "checkbox";
-        input.id = `time-${criarIdentificador(time)}`;
-        input.value = time;
+            item.className =
+                "time-opcao";
 
-        const label = document.createElement("label");
-        label.htmlFor = input.id;
-        label.textContent = time;
+            const input =
+                document.createElement(
+                    "input"
+                );
 
-        input.addEventListener("change", () => {
-            if (input.checked) {
-                /*
-                   Set mantém a ordem de inserção.
+            input.type = "checkbox";
 
-                   Portanto:
-                   clicar DEN e depois LAL
-                   gera a ordem:
-                   DEN -> LAL
-                */
-                estado.timesSelecionados.add(time);
+            input.id =
+                `time-${criarIdentificador(time)}`;
 
-            } else {
-                estado.timesSelecionados.delete(time);
-            }
+            input.value = time;
 
-            atualizarTodaInterface();
-        });
+            const label =
+                document.createElement(
+                    "label"
+                );
 
-        item.appendChild(input);
-        item.appendChild(label);
+            label.htmlFor = input.id;
+            label.textContent = time;
 
-        elementos.listaTimes.appendChild(item);
-    });
+            input.addEventListener(
+                "change",
+                () => {
+                    if (input.checked) {
+                        /*
+                           Set mantém a ordem
+                           em que os times
+                           foram selecionados.
+                        */
+
+                        estado.timesSelecionados
+                            .add(time);
+
+                    } else {
+                        estado.timesSelecionados
+                            .delete(time);
+                    }
+
+                    atualizarTodaInterface();
+                }
+            );
+
+            item.appendChild(input);
+            item.appendChild(label);
+
+            elementos.listaTimes
+                .appendChild(item);
+        }
+    );
 }
 
 
@@ -520,10 +706,14 @@ function limparSelecaoTimes() {
     estado.timesSelecionados.clear();
 
     elementos.listaTimes
-        .querySelectorAll('input[type="checkbox"]')
-        .forEach(input => {
-            input.checked = false;
-        });
+        .querySelectorAll(
+            'input[type="checkbox"]'
+        )
+        .forEach(
+            input => {
+                input.checked = false;
+            }
+        );
 
     atualizarTodaInterface();
 }
@@ -534,36 +724,60 @@ function limparSelecaoTimes() {
 ================================================== */
 
 function preencherSeletorJogadores() {
-    const valorAtual = elementos.seletorJogador.value;
+    const valorAtual =
+        elementos.seletorJogador.value;
 
-    elementos.seletorJogador.innerHTML = "";
+    elementos.seletorJogador
+        .innerHTML = "";
 
-    const opcaoInicial = document.createElement("option");
+    const opcaoInicial =
+        document.createElement(
+            "option"
+        );
+
     opcaoInicial.value = "";
-    opcaoInicial.textContent = "Selecione um jogador";
 
-    elementos.seletorJogador.appendChild(opcaoInicial);
+    opcaoInicial.textContent =
+        "Selecione um jogador";
 
-    jogadores.forEach(jogador => {
-        const opcao = document.createElement("option");
+    elementos.seletorJogador
+        .appendChild(
+            opcaoInicial
+        );
 
-        opcao.value = jogador.nome;
-        opcao.textContent =
-            `${jogador.nome} • ${jogador.time}`;
+    jogadores.forEach(
+        jogador => {
+            const opcao =
+                document.createElement(
+                    "option"
+                );
 
-        opcao.disabled =
-            estado.jogadoresSelecionados.has(
-                jogador.nome
-            );
+            opcao.value =
+                jogador.nome;
 
-        elementos.seletorJogador.appendChild(opcao);
-    });
+            opcao.textContent =
+                `${jogador.nome} • ${jogador.time}`;
+
+            opcao.disabled =
+                estado.jogadoresSelecionados
+                    .has(
+                        jogador.nome
+                    );
+
+            elementos.seletorJogador
+                .appendChild(
+                    opcao
+                );
+        }
+    );
 
     if (
         valorAtual &&
-        !estado.jogadoresSelecionados.has(valorAtual)
+        !estado.jogadoresSelecionados
+            .has(valorAtual)
     ) {
-        elementos.seletorJogador.value = valorAtual;
+        elementos.seletorJogador.value =
+            valorAtual;
     }
 
     atualizarBotaoAdicionar();
@@ -571,25 +785,30 @@ function preencherSeletorJogadores() {
 
 
 function atualizarBotaoAdicionar() {
-    const nome = elementos.seletorJogador.value;
+    const nome =
+        elementos.seletorJogador.value;
 
     elementos.adicionarJogador.disabled =
         !nome ||
-        estado.jogadoresSelecionados.has(nome);
+        estado.jogadoresSelecionados
+            .has(nome);
 }
 
 
 function adicionarJogadorSelecionado() {
-    const nome = elementos.seletorJogador.value;
+    const nome =
+        elementos.seletorJogador.value;
 
     if (
         !nome ||
-        estado.jogadoresSelecionados.has(nome)
+        estado.jogadoresSelecionados
+            .has(nome)
     ) {
         return;
     }
 
-    estado.jogadoresSelecionados.add(nome);
+    estado.jogadoresSelecionados
+        .add(nome);
 
     elementos.seletorJogador.value = "";
 
@@ -598,8 +817,11 @@ function adicionarJogadorSelecionado() {
 }
 
 
-function removerJogadorSelecionado(nome) {
-    estado.jogadoresSelecionados.delete(nome);
+function removerJogadorSelecionado(
+    nome
+) {
+    estado.jogadoresSelecionados
+        .delete(nome);
 
     preencherSeletorJogadores();
     atualizarTodaInterface();
@@ -607,7 +829,8 @@ function removerJogadorSelecionado(nome) {
 
 
 function limparSelecaoJogadores() {
-    estado.jogadoresSelecionados.clear();
+    estado.jogadoresSelecionados
+        .clear();
 
     preencherSeletorJogadores();
     atualizarTodaInterface();
@@ -619,51 +842,87 @@ function limparSelecaoJogadores() {
 ================================================== */
 
 function renderizarChipsSelecionados() {
-    elementos.jogadoresSelecionados.innerHTML = "";
+    elementos.jogadoresSelecionados
+        .innerHTML = "";
 
-    const nomes = Array.from(
-        estado.jogadoresSelecionados
+    const nomes =
+        Array.from(
+            estado.jogadoresSelecionados
+        );
+
+    nomes.forEach(
+        nome => {
+            const jogador =
+                jogadores.find(
+                    item =>
+                        item.nome === nome
+                );
+
+            const chip =
+                document.createElement(
+                    "div"
+                );
+
+            chip.className =
+                "jogador-chip";
+
+            const texto =
+                document.createElement(
+                    "span"
+                );
+
+            texto.textContent =
+                jogador
+                    ? `${jogador.nome} • ${jogador.time}`
+                    : nome;
+
+            const remover =
+                document.createElement(
+                    "button"
+                );
+
+            remover.type =
+                "button";
+
+            remover.textContent =
+                "×";
+
+            remover.title =
+                `Remover ${nome}`;
+
+            remover.setAttribute(
+                "aria-label",
+                `Remover ${nome}`
+            );
+
+            remover.addEventListener(
+                "click",
+                () => {
+                    removerJogadorSelecionado(
+                        nome
+                    );
+                }
+            );
+
+            chip.appendChild(
+                texto
+            );
+
+            chip.appendChild(
+                remover
+            );
+
+            elementos.jogadoresSelecionados
+                .appendChild(
+                    chip
+                );
+        }
     );
 
-    nomes.forEach(nome => {
-        const jogador = jogadores.find(
-            item => item.nome === nome
-        );
-
-        const chip = document.createElement("div");
-        chip.className = "jogador-chip";
-
-        const texto = document.createElement("span");
-
-        texto.textContent = jogador
-            ? `${jogador.nome} • ${jogador.time}`
-            : nome;
-
-        const remover = document.createElement("button");
-
-        remover.type = "button";
-        remover.textContent = "×";
-        remover.title = `Remover ${nome}`;
-
-        remover.setAttribute(
-            "aria-label",
-            `Remover ${nome}`
-        );
-
-        remover.addEventListener("click", () => {
-            removerJogadorSelecionado(nome);
-        });
-
-        chip.appendChild(texto);
-        chip.appendChild(remover);
-
-        elementos.jogadoresSelecionados.appendChild(
-            chip
-        );
-    });
-
-    elementos.quantidadeSelecionados.textContent =
-        estado.jogadoresSelecionados.size;
+    elementos.quantidadeSelecionados
+        .textContent =
+            estado.jogadoresSelecionados
+                .size;
 }
 
 
@@ -681,17 +940,20 @@ function alterarModoExibicao(modo) {
 
 function atualizarBotoesModo() {
     const mostrandoFiltrados =
-        estado.modoExibicao === "filtrados";
+        estado.modoExibicao ===
+        "filtrados";
 
-    elementos.mostrarTodos.classList.toggle(
-        "ativo",
-        mostrandoFiltrados
-    );
+    elementos.mostrarTodos
+        .classList.toggle(
+            "ativo",
+            mostrandoFiltrados
+        );
 
-    elementos.mostrarSelecionados.classList.toggle(
-        "ativo",
-        !mostrandoFiltrados
-    );
+    elementos.mostrarSelecionados
+        .classList.toggle(
+            "ativo",
+            !mostrandoFiltrados
+        );
 }
 
 
@@ -702,16 +964,24 @@ function atualizarBotoesModo() {
 function limparTodosFiltros() {
     estado.timesSelecionados.clear();
     estado.jogadoresSelecionados.clear();
-    estado.modoExibicao = "filtrados";
+
+    estado.modoExibicao =
+        "filtrados";
 
     elementos.busca.value = "";
-    elementos.seletorJogador.value = "";
+
+    elementos.seletorJogador.value =
+        "";
 
     elementos.listaTimes
-        .querySelectorAll('input[type="checkbox"]')
-        .forEach(input => {
-            input.checked = false;
-        });
+        .querySelectorAll(
+            'input[type="checkbox"]'
+        )
+        .forEach(
+            input => {
+                input.checked = false;
+            }
+        );
 
     preencherSeletorJogadores();
     atualizarTodaInterface();
@@ -719,89 +989,100 @@ function limparTodosFiltros() {
 
 
 /* ==================================================
-   ORDENAÇÃO POR TIME SELECIONADO
+   ORDENAÇÃO / INTERCALAÇÃO POR TIME
 
    Exemplo:
-   1. DEN selecionado
-   2. LAL selecionado
+   HOU selecionado primeiro
+   LAC selecionado depois
 
    Resultado:
-   todos DEN em ordem alfabética
-   depois todos LAL em ordem alfabética
+   HOU 1 | LAC 1
+   HOU 2 | LAC 2
+   HOU 3 | LAC 3
 ================================================== */
 
-function ordenarPorTimesSelecionados(lista) {
-    const ordenarPorNome = jogadoresDoTime => {
-        return [...jogadoresDoTime].sort((a, b) =>
-            a.nome.localeCompare(
-                b.nome,
-                "pt-BR"
-            )
-        );
-    };
+function ordenarPorTimesSelecionados(
+    lista
+) {
+    const ordenarPorNome =
+        jogadoresDoTime => {
+            return [
+                ...jogadoresDoTime
+            ].sort(
+                (a, b) =>
+                    a.nome.localeCompare(
+                        b.nome,
+                        "pt-BR"
+                    )
+            );
+        };
 
     /*
-       Sem time selecionado:
-       mantém todos os jogadores
-       em ordem alfabética.
+       Sem times selecionados:
+       ordem alfabética normal.
     */
 
-    if (estado.timesSelecionados.size === 0) {
-        return ordenarPorNome(lista);
+    if (
+        estado.timesSelecionados
+            .size === 0
+    ) {
+        return ordenarPorNome(
+            lista
+        );
     }
 
     /*
-       Respeita a ordem em que os times
+       A ordem da coluna respeita
+       a ordem em que os times
        foram selecionados.
-
-       Exemplo:
-       primeiro DET e depois HOU.
     */
 
-    const ordemTimes = Array.from(
-        estado.timesSelecionados
-    );
-
-    /*
-       Cria uma lista separada de jogadores
-       para cada time selecionado.
-    */
-
-    const jogadoresPorTime = ordemTimes.map(time => {
-        const jogadoresDoTime = lista.filter(
-            jogador => jogador.time === time
+    const ordemTimes =
+        Array.from(
+            estado.timesSelecionados
         );
 
-        return ordenarPorNome(
-            jogadoresDoTime
+    const jogadoresPorTime =
+        ordemTimes.map(
+            time => {
+                const jogadoresDoTime =
+                    lista.filter(
+                        jogador =>
+                            jogador.time ===
+                            time
+                    );
+
+                return ordenarPorNome(
+                    jogadoresDoTime
+                );
+            }
         );
-    });
 
     /*
-       Jogadores selecionados individualmente
-       podem não pertencer aos times marcados,
-       especialmente no modo
-       "Somente selecionados".
-
-       Esses jogadores são preservados.
+       Preserva jogadores selecionados
+       que eventualmente não pertençam
+       aos times atualmente marcados.
     */
 
-    const jogadoresForaDosTimes = ordenarPorNome(
-        lista.filter(
-            jogador =>
-                !estado.timesSelecionados.has(
-                    jogador.time
-                )
-        )
-    );
+    const jogadoresForaDosTimes =
+        ordenarPorNome(
+            lista.filter(
+                jogador =>
+                    !estado.timesSelecionados
+                        .has(
+                            jogador.time
+                        )
+            )
+        );
 
     /*
-       Se somente um time estiver selecionado,
-       mantém os jogadores desse time
-       em ordem alfabética.
+       Um único time:
+       mantém ordem normal.
     */
 
-    if (jogadoresPorTime.length === 1) {
+    if (
+        jogadoresPorTime.length === 1
+    ) {
         return [
             ...jogadoresPorTime[0],
             ...jogadoresForaDosTimes
@@ -809,41 +1090,44 @@ function ordenarPorTimesSelecionados(lista) {
     }
 
     /*
-       Intercala os jogadores dos times.
+       Dois ou mais times:
+       intercala os jogadores.
 
-       Com DET e HOU:
+       Em duas colunas:
 
-       posição 0: DET 1, HOU 1
-       posição 1: DET 2, HOU 2
-       posição 2: DET 3, HOU 3
-
-       Como o CSS possui duas colunas,
-       cada linha mostrará um jogador
-       de cada time.
+       HOU 1 | LAC 1
+       HOU 2 | LAC 2
+       HOU 3 | LAC 3
     */
 
     const jogadoresIntercalados = [];
 
-    const maiorQuantidade = Math.max(
-        ...jogadoresPorTime.map(
-            grupo => grupo.length
-        )
-    );
+    const maiorQuantidade =
+        Math.max(
+            ...jogadoresPorTime.map(
+                grupo =>
+                    grupo.length
+            )
+        );
 
     for (
         let posicao = 0;
         posicao < maiorQuantidade;
         posicao++
     ) {
-        jogadoresPorTime.forEach(grupo => {
-            const jogador = grupo[posicao];
+        jogadoresPorTime.forEach(
+            grupo => {
+                const jogador =
+                    grupo[posicao];
 
-            if (jogador) {
-                jogadoresIntercalados.push(
-                    jogador
-                );
+                if (jogador) {
+                    jogadoresIntercalados
+                        .push(
+                            jogador
+                        );
+                }
             }
-        });
+        );
     }
 
     return [
@@ -858,9 +1142,10 @@ function ordenarPorTimesSelecionados(lista) {
 ================================================== */
 
 function obterJogadoresExibidos() {
-    const busca = normalizarTexto(
-        elementos.busca.value
-    );
+    const busca =
+        normalizarTexto(
+            elementos.busca.value
+        );
 
     /*
        MODO SOMENTE SELECIONADOS
@@ -874,14 +1159,17 @@ function obterJogadoresExibidos() {
             jogadores.filter(
                 jogador => {
                     const foiSelecionado =
-                        estado.jogadoresSelecionados.has(
-                            jogador.nome
-                        );
+                        estado.jogadoresSelecionados
+                            .has(
+                                jogador.nome
+                            );
 
                     const correspondeBusca =
                         normalizarTexto(
                             jogador.nome
-                        ).includes(busca);
+                        ).includes(
+                            busca
+                        );
 
                     return (
                         foiSelecionado &&
@@ -889,12 +1177,6 @@ function obterJogadoresExibidos() {
                     );
                 }
             );
-
-        /*
-           Se houver times marcados,
-           mantém os jogadores selecionados
-           agrupados nessa mesma ordem.
-        */
 
         return ordenarPorTimesSelecionados(
             selecionados
@@ -912,13 +1194,17 @@ function obterJogadoresExibidos() {
                 const correspondeBusca =
                     normalizarTexto(
                         jogador.nome
-                    ).includes(busca);
+                    ).includes(
+                        busca
+                    );
 
                 const correspondeTime =
-                    estado.timesSelecionados.size === 0 ||
-                    estado.timesSelecionados.has(
-                        jogador.time
-                    );
+                    estado.timesSelecionados
+                        .size === 0 ||
+                    estado.timesSelecionados
+                        .has(
+                            jogador.time
+                        );
 
                 return (
                     correspondeBusca &&
@@ -942,9 +1228,12 @@ function atualizarTodaInterface() {
     atualizarBotoesModo();
     atualizarBotaoAdicionar();
 
-    const lista = obterJogadoresExibidos();
+    const lista =
+        obterJogadoresExibidos();
 
-    renderizarJogadores(lista);
+    renderizarJogadores(
+        lista
+    );
 }
 
 
@@ -954,14 +1243,19 @@ function atualizarTodaInterface() {
 
 function renderizarJogadores(lista) {
     elementos.lista.innerHTML = "";
-    elementos.total.textContent = lista.length;
+
+    elementos.total.textContent =
+        lista.length;
 
     if (lista.length === 0) {
-        elementos.semResultados.hidden = false;
+        elementos.semResultados.hidden =
+            false;
 
         if (
-            estado.modoExibicao === "selecionados" &&
-            estado.jogadoresSelecionados.size === 0
+            estado.modoExibicao ===
+                "selecionados" &&
+            estado.jogadoresSelecionados
+                .size === 0
         ) {
             atualizarStatus(
                 "Nenhum jogador foi selecionado."
@@ -976,28 +1270,263 @@ function renderizarJogadores(lista) {
         return;
     }
 
-    elementos.semResultados.hidden = true;
+    elementos.semResultados.hidden =
+        true;
 
-    lista.forEach(jogador => {
-        elementos.lista.appendChild(
-            criarCardJogador(jogador)
-        );
-    });
+    /*
+       Cabeçalho dos times aparece
+       antes dos jogadores sempre
+       que existir time selecionado.
+    */
+
+    renderizarCabecalhoTimes();
+
+    lista.forEach(
+        jogador => {
+            elementos.lista
+                .appendChild(
+                    criarCardJogador(
+                        jogador
+                    )
+                );
+        }
+    );
 
     atualizarStatus(
-        criarMensagemStatus(lista.length)
+        criarMensagemStatus(
+            lista.length
+        )
     );
 }
 
 
-function criarMensagemStatus(quantidade) {
+/* ==================================================
+   CABEÇALHO DO CONFRONTO
+================================================== */
+
+function renderizarCabecalhoTimes() {
+    const times =
+        Array.from(
+            estado.timesSelecionados
+        );
+
+    /*
+       Sem time selecionado:
+       nenhuma faixa é exibida.
+    */
+
+    if (times.length === 0) {
+        return;
+    }
+
+    const cabecalho =
+        document.createElement(
+            "section"
+        );
+
+    cabecalho.className =
+        "cabecalho-confronto";
+
+    /*
+       Título pequeno da faixa.
+    */
+
+    const titulo =
+        document.createElement(
+            "div"
+        );
+
+    titulo.className =
+        "confronto-titulo";
+
+    titulo.textContent =
+        times.length >= 2
+            ? "CONFRONTO"
+            : "TIME SELECIONADO";
+
+    cabecalho.appendChild(
+        titulo
+    );
+
+
+    /*
+       Área principal dos times.
+    */
+
+    const conteudo =
+        document.createElement(
+            "div"
+        );
+
+    conteudo.className =
+        "confronto-conteudo";
+
+
+    /*
+       Exibimos na faixa os dois
+       primeiros times selecionados.
+    */
+
+    const timesExibidos =
+        times.slice(0, 2);
+
+    if (
+        timesExibidos.length === 1
+    ) {
+        conteudo.classList.add(
+            "um-time"
+        );
+    }
+
+
+    timesExibidos.forEach(
+        (time, indice) => {
+
+            /*
+               Insere o X entre os times.
+            */
+
+            if (indice === 1) {
+                const versus =
+                    document.createElement(
+                        "div"
+                    );
+
+                versus.className =
+                    "confronto-versus";
+
+                versus.textContent =
+                    "×";
+
+                conteudo.appendChild(
+                    versus
+                );
+            }
+
+
+            /*
+               Bloco do time.
+            */
+
+            const bloco =
+                document.createElement(
+                    "div"
+                );
+
+            bloco.className =
+                "confronto-time";
+
+            bloco.dataset.time =
+                time;
+
+
+            /*
+               Sigla.
+            */
+
+            const sigla =
+                document.createElement(
+                    "strong"
+                );
+
+            sigla.className =
+                "confronto-sigla";
+
+            sigla.textContent =
+                time;
+
+
+            /*
+               Nome completo.
+            */
+
+            const nome =
+                document.createElement(
+                    "span"
+                );
+
+            nome.className =
+                "confronto-nome";
+
+            nome.textContent =
+                nomesTimes[time] ||
+                time;
+
+
+            bloco.appendChild(
+                sigla
+            );
+
+            bloco.appendChild(
+                nome
+            );
+
+            conteudo.appendChild(
+                bloco
+            );
+        }
+    );
+
+
+    cabecalho.appendChild(
+        conteudo
+    );
+
+
+    /*
+       Caso mais de dois times
+       estejam selecionados,
+       informa discretamente.
+    */
+
+    if (times.length > 2) {
+        const outros =
+            document.createElement(
+                "div"
+            );
+
+        outros.className =
+            "confronto-outros";
+
+        outros.textContent =
+            `+ ${times.length - 2} time(s) selecionado(s)`;
+
+        cabecalho.appendChild(
+            outros
+        );
+    }
+
+
+    /*
+       Como a lista é um GRID de
+       duas colunas, a faixa precisa
+       ocupar as duas colunas.
+       Isso será reforçado pelo CSS.
+    */
+
+    elementos.lista.appendChild(
+        cabecalho
+    );
+}
+
+
+/* ==================================================
+   MENSAGEM DE STATUS
+================================================== */
+
+function criarMensagemStatus(
+    quantidade
+) {
     const partes = [];
 
     partes.push(
         `${quantidade} jogador(es) exibido(s)`
     );
 
-    if (estado.timesSelecionados.size > 0) {
+    if (
+        estado.timesSelecionados
+            .size > 0
+    ) {
         partes.push(
             Array.from(
                 estado.timesSelecionados
@@ -1006,8 +1535,8 @@ function criarMensagemStatus(quantidade) {
     }
 
     if (
-        estado.jogadoresSelecionados.size >
-        0
+        estado.jogadoresSelecionados
+            .size > 0
     ) {
         partes.push(
             `${estado.jogadoresSelecionados.size} selecionado(s)`
@@ -1023,7 +1552,10 @@ function criarMensagemStatus(quantidade) {
         );
     }
 
-    return partes.join(" • ") + ".";
+    return (
+        partes.join(" • ") +
+        "."
+    );
 }
 
 
@@ -1031,9 +1563,14 @@ function criarMensagemStatus(quantidade) {
    CARD DO JOGADOR
 ================================================== */
 
-function criarCardJogador(jogador) {
+function criarCardJogador(
+    jogador
+) {
     const fragmento =
-        elementos.template.content.cloneNode(true);
+        elementos.template.content
+            .cloneNode(
+                true
+            );
 
     definirTexto(
         fragmento,
@@ -1124,6 +1661,10 @@ function criarCardJogador(jogador) {
 }
 
 
+/* ==================================================
+   DEFINIR TEXTO
+================================================== */
+
 function definirTexto(
     fragmento,
     seletor,
@@ -1152,29 +1693,52 @@ function criarLinhaJogo(jogo) {
         );
 
     const valores = [
-        formatarData(jogo.data),
+        formatarData(
+            jogo.data
+        ),
+
         jogo.adversario || "-",
-        formatarNumero(jogo.pts),
-        formatarNumero(jogo.reb),
-        formatarNumero(jogo.ast),
-        formatarNumero(jogo.tpm),
-        formatarNumero(jogo.stl),
-        formatarNumero(jogo.blk)
+
+        formatarNumero(
+            jogo.pts
+        ),
+
+        formatarNumero(
+            jogo.reb
+        ),
+
+        formatarNumero(
+            jogo.ast
+        ),
+
+        formatarNumero(
+            jogo.tpm
+        ),
+
+        formatarNumero(
+            jogo.stl
+        ),
+
+        formatarNumero(
+            jogo.blk
+        )
     ];
 
-    valores.forEach(valor => {
-        const celula =
-            document.createElement(
-                "td"
+    valores.forEach(
+        valor => {
+            const celula =
+                document.createElement(
+                    "td"
+                );
+
+            celula.textContent =
+                valor;
+
+            linha.appendChild(
+                celula
             );
-
-        celula.textContent =
-            valor;
-
-        linha.appendChild(
-            celula
-        );
-    });
+        }
+    );
 
     return linha;
 }
@@ -1192,6 +1756,7 @@ function criarLinhaSemJogos() {
         );
 
     celula.colSpan = 8;
+
     celula.textContent =
         "Nenhum jogo disponível.";
 
@@ -1302,7 +1867,9 @@ function calcularMedia(
 
 function formatarData(valor) {
     const data =
-        converterData(valor);
+        converterData(
+            valor
+        );
 
     if (!data) {
         return valor || "-";
@@ -1318,7 +1885,9 @@ function formatarNumero(valor) {
     if (
         valor === null ||
         valor === undefined ||
-        !Number.isFinite(valor)
+        !Number.isFinite(
+            valor
+        )
     ) {
         return "-";
     }
@@ -1330,7 +1899,9 @@ function formatarNumero(valor) {
 
 
 function normalizarTexto(valor) {
-    return String(valor || "")
+    return String(
+        valor || ""
+    )
         .normalize("NFD")
         .replace(
             /[\u0300-\u036f]/g,
@@ -1342,7 +1913,9 @@ function normalizarTexto(valor) {
 
 
 function criarIdentificador(valor) {
-    return normalizarTexto(valor)
+    return normalizarTexto(
+        valor
+    )
         .replace(
             /[^a-z0-9]+/g,
             "-"
