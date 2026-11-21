@@ -397,7 +397,8 @@ button {
 
     color: var(--blue);
 
-    transform: translateY(-1px);
+    transform:
+        translateY(-1px);
 }
 
 .time-opcao input:checked + label {
@@ -489,7 +490,8 @@ button {
 }
 
 .botao-primario:hover {
-    transform: translateY(-1px);
+    transform:
+        translateY(-1px);
 
     box-shadow:
         0 8px 18px
@@ -735,7 +737,8 @@ button {
 
     box-shadow: var(--shadow-hover);
 
-    transform: translateY(-1px);
+    transform:
+        translateY(-1px);
 }
 
 .jogador-cabecalho {
@@ -761,11 +764,6 @@ button {
 
     gap: 15px;
 }
-
-/*
-   Esse círculo já está preparado
-   para virar a FOTO DO JOGADOR.
-*/
 
 .jogador-time {
     position: relative;
@@ -887,7 +885,6 @@ button {
     color: #10223c;
 
     font-size: 18px;
-
     line-height: 1.1;
 }
 
@@ -940,7 +937,6 @@ button {
     font-weight: 900;
 
     letter-spacing: 0.25px;
-
     text-transform: uppercase;
 }
 
@@ -977,19 +973,16 @@ button {
 
 .tendencia-acima {
     color: var(--green);
-
     background: var(--green-bg);
 }
 
 .tendencia-estavel {
     color: #87610a;
-
     background: #fff8df;
 }
 
 .tendencia-abaixo {
     color: #c62c48;
-
     background: #fff0f3;
 }
 
@@ -1034,15 +1027,13 @@ button {
     }
 
     .topo {
-        padding: 14px 0;
+        padding: 12px 0;
     }
 
     .topo-conteudo {
         align-items: flex-start;
 
         flex-direction: column;
-
-        gap: 12px;
     }
 
     .marca {
@@ -1057,7 +1048,7 @@ button {
 
         border-radius: 12px;
 
-        font-size: 21px;
+        font-size: 22px;
     }
 
     .topo h1 {
