@@ -491,7 +491,16 @@ function criarOpcoesTimes() {
 
         input.addEventListener("change", () => {
             if (input.checked) {
+                /*
+                   Set mantém a ordem de inserção.
+
+                   Portanto:
+                   clicar DEN e depois LAL
+                   gera a ordem:
+                   DEN -> LAL
+                */
                 estado.timesSelecionados.add(time);
+
             } else {
                 estado.timesSelecionados.delete(time);
             }
@@ -614,8 +623,6 @@ function renderizarChipsSelecionados() {
 
     const nomes = Array.from(
         estado.jogadoresSelecionados
-    ).sort((a, b) =>
-        a.localeCompare(b, "pt-BR")
     );
 
     nomes.forEach(nome => {
@@ -627,14 +634,17 @@ function renderizarChipsSelecionados() {
         chip.className = "jogador-chip";
 
         const texto = document.createElement("span");
+
         texto.textContent = jogador
             ? `${jogador.nome} • ${jogador.time}`
             : nome;
 
         const remover = document.createElement("button");
+
         remover.type = "button";
         remover.textContent = "×";
         remover.title = `Remover ${nome}`;
+
         remover.setAttribute(
             "aria-label",
             `Remover ${nome}`
@@ -709,6 +719,71 @@ function limparTodosFiltros() {
 
 
 /* ==================================================
+   ORDENAÇÃO POR TIME SELECIONADO
+
+   Exemplo:
+   1. DEN selecionado
+   2. LAL selecionado
+
+   Resultado:
+   todos DEN em ordem alfabética
+   depois todos LAL em ordem alfabética
+================================================== */
+
+function ordenarPorTimesSelecionados(lista) {
+    if (estado.timesSelecionados.size === 0) {
+        return [...lista].sort(
+            (a, b) =>
+                a.nome.localeCompare(
+                    b.nome,
+                    "pt-BR"
+                )
+        );
+    }
+
+    const ordemTimes =
+        Array.from(
+            estado.timesSelecionados
+        );
+
+    const posicaoTime =
+        new Map();
+
+    ordemTimes.forEach(
+        (time, indice) => {
+            posicaoTime.set(
+                time,
+                indice
+            );
+        }
+    );
+
+    return [...lista].sort(
+        (a, b) => {
+            const posicaoA =
+                posicaoTime.has(a.time)
+                    ? posicaoTime.get(a.time)
+                    : Number.MAX_SAFE_INTEGER;
+
+            const posicaoB =
+                posicaoTime.has(b.time)
+                    ? posicaoTime.get(b.time)
+                    : Number.MAX_SAFE_INTEGER;
+
+            if (posicaoA !== posicaoB) {
+                return posicaoA - posicaoB;
+            }
+
+            return a.nome.localeCompare(
+                b.nome,
+                "pt-BR"
+            );
+        }
+    );
+}
+
+
+/* ==================================================
    FILTRAGEM
 ================================================== */
 
@@ -717,34 +792,74 @@ function obterJogadoresExibidos() {
         elementos.busca.value
     );
 
-    if (estado.modoExibicao === "selecionados") {
-        return jogadores.filter(jogador => {
-            const foiSelecionado =
-                estado.jogadoresSelecionados.has(
-                    jogador.nome
-                );
+    /*
+       MODO SOMENTE SELECIONADOS
+    */
 
-            const correspondeBusca =
-                normalizarTexto(jogador.nome)
-                    .includes(busca);
+    if (
+        estado.modoExibicao ===
+        "selecionados"
+    ) {
+        const selecionados =
+            jogadores.filter(
+                jogador => {
+                    const foiSelecionado =
+                        estado.jogadoresSelecionados.has(
+                            jogador.nome
+                        );
 
-            return foiSelecionado && correspondeBusca;
-        });
-    }
+                    const correspondeBusca =
+                        normalizarTexto(
+                            jogador.nome
+                        ).includes(busca);
 
-    return jogadores.filter(jogador => {
-        const correspondeBusca =
-            normalizarTexto(jogador.nome)
-                .includes(busca);
-
-        const correspondeTime =
-            estado.timesSelecionados.size === 0 ||
-            estado.timesSelecionados.has(
-                jogador.time
+                    return (
+                        foiSelecionado &&
+                        correspondeBusca
+                    );
+                }
             );
 
-        return correspondeBusca && correspondeTime;
-    });
+        /*
+           Se houver times marcados,
+           mantém os jogadores selecionados
+           agrupados nessa mesma ordem.
+        */
+
+        return ordenarPorTimesSelecionados(
+            selecionados
+        );
+    }
+
+
+    /*
+       MODO MOSTRAR FILTRADOS
+    */
+
+    const filtrados =
+        jogadores.filter(
+            jogador => {
+                const correspondeBusca =
+                    normalizarTexto(
+                        jogador.nome
+                    ).includes(busca);
+
+                const correspondeTime =
+                    estado.timesSelecionados.size === 0 ||
+                    estado.timesSelecionados.has(
+                        jogador.time
+                    );
+
+                return (
+                    correspondeBusca &&
+                    correspondeTime
+                );
+            }
+        );
+
+    return ordenarPorTimesSelecionados(
+        filtrados
+    );
 }
 
 
@@ -781,6 +896,7 @@ function renderizarJogadores(lista) {
             atualizarStatus(
                 "Nenhum jogador foi selecionado."
             );
+
         } else {
             atualizarStatus(
                 "Nenhum jogador encontrado com os filtros selecionados."
@@ -813,18 +929,28 @@ function criarMensagemStatus(quantidade) {
 
     if (estado.timesSelecionados.size > 0) {
         partes.push(
-            `${estado.timesSelecionados.size} time(s)`
+            Array.from(
+                estado.timesSelecionados
+            ).join(" → ")
         );
     }
 
-    if (estado.jogadoresSelecionados.size > 0) {
+    if (
+        estado.jogadoresSelecionados.size >
+        0
+    ) {
         partes.push(
             `${estado.jogadoresSelecionados.size} selecionado(s)`
         );
     }
 
-    if (estado.modoExibicao === "selecionados") {
-        partes.push("modo somente selecionados");
+    if (
+        estado.modoExibicao ===
+        "selecionados"
+    ) {
+        partes.push(
+            "modo somente selecionados"
+        );
     }
 
     return partes.join(" • ") + ".";
@@ -859,38 +985,88 @@ function criarCardJogador(jogador) {
             : `${jogador.jogos.length} jogos recentes`
     );
 
-    const medias = calcularMedias(jogador.jogos);
+    const medias =
+        calcularMedias(
+            jogador.jogos
+        );
 
-    definirTexto(fragmento, ".media-pts", medias.pts);
-    definirTexto(fragmento, ".media-reb", medias.reb);
-    definirTexto(fragmento, ".media-ast", medias.ast);
-    definirTexto(fragmento, ".media-tpm", medias.tpm);
-    definirTexto(fragmento, ".media-stl", medias.stl);
-    definirTexto(fragmento, ".media-blk", medias.blk);
-
-    const corpo = fragmento.querySelector(
-        ".jogos-corpo"
+    definirTexto(
+        fragmento,
+        ".media-pts",
+        medias.pts
     );
 
-    if (jogador.jogos.length === 0) {
-        corpo.appendChild(criarLinhaSemJogos());
+    definirTexto(
+        fragmento,
+        ".media-reb",
+        medias.reb
+    );
+
+    definirTexto(
+        fragmento,
+        ".media-ast",
+        medias.ast
+    );
+
+    definirTexto(
+        fragmento,
+        ".media-tpm",
+        medias.tpm
+    );
+
+    definirTexto(
+        fragmento,
+        ".media-stl",
+        medias.stl
+    );
+
+    definirTexto(
+        fragmento,
+        ".media-blk",
+        medias.blk
+    );
+
+    const corpo =
+        fragmento.querySelector(
+            ".jogos-corpo"
+        );
+
+    if (
+        jogador.jogos.length === 0
+    ) {
+        corpo.appendChild(
+            criarLinhaSemJogos()
+        );
+
     } else {
-        jogador.jogos.forEach(jogo => {
-            corpo.appendChild(
-                criarLinhaJogo(jogo)
-            );
-        });
+        jogador.jogos.forEach(
+            jogo => {
+                corpo.appendChild(
+                    criarLinhaJogo(
+                        jogo
+                    )
+                );
+            }
+        );
     }
 
     return fragmento;
 }
 
 
-function definirTexto(fragmento, seletor, valor) {
-    const elemento = fragmento.querySelector(seletor);
+function definirTexto(
+    fragmento,
+    seletor,
+    valor
+) {
+    const elemento =
+        fragmento.querySelector(
+            seletor
+        );
 
     if (elemento) {
-        elemento.textContent = valor;
+        elemento.textContent =
+            valor;
     }
 }
 
@@ -900,7 +1076,10 @@ function definirTexto(fragmento, seletor, valor) {
 ================================================== */
 
 function criarLinhaJogo(jogo) {
-    const linha = document.createElement("tr");
+    const linha =
+        document.createElement(
+            "tr"
+        );
 
     const valores = [
         formatarData(jogo.data),
@@ -914,9 +1093,17 @@ function criarLinhaJogo(jogo) {
     ];
 
     valores.forEach(valor => {
-        const celula = document.createElement("td");
-        celula.textContent = valor;
-        linha.appendChild(celula);
+        const celula =
+            document.createElement(
+                "td"
+            );
+
+        celula.textContent =
+            valor;
+
+        linha.appendChild(
+            celula
+        );
     });
 
     return linha;
@@ -924,14 +1111,26 @@ function criarLinhaJogo(jogo) {
 
 
 function criarLinhaSemJogos() {
-    const linha = document.createElement("tr");
-    const celula = document.createElement("td");
+    const linha =
+        document.createElement(
+            "tr"
+        );
+
+    const celula =
+        document.createElement(
+            "td"
+        );
 
     celula.colSpan = 8;
-    celula.textContent = "Nenhum jogo disponível.";
-    celula.style.textAlign = "center";
+    celula.textContent =
+        "Nenhum jogo disponível.";
 
-    linha.appendChild(celula);
+    celula.style.textAlign =
+        "center";
+
+    linha.appendChild(
+        celula
+    );
 
     return linha;
 }
@@ -943,35 +1142,85 @@ function criarLinhaSemJogos() {
 
 function calcularMedias(jogos) {
     return {
-        pts: calcularMedia(jogos, "pts"),
-        reb: calcularMedia(jogos, "reb"),
-        ast: calcularMedia(jogos, "ast"),
-        tpm: calcularMedia(jogos, "tpm"),
-        stl: calcularMedia(jogos, "stl"),
-        blk: calcularMedia(jogos, "blk")
+        pts:
+            calcularMedia(
+                jogos,
+                "pts"
+            ),
+
+        reb:
+            calcularMedia(
+                jogos,
+                "reb"
+            ),
+
+        ast:
+            calcularMedia(
+                jogos,
+                "ast"
+            ),
+
+        tpm:
+            calcularMedia(
+                jogos,
+                "tpm"
+            ),
+
+        stl:
+            calcularMedia(
+                jogos,
+                "stl"
+            ),
+
+        blk:
+            calcularMedia(
+                jogos,
+                "blk"
+            )
     };
 }
 
 
-function calcularMedia(jogos, campo) {
-    const valores = jogos
-        .map(jogo => jogo[campo])
-        .filter(
-            valor =>
-                typeof valor === "number" &&
-                Number.isFinite(valor)
-        );
+function calcularMedia(
+    jogos,
+    campo
+) {
+    const valores =
+        jogos
+            .map(
+                jogo =>
+                    jogo[campo]
+            )
+            .filter(
+                valor =>
+                    typeof valor ===
+                        "number" &&
+                    Number.isFinite(
+                        valor
+                    )
+            );
 
-    if (valores.length === 0) {
+    if (
+        valores.length === 0
+    ) {
         return "-";
     }
 
-    const soma = valores.reduce(
-        (total, valor) => total + valor,
-        0
-    );
+    const soma =
+        valores.reduce(
+            (
+                total,
+                valor
+            ) =>
+                total +
+                valor,
+            0
+        );
 
-    return (soma / valores.length)
+    return (
+        soma /
+        valores.length
+    )
         .toFixed(1)
         .replace(".", ",");
 }
@@ -982,13 +1231,16 @@ function calcularMedia(jogos, campo) {
 ================================================== */
 
 function formatarData(valor) {
-    const data = converterData(valor);
+    const data =
+        converterData(valor);
 
     if (!data) {
         return valor || "-";
     }
 
-    return data.toLocaleDateString("pt-BR");
+    return data.toLocaleDateString(
+        "pt-BR"
+    );
 }
 
 
@@ -1001,14 +1253,19 @@ function formatarNumero(valor) {
         return "-";
     }
 
-    return valor.toLocaleString("pt-BR");
+    return valor.toLocaleString(
+        "pt-BR"
+    );
 }
 
 
 function normalizarTexto(valor) {
     return String(valor || "")
         .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
+        .replace(
+            /[\u0300-\u036f]/g,
+            ""
+        )
         .toLowerCase()
         .trim();
 }
@@ -1016,11 +1273,18 @@ function normalizarTexto(valor) {
 
 function criarIdentificador(valor) {
     return normalizarTexto(valor)
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/^-+|-+$/g, "");
+        .replace(
+            /[^a-z0-9]+/g,
+            "-"
+        )
+        .replace(
+            /^-+|-+$/g,
+            ""
+        );
 }
 
 
 function atualizarStatus(texto) {
-    elementos.status.textContent = texto;
+    elementos.status.textContent =
+        texto;
 }
