@@ -15,8 +15,8 @@
     --green: #138a57;
     --green-bg: #e9f8f1;
 
-    --shadow: 0 10px 30px rgba(15, 35, 65, 0.08);
-    --shadow-hover: 0 15px 38px rgba(15, 35, 65, 0.13);
+    --shadow: 0 8px 24px rgba(15, 35, 65, 0.08);
+    --shadow-hover: 0 12px 30px rgba(15, 35, 65, 0.13);
 
     --radius: 14px;
 }
@@ -68,8 +68,8 @@ button {
 
 .container {
     width: min(
-        1480px,
-        calc(100% - 40px)
+        1580px,
+        calc(100% - 32px)
     );
 
     margin: 0 auto;
@@ -156,10 +156,6 @@ button {
         rgba(255, 255, 255, 0.10);
 
     font-size: 22px;
-
-    box-shadow:
-        inset 0 1px 0
-        rgba(255, 255, 255, 0.08);
 }
 
 .topo h1 {
@@ -221,7 +217,7 @@ button {
 
 
 /* ========================================
-   PAINEL DE FILTROS - COMPACTO
+   PAINEL DE FILTROS
 ======================================== */
 
 .painel-filtros {
@@ -267,9 +263,7 @@ button {
 
     padding: 0 13px;
 
-    border:
-        1px solid #ced9e8;
-
+    border: 1px solid #ced9e8;
     border-radius: 9px;
 
     background: #ffffff;
@@ -279,10 +273,6 @@ button {
     font-size: 13px;
 
     outline: none;
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
 }
 
 .filtro-principal input:focus {
@@ -299,7 +289,7 @@ button {
 
 
 /* ========================================
-   BLOCOS DE FILTRO
+   BLOCOS DOS FILTROS
 ======================================== */
 
 .bloco-filtro {
@@ -322,7 +312,6 @@ button {
 .filtro-titulo small {
     display: inline;
 
-    margin-top: 0;
     margin-left: 6px;
 
     color: var(--muted);
@@ -349,7 +338,7 @@ button {
 
 
 /* ========================================
-   TIMES COMPACTOS
+   TIMES
 ======================================== */
 
 .lista-opcoes {
@@ -380,9 +369,7 @@ button {
 
     padding: 0 9px;
 
-    border:
-        1px solid #d6dfeb;
-
+    border: 1px solid #d6dfeb;
     border-radius: 7px;
 
     background: #ffffff;
@@ -394,8 +381,7 @@ button {
 
     cursor: pointer;
 
-    transition:
-        all 0.18s ease;
+    transition: all 0.18s ease;
 }
 
 .time-opcao label:hover {
@@ -403,8 +389,7 @@ button {
 
     color: var(--blue);
 
-    transform:
-        translateY(-1px);
+    transform: translateY(-1px);
 }
 
 .time-opcao input:checked + label {
@@ -445,9 +430,7 @@ button {
 
     padding: 0 11px;
 
-    border:
-        1px solid #ced9e8;
-
+    border: 1px solid #ced9e8;
     border-radius: 8px;
 
     background: #ffffff;
@@ -474,7 +457,6 @@ button {
     padding: 0 15px;
 
     border: 0;
-
     border-radius: 8px;
 
     background:
@@ -492,24 +474,11 @@ button {
     box-shadow:
         0 4px 10px
         rgba(23, 74, 156, 0.18);
-
-    transition:
-        transform 0.18s ease,
-        box-shadow 0.18s ease;
-}
-
-.botao-primario:hover {
-    transform:
-        translateY(-1px);
-
-    box-shadow:
-        0 6px 14px
-        rgba(23, 74, 156, 0.25);
 }
 
 
 /* ========================================
-   CHIPS DOS JOGADORES
+   CHIPS
 ======================================== */
 
 .chips-selecionados {
@@ -557,7 +526,6 @@ button {
     padding: 0;
 
     border: 0;
-
     border-radius: 50%;
 
     background:
@@ -629,8 +597,7 @@ button {
     font-size: 11px;
     font-weight: 800;
 
-    transition:
-        all 0.18s ease;
+    transition: all 0.18s ease;
 }
 
 .botao-secundario {
@@ -691,9 +658,7 @@ button {
 .sem-resultados {
     padding: 40px 22px;
 
-    border:
-        1px solid var(--border);
-
+    border: 1px solid var(--border);
     border-radius: var(--radius);
 
     background: var(--card);
@@ -707,29 +672,35 @@ button {
 
 
 /* ========================================
-   LISTA DE JOGADORES
+   LISTA - 2 JOGADORES POR LINHA
 ======================================== */
 
 .lista-jogadores {
     display: grid;
 
-    gap: 20px;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    align-items: start;
+
+    gap: 14px;
 
     padding-bottom: 45px;
 }
 
 
 /* ========================================
-   CARD
+   CARD DO JOGADOR
 ======================================== */
 
 .jogador-card {
+    min-width: 0;
     overflow: hidden;
 
     border:
         1px solid #dde5ef;
 
-    border-radius: 17px;
+    border-radius: 14px;
 
     background: var(--card);
 
@@ -746,23 +717,29 @@ button {
 
     box-shadow: var(--shadow-hover);
 
-    transform:
-        translateY(-1px);
+    transform: translateY(-1px);
 }
+
+
+/* ========================================
+   CABEÇALHO DO CARD
+======================================== */
 
 .jogador-cabecalho {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    gap: 24px;
+    min-width: 0;
 
-    padding: 22px;
+    gap: 12px;
+
+    padding: 13px 14px;
 }
 
 
 /* ========================================
-   IDENTIFICAÇÃO DO JOGADOR
+   IDENTIFICAÇÃO
 ======================================== */
 
 .jogador-identificacao {
@@ -771,7 +748,7 @@ button {
 
     min-width: 0;
 
-    gap: 15px;
+    gap: 10px;
 }
 
 .jogador-time {
@@ -781,15 +758,15 @@ button {
     align-items: center;
     justify-content: center;
 
-    width: 64px;
-    height: 64px;
+    width: 48px;
+    height: 48px;
 
-    flex: 0 0 64px;
+    flex: 0 0 48px;
 
     overflow: hidden;
 
     border:
-        3px solid #ffffff;
+        2px solid #ffffff;
 
     border-radius: 50%;
 
@@ -802,13 +779,13 @@ button {
 
     color: #ffffff;
 
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 900;
 
     box-shadow:
         0 0 0 1px #dce6f3,
-        0 7px 16px
-        rgba(23, 74, 156, 0.18);
+        0 5px 12px
+        rgba(23, 74, 156, 0.16);
 }
 
 .jogador-time img {
@@ -829,11 +806,11 @@ button {
 .jogador-nome {
     overflow: hidden;
 
-    margin: 0 0 5px;
+    margin: 0 0 3px;
 
     color: #10223c;
 
-    font-size: 22px;
+    font-size: 17px;
     font-weight: 800;
 
     line-height: 1.15;
@@ -845,30 +822,34 @@ button {
 .jogador-jogos {
     color: var(--muted);
 
-    font-size: 12px;
+    font-size: 10px;
 }
 
 
 /* ========================================
-   MÉDIAS
+   MÉDIAS COMPACTAS
 ======================================== */
 
 .medias {
-    display: flex;
-    align-items: stretch;
+    display: grid;
 
-    gap: 9px;
+    grid-template-columns:
+        repeat(6, minmax(42px, 1fr));
+
+    gap: 4px;
+
+    min-width: 0;
 }
 
 .media {
-    min-width: 70px;
+    min-width: 0;
 
-    padding: 9px 11px;
+    padding: 6px 5px;
 
     border:
         1px solid #edf1f6;
 
-    border-radius: 11px;
+    border-radius: 8px;
 
     background: #f7f9fc;
 
@@ -878,14 +859,14 @@ button {
 .media span {
     display: block;
 
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 
     color: #718096;
 
-    font-size: 10px;
+    font-size: 8px;
     font-weight: 900;
 
-    letter-spacing: 0.4px;
+    letter-spacing: 0.2px;
 }
 
 .media strong {
@@ -893,8 +874,8 @@ button {
 
     color: #10223c;
 
-    font-size: 18px;
-    line-height: 1.1;
+    font-size: 14px;
+    line-height: 1.05;
 }
 
 .media.destaque-3pm {
@@ -909,10 +890,12 @@ button {
 
 
 /* ========================================
-   TABELA DOS 10 JOGOS
+   TABELA - 10 JOGOS
 ======================================== */
 
 .tabela-container {
+    width: 100%;
+
     overflow-x: auto;
 
     border-top:
@@ -922,18 +905,23 @@ button {
 .tabela-jogos {
     width: 100%;
 
+    table-layout: fixed;
+
     border-collapse: collapse;
 }
 
 .tabela-jogos th,
 .tabela-jogos td {
-    padding: 13px 16px;
+    overflow: hidden;
+
+    padding: 8px 5px;
 
     border-bottom:
         1px solid #edf1f6;
 
     text-align: center;
 
+    text-overflow: ellipsis;
     white-space: nowrap;
 }
 
@@ -942,10 +930,10 @@ button {
 
     color: #607087;
 
-    font-size: 11px;
+    font-size: 9px;
     font-weight: 900;
 
-    letter-spacing: 0.25px;
+    letter-spacing: 0.1px;
 
     text-transform: uppercase;
 }
@@ -953,14 +941,37 @@ button {
 .tabela-jogos td {
     color: #17263b;
 
-    font-size: 14px;
+    font-size: 11px;
 }
 
-.tabela-jogos th:first-child,
-.tabela-jogos th:nth-child(2),
-.tabela-jogos td:first-child,
-.tabela-jogos td:nth-child(2) {
+
+/* DATA */
+
+.tabela-jogos th:nth-child(1),
+.tabela-jogos td:nth-child(1) {
+    width: 19%;
+
     text-align: left;
+
+    padding-left: 12px;
+}
+
+
+/* ADVERSÁRIO */
+
+.tabela-jogos th:nth-child(2),
+.tabela-jogos td:nth-child(2) {
+    width: 17%;
+
+    text-align: left;
+}
+
+
+/* ESTATÍSTICAS */
+
+.tabela-jogos th:nth-child(n+3),
+.tabela-jogos td:nth-child(n+3) {
+    width: 10.66%;
 }
 
 .tabela-jogos tbody tr {
@@ -983,44 +994,73 @@ button {
 
 .tendencia-acima {
     color: var(--green);
+
     background: var(--green-bg);
 }
 
 .tendencia-estavel {
     color: #87610a;
+
     background: #fff8df;
 }
 
 .tendencia-abaixo {
     color: #c62c48;
+
     background: #fff0f3;
 }
 
 
 /* ========================================
-   TABLET
+   TELAS INTERMEDIÁRIAS
+
+   Abaixo de 1250px voltamos para
+   1 jogador por linha para preservar
+   a leitura dos 10 jogos.
 ======================================== */
 
-@media (max-width: 1050px) {
+@media (max-width: 1250px) {
+
+    .lista-jogadores {
+        grid-template-columns: 1fr;
+    }
 
     .jogador-cabecalho {
-        align-items: flex-start;
+        padding: 15px 16px;
+    }
 
-        flex-direction: column;
+    .jogador-time {
+        width: 56px;
+        height: 56px;
+
+        flex-basis: 56px;
+    }
+
+    .jogador-nome {
+        font-size: 19px;
     }
 
     .medias {
-        width: 100%;
-
-        overflow-x: auto;
-
-        padding-bottom: 3px;
+        grid-template-columns:
+            repeat(6, minmax(55px, 1fr));
     }
 
-    .media {
-        flex: 1;
+    .media strong {
+        font-size: 16px;
+    }
 
-        min-width: 68px;
+    .tabela-jogos th,
+    .tabela-jogos td {
+        padding:
+            10px 8px;
+    }
+
+    .tabela-jogos th {
+        font-size: 10px;
+    }
+
+    .tabela-jogos td {
+        font-size: 13px;
     }
 }
 
@@ -1033,11 +1073,11 @@ button {
 
     .container {
         width:
-            calc(100% - 22px);
+            calc(100% - 20px);
     }
 
     .topo {
-        padding: 11px 0;
+        padding: 10px 0;
     }
 
     .topo-conteudo {
@@ -1045,11 +1085,7 @@ button {
 
         flex-direction: column;
 
-        gap: 9px;
-    }
-
-    .marca {
-        align-items: flex-start;
+        gap: 8px;
     }
 
     .marca-bola {
@@ -1057,8 +1093,6 @@ button {
         height: 40px;
 
         flex-basis: 40px;
-
-        border-radius: 11px;
 
         font-size: 20px;
     }
@@ -1077,10 +1111,6 @@ button {
         padding: 6px 12px;
 
         text-align: left;
-    }
-
-    .contador strong {
-        font-size: 20px;
     }
 
     .painel-filtros {
@@ -1128,38 +1158,40 @@ button {
         min-width: 130px;
     }
 
+    .lista-jogadores {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
     .jogador-cabecalho {
-        padding: 17px;
-    }
+        align-items: flex-start;
 
-    .jogador-time {
-        width: 56px;
-        height: 56px;
+        flex-direction: column;
 
-        flex-basis: 56px;
-    }
-
-    .jogador-nome {
-        font-size: 19px;
+        padding: 12px;
     }
 
     .medias {
-        gap: 7px;
+        width: 100%;
+
+        grid-template-columns:
+            repeat(6, minmax(48px, 1fr));
+
+        overflow-x: auto;
     }
 
-    .media {
-        min-width: 62px;
+    .tabela-jogos {
+        min-width: 610px;
 
-        padding: 8px 9px;
-    }
-
-    .media strong {
-        font-size: 16px;
+        table-layout: auto;
     }
 
     .tabela-jogos th,
     .tabela-jogos td {
-        padding: 11px 12px;
+        padding: 8px 9px;
+
+        font-size: 10px;
     }
 }
 
@@ -1180,7 +1212,6 @@ button {
 
     .time-opcao label {
         min-width: 44px;
-
         height: 28px;
 
         padding: 0 8px;
@@ -1195,5 +1226,12 @@ button {
     .botao-secundario,
     .botao-perigo {
         width: 100%;
+    }
+
+    .medias {
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        overflow: visible;
     }
 }
