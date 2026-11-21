@@ -10,11 +10,6 @@ const elementos = {
 
 let jogadores = [];
 
-
-/* =========================
-   INICIALIZAÇÃO
-========================= */
-
 document.addEventListener("DOMContentLoaded", iniciar);
 
 async function iniciar() {
@@ -24,7 +19,7 @@ async function iniciar() {
 
 
 /* =========================
-   CARREGAMENTO DO CSV
+   CARREGAMENTO
 ========================= */
 
 async function carregarDados() {
@@ -43,13 +38,20 @@ async function carregarDados() {
 
         const texto = await resposta.text();
 
-        const linhas = parseCSV(texto);
+        const separador = detectarSeparador(texto);
+        const linhas = parseCSV(texto, separador);
 
         if (linhas.length < 2) {
-            throw new Error("dados.csv está vazio.");
+            throw new Error("dados.csv não possui registros.");
         }
 
         jogadores = agruparJogadores(linhas);
+
+        if (jogadores.length === 0) {
+            throw new Error(
+                "Nenhum jogador pôde ser criado a partir do CSV."
+            );
+        }
 
         preencherFiltroTimes();
         aplicarFiltros();
@@ -58,10 +60,9 @@ async function carregarDados() {
         console.error("Erro ao carregar dados:", erro);
 
         jogadores = [];
-
         elementos.lista.innerHTML = "";
         elementos.total.textContent = "0";
-        elementos.semResultados.hidden = true;
+        elementos.semResultados.hidden = false;
 
         atualizarStatus(
             "Não foi possível carregar os dados dos jogadores."
@@ -71,10 +72,30 @@ async function carregarDados() {
 
 
 /* =========================
+   DETECÇÃO DO SEPARADOR
+========================= */
+
+function detectarSeparador(texto) {
+    const primeiraLinha =
+        texto.split(/\r?\n/)[0] || "";
+
+    const quantidadePontoVirgula =
+        (primeiraLinha.match(/;/g) || []).length;
+
+    const quantidadeVirgula =
+        (primeiraLinha.match(/,/g) || []).length;
+
+    return quantidadePontoVirgula > quantidadeVirgula
+        ? ";"
+        : ",";
+}
+
+
+/* =========================
    LEITOR CSV
 ========================= */
 
-function parseCSV(texto) {
+function parseCSV(texto, separador) {
     const linhas = [];
 
     let linha = [];
@@ -82,7 +103,6 @@ function parseCSV(texto) {
     let dentroAspas = false;
 
     for (let i = 0; i < texto.length; i++) {
-
         const caractere = texto[i];
 
         if (caractere === '"') {
@@ -98,7 +118,7 @@ function parseCSV(texto) {
             }
 
         } else if (
-            caractere === "," &&
+            caractere === separador &&
             !dentroAspas
         ) {
 
@@ -163,18 +183,19 @@ function parseCSV(texto) {
 
 
 /* =========================
-   AGRUPAMENTO DOS JOGADORES
+   AGRUPAR JOGADORES
 ========================= */
 
 function agruparJogadores(linhas) {
 
-    const cabecalhos = linhas[0].map(
-        cabecalho =>
-            String(cabecalho)
-                .replace(/^\uFEFF/, "")
-                .trim()
-                .toLowerCase()
-    );
+    const cabecalhos =
+        linhas[0].map(
+            cabecalho =>
+                String(cabecalho)
+                    .replace(/^\uFEFF/, "")
+                    .trim()
+                    .toLowerCase()
+        );
 
     const indice = {};
 
@@ -184,7 +205,7 @@ function agruparJogadores(linhas) {
         }
     );
 
-    const colunasObrigatorias = [
+    const obrigatorias = [
         "nome",
         "time",
         "data",
@@ -198,14 +219,14 @@ function agruparJogadores(linhas) {
     ];
 
     const faltando =
-        colunasObrigatorias.filter(
+        obrigatorias.filter(
             coluna =>
                 indice[coluna] === undefined
         );
 
     if (faltando.length > 0) {
         throw new Error(
-            "Colunas ausentes no CSV: " +
+            "Colunas ausentes: " +
             faltando.join(", ")
         );
     }
@@ -215,14 +236,20 @@ function agruparJogadores(linhas) {
     linhas.slice(1).forEach(colunas => {
 
         const nome =
-            valorCSV(colunas, indice.nome);
+            valorCSV(
+                colunas,
+                indice.nome
+            );
 
         if (!nome) {
             return;
         }
 
         const time =
-            valorCSV(colunas, indice.time);
+            valorCSV(
+                colunas,
+                indice.time
+            );
 
         if (!mapa.has(nome)) {
 
@@ -236,10 +263,8 @@ function agruparJogadores(linhas) {
             );
         }
 
-        const jogador =
-            mapa.get(nome);
+        mapa.get(nome).jogos.push({
 
-        jogador.jogos.push({
             data:
                 valorCSV(
                     colunas,
@@ -302,14 +327,12 @@ function agruparJogadores(linhas) {
         });
     });
 
-    return Array.from(
-        mapa.values()
-    )
+    return Array.from(mapa.values())
         .map(jogador => ({
             ...jogador,
 
             jogos:
-                ordenarJogosPorData(
+                ordenarJogos(
                     jogador.jogos
                 ).slice(0, 10)
         }))
@@ -324,7 +347,7 @@ function agruparJogadores(linhas) {
 
 
 /* =========================
-   UTILIDADES CSV
+   VALORES CSV
 ========================= */
 
 function valorCSV(colunas, posicao) {
@@ -351,13 +374,12 @@ function numeroCSV(colunas, posicao) {
         return null;
     }
 
-    const tratado =
-        valor
-            .replace(/\s/g, "")
-            .replace(",", ".");
-
     const numero =
-        Number(tratado);
+        Number(
+            valor
+                .replace(/\s/g, "")
+                .replace(",", ".")
+        );
 
     return Number.isFinite(numero)
         ? numero
@@ -366,10 +388,56 @@ function numeroCSV(colunas, posicao) {
 
 
 /* =========================
-   ORDENAÇÃO DOS JOGOS
+   DATAS
 ========================= */
 
-function ordenarJogosPorData(jogos) {
+function converterData(valor) {
+
+    if (!valor) {
+        return null;
+    }
+
+    const texto =
+        String(valor).trim();
+
+    let data =
+        new Date(texto);
+
+    if (
+        !Number.isNaN(
+            data.getTime()
+        )
+    ) {
+        return data;
+    }
+
+    const partes =
+        texto.match(
+            /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/
+        );
+
+    if (partes) {
+
+        data = new Date(
+            Number(partes[3]),
+            Number(partes[2]) - 1,
+            Number(partes[1])
+        );
+
+        if (
+            !Number.isNaN(
+                data.getTime()
+            )
+        ) {
+            return data;
+        }
+    }
+
+    return null;
+}
+
+
+function ordenarJogos(jogos) {
 
     return [...jogos].sort(
         (a, b) => {
@@ -419,42 +487,6 @@ function configurarEventos() {
 }
 
 
-function aplicarFiltros() {
-
-    const busca =
-        normalizarTexto(
-            elementos.busca.value
-        );
-
-    const time =
-        elementos.filtroTime.value;
-
-    const filtrados =
-        jogadores.filter(
-            jogador => {
-
-                const correspondeNome =
-                    normalizarTexto(
-                        jogador.nome
-                    ).includes(busca);
-
-                const correspondeTime =
-                    !time ||
-                    jogador.time === time;
-
-                return (
-                    correspondeNome &&
-                    correspondeTime
-                );
-            }
-        );
-
-    renderizarJogadores(
-        filtrados
-    );
-}
-
-
 function preencherFiltroTimes() {
 
     const times =
@@ -494,6 +526,42 @@ function preencherFiltroTimes() {
 }
 
 
+function aplicarFiltros() {
+
+    const busca =
+        normalizarTexto(
+            elementos.busca.value
+        );
+
+    const time =
+        elementos.filtroTime.value;
+
+    const filtrados =
+        jogadores.filter(
+            jogador => {
+
+                const correspondeNome =
+                    normalizarTexto(
+                        jogador.nome
+                    ).includes(busca);
+
+                const correspondeTime =
+                    !time ||
+                    jogador.time === time;
+
+                return (
+                    correspondeNome &&
+                    correspondeTime
+                );
+            }
+        );
+
+    renderizarJogadores(
+        filtrados
+    );
+}
+
+
 /* =========================
    RENDERIZAÇÃO
 ========================= */
@@ -511,9 +579,7 @@ function renderizarJogadores(lista) {
             false;
 
         atualizarStatus(
-            jogadores.length === 0
-                ? "Nenhum dado disponível."
-                : "Nenhum jogador corresponde aos filtros."
+            "Nenhum jogador encontrado."
         );
 
         return;
@@ -524,13 +590,11 @@ function renderizarJogadores(lista) {
 
     lista.forEach(jogador => {
 
-        const card =
+        elementos.lista.appendChild(
             criarCardJogador(
                 jogador
-            );
-
-        elementos.lista
-            .appendChild(card);
+            )
+        );
     });
 
     atualizarStatus(
@@ -540,7 +604,7 @@ function renderizarJogadores(lista) {
 
 
 /* =========================
-   CARD DO JOGADOR
+   CARD
 ========================= */
 
 function criarCardJogador(jogador) {
@@ -564,9 +628,7 @@ function criarCardJogador(jogador) {
     definirTexto(
         fragmento,
         ".jogador-jogos",
-        jogador.jogos.length === 1
-            ? "1 jogo recente"
-            : `${jogador.jogos.length} jogos recentes`
+        `${jogador.jogos.length} jogos recentes`
     );
 
     const medias =
@@ -610,30 +672,21 @@ function criarCardJogador(jogador) {
         medias.blk
     );
 
-    const corpoTabela =
+    const corpo =
         fragmento.querySelector(
             ".jogos-corpo"
         );
 
-    if (jogador.jogos.length === 0) {
+    jogador.jogos.forEach(
+        jogo => {
 
-        corpoTabela.appendChild(
-            criarLinhaSemJogos()
-        );
-
-    } else {
-
-        jogador.jogos.forEach(
-            jogo => {
-
-                corpoTabela.appendChild(
-                    criarLinhaJogo(
-                        jogo
-                    )
-                );
-            }
-        );
-    }
+            corpo.appendChild(
+                criarLinhaJogo(
+                    jogo
+                )
+            );
+        }
+    );
 
     return fragmento;
 }
@@ -658,13 +711,15 @@ function definirTexto(
 
 
 /* =========================
-   LINHAS DE JOGO
+   JOGOS
 ========================= */
 
 function criarLinhaJogo(jogo) {
 
     const linha =
-        document.createElement("tr");
+        document.createElement(
+            "tr"
+        );
 
     const valores = [
         formatarData(jogo.data),
@@ -696,30 +751,8 @@ function criarLinhaJogo(jogo) {
 }
 
 
-function criarLinhaSemJogos() {
-
-    const linha =
-        document.createElement("tr");
-
-    const celula =
-        document.createElement("td");
-
-    celula.colSpan = 8;
-
-    celula.textContent =
-        "Nenhum jogo disponível.";
-
-    celula.style.textAlign =
-        "center";
-
-    linha.appendChild(celula);
-
-    return linha;
-}
-
-
 /* =========================
-   MÉDIAS DOS ÚLTIMOS 10
+   MÉDIAS
 ========================= */
 
 function calcularMedias(jogos) {
@@ -777,11 +810,8 @@ function calcularMedia(
             )
             .filter(
                 valor =>
-                    typeof valor ===
-                        "number" &&
-                    Number.isFinite(
-                        valor
-                    )
+                    typeof valor === "number" &&
+                    Number.isFinite(valor)
             );
 
     if (valores.length === 0) {
@@ -790,10 +820,7 @@ function calcularMedia(
 
     const soma =
         valores.reduce(
-            (
-                total,
-                valor
-            ) =>
+            (total, valor) =>
                 total + valor,
             0
         );
@@ -808,65 +835,8 @@ function calcularMedia(
 
 
 /* =========================
-   DATAS
+   FORMATAÇÃO
 ========================= */
-
-function converterData(valor) {
-
-    if (!valor) {
-        return null;
-    }
-
-    const texto =
-        String(valor).trim();
-
-    /*
-       Formato esperado do CSV:
-       Nov 18, 2026
-    */
-
-    let data =
-        new Date(texto);
-
-    if (
-        !Number.isNaN(
-            data.getTime()
-        )
-    ) {
-        return data;
-    }
-
-    /*
-       Fallback:
-       dd/mm/aaaa
-    */
-
-    const partes =
-        texto.match(
-            /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/
-        );
-
-    if (partes) {
-
-        data =
-            new Date(
-                Number(partes[3]),
-                Number(partes[2]) - 1,
-                Number(partes[1])
-            );
-
-        if (
-            !Number.isNaN(
-                data.getTime()
-            )
-        ) {
-            return data;
-        }
-    }
-
-    return null;
-}
-
 
 function formatarData(valor) {
 
@@ -882,10 +852,6 @@ function formatarData(valor) {
     );
 }
 
-
-/* =========================
-   FORMATAÇÃO
-========================= */
 
 function formatarNumero(valor) {
 
