@@ -15,9 +15,13 @@
 <header class="topo">
     <div class="container topo-conteudo">
 
-        <div>
-            <h1>NBA Player Tracker</h1>
-            <p>Últimos 10 jogos dos jogadores selecionados</p>
+        <div class="marca">
+            <div class="marca-bola">🏀</div>
+
+            <div>
+                <h1>NBA Player Tracker</h1>
+                <p>Analise jogadores, confrontos e os últimos 10 jogos</p>
+            </div>
         </div>
 
         <div class="contador">
@@ -28,12 +32,16 @@
     </div>
 </header>
 
+
 <main class="container">
 
-    <section class="filtros">
+    <section class="painel-filtros">
 
-        <div class="campo-busca">
-            <label for="busca-jogador">Buscar jogador</label>
+        <div class="filtro-principal">
+
+            <label for="busca-jogador">
+                Buscar jogador
+            </label>
 
             <input
                 type="search"
@@ -41,34 +49,159 @@
                 placeholder="Ex.: Luka Doncic"
                 autocomplete="off"
             >
+
         </div>
 
-        <div class="campo-time">
-            <label for="filtro-time">Time</label>
 
-            <select id="filtro-time">
-                <option value="">Todos os times</option>
-            </select>
+        <div class="bloco-filtro">
+
+            <div class="filtro-titulo">
+                <div>
+                    <span class="filtro-label">
+                        Times
+                    </span>
+
+                    <small>
+                        Selecione um ou mais times
+                    </small>
+                </div>
+
+                <button
+                    type="button"
+                    id="limpar-times"
+                    class="botao-texto"
+                >
+                    Limpar times
+                </button>
+            </div>
+
+            <div
+                id="lista-times"
+                class="lista-opcoes"
+            >
+            </div>
+
+        </div>
+
+
+        <div class="bloco-filtro">
+
+            <div class="filtro-titulo">
+                <div>
+                    <span class="filtro-label">
+                        Jogadores
+                    </span>
+
+                    <small>
+                        Monte sua análise personalizada
+                    </small>
+                </div>
+
+                <button
+                    type="button"
+                    id="limpar-jogadores"
+                    class="botao-texto"
+                >
+                    Limpar jogadores
+                </button>
+            </div>
+
+            <div class="seletor-jogadores">
+
+                <select id="seletor-jogador">
+                    <option value="">
+                        Selecione um jogador
+                    </option>
+                </select>
+
+                <button
+                    type="button"
+                    id="adicionar-jogador"
+                    class="botao-primario"
+                >
+                    + Adicionar
+                </button>
+
+            </div>
+
+            <div
+                id="jogadores-selecionados"
+                class="chips-selecionados"
+            >
+            </div>
+
+        </div>
+
+
+        <div class="barra-acoes">
+
+            <div class="resumo-selecao">
+
+                <strong id="quantidade-selecionados">
+                    0
+                </strong>
+
+                <span>
+                    jogadores selecionados
+                </span>
+
+            </div>
+
+            <div class="acoes-direita">
+
+                <button
+                    type="button"
+                    id="mostrar-todos"
+                    class="botao-secundario ativo"
+                >
+                    Mostrar filtrados
+                </button>
+
+                <button
+                    type="button"
+                    id="mostrar-selecionados"
+                    class="botao-secundario"
+                >
+                    Somente selecionados
+                </button>
+
+                <button
+                    type="button"
+                    id="limpar-tudo"
+                    class="botao-perigo"
+                >
+                    Limpar tudo
+                </button>
+
+            </div>
+
         </div>
 
     </section>
 
+
     <section class="status">
+
         <span id="status-texto">
             Carregando jogadores...
         </span>
+
     </section>
+
 
     <section
         id="lista-jogadores"
-        class="lista-jogadores">
+        class="lista-jogadores"
+    >
     </section>
+
 
     <section
         id="sem-resultados"
         class="sem-resultados"
-        hidden>
-        Nenhum jogador encontrado.
+        hidden
+    >
+        Nenhum jogador encontrado com os filtros selecionados.
     </section>
 
 </main>
@@ -82,59 +215,78 @@
 
             <div class="jogador-identificacao">
 
-                <div class="jogador-time"></div>
+                <div class="jogador-time">
+                </div>
 
                 <div>
-                    <h2 class="jogador-nome"></h2>
+
+                    <h2 class="jogador-nome">
+                    </h2>
 
                     <span class="jogador-jogos">
                         Últimos 10 jogos
                     </span>
+
                 </div>
 
             </div>
+
 
             <div class="medias">
 
                 <div class="media">
                     <span>PTS</span>
-                    <strong class="media-pts">-</strong>
+                    <strong class="media-pts">
+                        -
+                    </strong>
                 </div>
 
                 <div class="media">
                     <span>REB</span>
-                    <strong class="media-reb">-</strong>
+                    <strong class="media-reb">
+                        -
+                    </strong>
                 </div>
 
                 <div class="media">
                     <span>AST</span>
-                    <strong class="media-ast">-</strong>
+                    <strong class="media-ast">
+                        -
+                    </strong>
                 </div>
 
-                <div class="media">
+                <div class="media destaque-3pm">
                     <span>3PM</span>
-                    <strong class="media-tpm">-</strong>
+                    <strong class="media-tpm">
+                        -
+                    </strong>
                 </div>
 
                 <div class="media">
                     <span>STL</span>
-                    <strong class="media-stl">-</strong>
+                    <strong class="media-stl">
+                        -
+                    </strong>
                 </div>
 
                 <div class="media">
                     <span>BLK</span>
-                    <strong class="media-blk">-</strong>
+                    <strong class="media-blk">
+                        -
+                    </strong>
                 </div>
 
             </div>
 
         </div>
 
+
         <div class="tabela-container">
 
             <table class="tabela-jogos">
 
                 <thead>
+
                     <tr>
                         <th>Data</th>
                         <th>Adversário</th>
@@ -145,6 +297,7 @@
                         <th>STL</th>
                         <th>BLK</th>
                     </tr>
+
                 </thead>
 
                 <tbody class="jogos-corpo">
@@ -158,7 +311,9 @@
 
 </template>
 
+
 <script src="script.js"></script>
 
 </body>
+
 </html>
