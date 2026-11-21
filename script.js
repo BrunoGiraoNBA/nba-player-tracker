@@ -731,55 +731,125 @@ function limparTodosFiltros() {
 ================================================== */
 
 function ordenarPorTimesSelecionados(lista) {
-    if (estado.timesSelecionados.size === 0) {
-        return [...lista].sort(
-            (a, b) =>
-                a.nome.localeCompare(
-                    b.nome,
-                    "pt-BR"
-                )
-        );
-    }
-
-    const ordemTimes =
-        Array.from(
-            estado.timesSelecionados
-        );
-
-    const posicaoTime =
-        new Map();
-
-    ordemTimes.forEach(
-        (time, indice) => {
-            posicaoTime.set(
-                time,
-                indice
-            );
-        }
-    );
-
-    return [...lista].sort(
-        (a, b) => {
-            const posicaoA =
-                posicaoTime.has(a.time)
-                    ? posicaoTime.get(a.time)
-                    : Number.MAX_SAFE_INTEGER;
-
-            const posicaoB =
-                posicaoTime.has(b.time)
-                    ? posicaoTime.get(b.time)
-                    : Number.MAX_SAFE_INTEGER;
-
-            if (posicaoA !== posicaoB) {
-                return posicaoA - posicaoB;
-            }
-
-            return a.nome.localeCompare(
+    const ordenarPorNome = jogadoresDoTime => {
+        return [...jogadoresDoTime].sort((a, b) =>
+            a.nome.localeCompare(
                 b.nome,
                 "pt-BR"
-            );
-        }
+            )
+        );
+    };
+
+    /*
+       Sem time selecionado:
+       mantém todos os jogadores
+       em ordem alfabética.
+    */
+
+    if (estado.timesSelecionados.size === 0) {
+        return ordenarPorNome(lista);
+    }
+
+    /*
+       Respeita a ordem em que os times
+       foram selecionados.
+
+       Exemplo:
+       primeiro DET e depois HOU.
+    */
+
+    const ordemTimes = Array.from(
+        estado.timesSelecionados
     );
+
+    /*
+       Cria uma lista separada de jogadores
+       para cada time selecionado.
+    */
+
+    const jogadoresPorTime = ordemTimes.map(time => {
+        const jogadoresDoTime = lista.filter(
+            jogador => jogador.time === time
+        );
+
+        return ordenarPorNome(
+            jogadoresDoTime
+        );
+    });
+
+    /*
+       Jogadores selecionados individualmente
+       podem não pertencer aos times marcados,
+       especialmente no modo
+       "Somente selecionados".
+
+       Esses jogadores são preservados.
+    */
+
+    const jogadoresForaDosTimes = ordenarPorNome(
+        lista.filter(
+            jogador =>
+                !estado.timesSelecionados.has(
+                    jogador.time
+                )
+        )
+    );
+
+    /*
+       Se somente um time estiver selecionado,
+       mantém os jogadores desse time
+       em ordem alfabética.
+    */
+
+    if (jogadoresPorTime.length === 1) {
+        return [
+            ...jogadoresPorTime[0],
+            ...jogadoresForaDosTimes
+        ];
+    }
+
+    /*
+       Intercala os jogadores dos times.
+
+       Com DET e HOU:
+
+       posição 0: DET 1, HOU 1
+       posição 1: DET 2, HOU 2
+       posição 2: DET 3, HOU 3
+
+       Como o CSS possui duas colunas,
+       cada linha mostrará um jogador
+       de cada time.
+    */
+
+    const jogadoresIntercalados = [];
+
+    const maiorQuantidade = Math.max(
+        ...jogadoresPorTime.map(
+            grupo => grupo.length
+        )
+    );
+
+    for (
+        let posicao = 0;
+        posicao < maiorQuantidade;
+        posicao++
+    ) {
+        jogadoresPorTime.forEach(grupo => {
+            const jogador = grupo[posicao];
+
+            if (jogador) {
+                jogadoresIntercalados.push(
+                    jogador
+                );
+            }
+        });
+    }
+
+    return [
+        ...jogadoresIntercalados,
+        ...jogadoresForaDosTimes
+    ];
 }
 
 
