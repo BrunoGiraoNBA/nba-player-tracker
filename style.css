@@ -18,7 +18,7 @@
     --shadow: 0 10px 30px rgba(15, 35, 65, 0.08);
     --shadow-hover: 0 15px 38px rgba(15, 35, 65, 0.13);
 
-    --radius: 16px;
+    --radius: 14px;
 }
 
 
@@ -41,7 +41,7 @@ body {
         linear-gradient(
             180deg,
             #eef3fa 0,
-            var(--bg) 250px
+            var(--bg) 220px
         );
 
     color: var(--text);
@@ -77,14 +77,14 @@ button {
 
 
 /* ========================================
-   TOPO - COMPACTO
+   TOPO COMPACTO
 ======================================== */
 
 .topo {
     position: relative;
     overflow: hidden;
 
-    padding: 14px 0;
+    padding: 12px 0;
 
     color: #ffffff;
 
@@ -126,14 +126,14 @@ button {
     align-items: center;
     justify-content: space-between;
 
-    gap: 18px;
+    gap: 16px;
 }
 
 .marca {
     display: flex;
     align-items: center;
 
-    gap: 12px;
+    gap: 11px;
 }
 
 .marca-bola {
@@ -176,7 +176,7 @@ button {
 }
 
 .topo p {
-    margin: 4px 0 0;
+    margin: 3px 0 0;
 
     color: #dbe7fa;
 
@@ -186,7 +186,7 @@ button {
 .contador {
     min-width: 96px;
 
-    padding: 8px 14px;
+    padding: 7px 13px;
 
     border:
         1px solid
@@ -212,7 +212,7 @@ button {
 .contador span {
     display: block;
 
-    margin-top: 3px;
+    margin-top: 2px;
 
     color: #dce7fa;
 
@@ -221,13 +221,13 @@ button {
 
 
 /* ========================================
-   PAINEL DE FILTROS
+   PAINEL DE FILTROS - COMPACTO
 ======================================== */
 
 .painel-filtros {
-    margin-top: 30px;
+    margin-top: 16px;
 
-    padding: 22px;
+    padding: 15px 20px 13px;
 
     border:
         1px solid
@@ -240,38 +240,43 @@ button {
     box-shadow: var(--shadow);
 }
 
+
+/* ========================================
+   BUSCA
+======================================== */
+
 .filtro-principal {
-    margin-bottom: 22px;
+    margin-bottom: 10px;
 }
 
 .filtro-principal label,
 .filtro-label {
     display: block;
 
-    margin-bottom: 7px;
+    margin-bottom: 4px;
 
     color: #34445b;
 
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 800;
 }
 
 .filtro-principal input {
     width: 100%;
-    height: 48px;
+    height: 38px;
 
-    padding: 0 15px;
+    padding: 0 13px;
 
     border:
         1px solid #ced9e8;
 
-    border-radius: 11px;
+    border-radius: 9px;
 
     background: #ffffff;
 
     color: var(--text);
 
-    font-size: 15px;
+    font-size: 13px;
 
     outline: none;
 
@@ -284,8 +289,8 @@ button {
     border-color: var(--blue-light);
 
     box-shadow:
-        0 0 0 4px
-        rgba(37, 99, 235, 0.10);
+        0 0 0 3px
+        rgba(37, 99, 235, 0.09);
 }
 
 .filtro-principal input::placeholder {
@@ -298,7 +303,7 @@ button {
 ======================================== */
 
 .bloco-filtro {
-    padding: 19px 0;
+    padding: 10px 0;
 
     border-top:
         1px solid #edf1f6;
@@ -309,23 +314,24 @@ button {
     align-items: center;
     justify-content: space-between;
 
-    gap: 20px;
+    gap: 16px;
 
-    margin-bottom: 13px;
+    margin-bottom: 7px;
 }
 
 .filtro-titulo small {
-    display: block;
+    display: inline;
 
-    margin-top: 3px;
+    margin-top: 0;
+    margin-left: 6px;
 
     color: var(--muted);
 
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .botao-texto {
-    padding: 6px 4px;
+    padding: 3px 4px;
 
     border: 0;
 
@@ -333,7 +339,7 @@ button {
 
     color: var(--blue);
 
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 800;
 }
 
@@ -343,14 +349,14 @@ button {
 
 
 /* ========================================
-   MULTI-TIME
+   TIMES COMPACTOS
 ======================================== */
 
 .lista-opcoes {
     display: flex;
     flex-wrap: wrap;
 
-    gap: 8px;
+    gap: 5px;
 }
 
 .time-opcao {
@@ -369,21 +375,21 @@ button {
     align-items: center;
     justify-content: center;
 
-    min-width: 58px;
-    height: 36px;
+    min-width: 47px;
+    height: 29px;
 
-    padding: 0 13px;
+    padding: 0 9px;
 
     border:
         1px solid #d6dfeb;
 
-    border-radius: 9px;
+    border-radius: 7px;
 
     background: #ffffff;
 
     color: #415069;
 
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 800;
 
     cursor: pointer;
@@ -414,8 +420,8 @@ button {
     color: #ffffff;
 
     box-shadow:
-        0 5px 12px
-        rgba(23, 74, 156, 0.20);
+        0 4px 9px
+        rgba(23, 74, 156, 0.18);
 }
 
 
@@ -430,23 +436,25 @@ button {
         minmax(220px, 1fr)
         auto;
 
-    gap: 10px;
+    gap: 8px;
 }
 
 .seletor-jogadores select {
     width: 100%;
-    height: 44px;
+    height: 36px;
 
-    padding: 0 13px;
+    padding: 0 11px;
 
     border:
         1px solid #ced9e8;
 
-    border-radius: 10px;
+    border-radius: 8px;
 
     background: #ffffff;
 
     color: var(--text);
+
+    font-size: 13px;
 
     outline: none;
 }
@@ -460,14 +468,14 @@ button {
 }
 
 .botao-primario {
-    min-width: 125px;
-    height: 44px;
+    min-width: 112px;
+    height: 36px;
 
-    padding: 0 18px;
+    padding: 0 15px;
 
     border: 0;
 
-    border-radius: 10px;
+    border-radius: 8px;
 
     background:
         linear-gradient(
@@ -478,11 +486,12 @@ button {
 
     color: #ffffff;
 
+    font-size: 12px;
     font-weight: 800;
 
     box-shadow:
-        0 5px 13px
-        rgba(23, 74, 156, 0.20);
+        0 4px 10px
+        rgba(23, 74, 156, 0.18);
 
     transition:
         transform 0.18s ease,
@@ -494,35 +503,35 @@ button {
         translateY(-1px);
 
     box-shadow:
-        0 8px 18px
-        rgba(23, 74, 156, 0.27);
+        0 6px 14px
+        rgba(23, 74, 156, 0.25);
 }
 
 
 /* ========================================
-   CHIPS DE JOGADORES
+   CHIPS DOS JOGADORES
 ======================================== */
 
 .chips-selecionados {
     display: flex;
     flex-wrap: wrap;
 
-    gap: 8px;
+    gap: 6px;
 
-    margin-top: 13px;
+    margin-top: 7px;
 }
 
 .jogador-chip {
     display: inline-flex;
     align-items: center;
 
-    gap: 8px;
+    gap: 6px;
 
-    min-height: 35px;
+    min-height: 28px;
 
     padding:
-        6px 8px
-        6px 12px;
+        4px 6px
+        4px 10px;
 
     border:
         1px solid #cddcf2;
@@ -533,7 +542,7 @@ button {
 
     color: #143f81;
 
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 800;
 }
 
@@ -542,8 +551,8 @@ button {
     align-items: center;
     justify-content: center;
 
-    width: 22px;
-    height: 22px;
+    width: 19px;
+    height: 19px;
 
     padding: 0;
 
@@ -556,7 +565,7 @@ button {
 
     color: var(--blue);
 
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 800;
 }
 
@@ -576,9 +585,9 @@ button {
     align-items: center;
     justify-content: space-between;
 
-    gap: 18px;
+    gap: 14px;
 
-    padding-top: 18px;
+    padding-top: 9px;
 
     border-top:
         1px solid #edf1f6;
@@ -588,17 +597,17 @@ button {
     display: flex;
     align-items: baseline;
 
-    gap: 6px;
+    gap: 5px;
 
     color: var(--muted);
 
-    font-size: 13px;
+    font-size: 11px;
 }
 
 .resumo-selecao strong {
     color: var(--blue);
 
-    font-size: 20px;
+    font-size: 17px;
 }
 
 .acoes-direita {
@@ -606,18 +615,18 @@ button {
     flex-wrap: wrap;
     justify-content: flex-end;
 
-    gap: 8px;
+    gap: 6px;
 }
 
 .botao-secundario,
 .botao-perigo {
-    min-height: 38px;
+    min-height: 31px;
 
-    padding: 0 14px;
+    padding: 0 11px;
 
-    border-radius: 9px;
+    border-radius: 7px;
 
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 800;
 
     transition:
@@ -671,16 +680,16 @@ button {
 
 .status {
     margin:
-        19px 2px
-        15px;
+        10px 2px
+        9px;
 
     color: var(--muted);
 
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .sem-resultados {
-    padding: 48px 24px;
+    padding: 40px 22px;
 
     border:
         1px solid var(--border);
@@ -900,7 +909,7 @@ button {
 
 
 /* ========================================
-   TABELA
+   TABELA DOS 10 JOGOS
 ======================================== */
 
 .tabela-container {
@@ -937,6 +946,7 @@ button {
     font-weight: 900;
 
     letter-spacing: 0.25px;
+
     text-transform: uppercase;
 }
 
@@ -968,7 +978,7 @@ button {
 
 
 /* ========================================
-   PREPARAÇÃO PARA TENDÊNCIAS
+   TENDÊNCIAS
 ======================================== */
 
 .tendencia-acima {
@@ -1027,13 +1037,15 @@ button {
     }
 
     .topo {
-        padding: 12px 0;
+        padding: 11px 0;
     }
 
     .topo-conteudo {
         align-items: flex-start;
 
         flex-direction: column;
+
+        gap: 9px;
     }
 
     .marca {
@@ -1041,44 +1053,52 @@ button {
     }
 
     .marca-bola {
-        width: 42px;
-        height: 42px;
+        width: 40px;
+        height: 40px;
 
-        flex-basis: 42px;
+        flex-basis: 40px;
 
-        border-radius: 12px;
+        border-radius: 11px;
 
-        font-size: 22px;
+        font-size: 20px;
     }
 
     .topo h1 {
-        font-size: 23px;
+        font-size: 22px;
     }
 
     .topo p {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .contador {
-        min-width: 96px;
+        min-width: 92px;
 
-        padding: 8px 14px;
+        padding: 6px 12px;
 
         text-align: left;
     }
 
     .contador strong {
-        font-size: 22px;
+        font-size: 20px;
     }
 
     .painel-filtros {
-        margin-top: 18px;
+        margin-top: 12px;
 
-        padding: 16px;
+        padding: 12px;
     }
 
     .filtro-titulo {
         align-items: flex-start;
+    }
+
+    .filtro-titulo small {
+        display: block;
+
+        margin:
+            2px 0
+            0;
     }
 
     .seletor-jogadores {
@@ -1105,7 +1125,7 @@ button {
     .botao-perigo {
         flex: 1;
 
-        min-width: 135px;
+        min-width: 130px;
     }
 
     .jogador-cabecalho {
@@ -1155,13 +1175,17 @@ button {
     }
 
     .lista-opcoes {
-        gap: 6px;
+        gap: 4px;
     }
 
     .time-opcao label {
-        min-width: 54px;
+        min-width: 44px;
 
-        padding: 0 10px;
+        height: 28px;
+
+        padding: 0 8px;
+
+        font-size: 10px;
     }
 
     .acoes-direita {
