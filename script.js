@@ -95,7 +95,10 @@ async function iniciar() {
 ================================================== */
 
 async function carregarDados() {
-    atualizarStatus("Carregando jogadores...");
+
+    atualizarStatus(
+        "Carregando jogadores..."
+    );
 
     try {
 
@@ -120,20 +123,15 @@ async function carregarDados() {
         }
 
 
-        /*
-           O JSON das fotos é opcional.
-
-           Se ele tiver algum problema,
-           o restante do site continua
-           funcionando normalmente.
-        */
-
         if (respostaIDs.ok) {
+
             try {
+
                 idsJogadores =
                     await respostaIDs.json();
 
             } catch (erroJSON) {
+
                 console.warn(
                     "jogadores.json inválido. As siglas serão mantidas.",
                     erroJSON
@@ -143,6 +141,7 @@ async function carregarDados() {
             }
 
         } else {
+
             console.warn(
                 "jogadores.json não encontrado. As siglas serão mantidas."
             );
@@ -154,8 +153,12 @@ async function carregarDados() {
         const texto =
             await respostaCSV.text();
 
+
         const separador =
-            detectarSeparador(texto);
+            detectarSeparador(
+                texto
+            );
+
 
         const linhas =
             parseCSV(
@@ -165,6 +168,7 @@ async function carregarDados() {
 
 
         if (linhas.length < 2) {
+
             throw new Error(
                 "dados.csv não possui registros."
             );
@@ -177,7 +181,10 @@ async function carregarDados() {
             );
 
 
-        if (jogadores.length === 0) {
+        if (
+            jogadores.length === 0
+        ) {
+
             throw new Error(
                 "Nenhum jogador pôde ser criado a partir do CSV."
             );
@@ -213,8 +220,10 @@ async function carregarDados() {
 ================================================== */
 
 function detectarSeparador(texto) {
+
     const primeiraLinha =
         texto.split(/\r?\n/)[0] || "";
+
 
     const quantidadePontoVirgula =
         (
@@ -222,11 +231,13 @@ function detectarSeparador(texto) {
             []
         ).length;
 
+
     const quantidadeVirgula =
         (
             primeiraLinha.match(/,/g) ||
             []
         ).length;
+
 
     return (
         quantidadePontoVirgula >
@@ -245,6 +256,7 @@ function parseCSV(
     texto,
     separador
 ) {
+
     const linhas = [];
 
     let linha = [];
@@ -257,6 +269,7 @@ function parseCSV(
         i < texto.length;
         i++
     ) {
+
         const caractere =
             texto[i];
 
@@ -267,14 +280,15 @@ function parseCSV(
                 dentroAspas &&
                 texto[i + 1] === '"'
             ) {
+
                 campo += '"';
                 i++;
 
             } else {
+
                 dentroAspas =
                     !dentroAspas;
             }
-
 
         } else if (
             caractere === separador &&
@@ -283,7 +297,6 @@ function parseCSV(
 
             linha.push(campo);
             campo = "";
-
 
         } else if (
             (
@@ -311,6 +324,7 @@ function parseCSV(
                             .trim() !== ""
                 )
             ) {
+
                 linhas.push(
                     linha
                 );
@@ -319,7 +333,6 @@ function parseCSV(
 
             linha = [];
             campo = "";
-
 
         } else {
 
@@ -332,6 +345,7 @@ function parseCSV(
         campo.length > 0 ||
         linha.length > 0
     ) {
+
         linha.push(campo);
 
 
@@ -342,6 +356,7 @@ function parseCSV(
                         .trim() !== ""
             )
         ) {
+
             linhas.push(
                 linha
             );
@@ -360,6 +375,7 @@ function parseCSV(
 function agruparJogadores(
     linhas
 ) {
+
     const cabecalhos =
         linhas[0].map(
             cabecalho =>
@@ -381,6 +397,7 @@ function agruparJogadores(
             nome,
             posicao
         ) => {
+
             indice[nome] =
                 posicao;
         }
@@ -412,6 +429,7 @@ function agruparJogadores(
     if (
         faltando.length > 0
     ) {
+
         throw new Error(
             "Colunas ausentes: " +
             faltando.join(", ")
@@ -452,6 +470,7 @@ function agruparJogadores(
                         nome
                     )
                 ) {
+
                     mapa.set(
                         nome,
                         {
@@ -467,6 +486,7 @@ function agruparJogadores(
                     .get(nome)
                     .jogos
                     .push({
+
                         data:
                             valorCSV(
                                 colunas,
@@ -537,6 +557,7 @@ function agruparJogadores(
         )
         .map(
             jogador => ({
+
                 ...jogador,
 
                 jogos:
@@ -571,6 +592,7 @@ function valorCSV(
     colunas,
     posicao
 ) {
+
     if (
         posicao === undefined
     ) {
@@ -589,6 +611,7 @@ function numeroCSV(
     colunas,
     posicao
 ) {
+
     const valor =
         valorCSV(
             colunas,
@@ -596,7 +619,9 @@ function numeroCSV(
         );
 
 
-    if (valor === "") {
+    if (
+        valor === ""
+    ) {
         return null;
     }
 
@@ -628,6 +653,7 @@ function numeroCSV(
 ================================================== */
 
 function converterData(valor) {
+
     if (!valor) {
         return null;
     }
@@ -680,6 +706,7 @@ function converterData(valor) {
                 data.getTime()
             )
         ) {
+
             return data;
         }
     }
@@ -692,6 +719,7 @@ function converterData(valor) {
 function ordenarJogos(
     jogos
 ) {
+
     return [
         ...jogos
     ].sort(
@@ -704,6 +732,7 @@ function ordenarJogos(
                 converterData(
                     a.data
                 );
+
 
             const dataB =
                 converterData(
@@ -774,6 +803,7 @@ function configurarEventos() {
                     evento.key ===
                     "Enter"
                 ) {
+
                     evento.preventDefault();
 
                     adicionarJogadorSelecionado();
@@ -910,6 +940,7 @@ function criarOpcoesTimes() {
                     if (
                         input.checked
                     ) {
+
                         estado
                             .timesSelecionados
                             .add(
@@ -934,6 +965,7 @@ function criarOpcoesTimes() {
             item.appendChild(
                 input
             );
+
 
             item.appendChild(
                 label
@@ -962,6 +994,7 @@ function limparSelecaoTimes() {
         )
         .forEach(
             input => {
+
                 input.checked =
                     false;
             }
@@ -1051,6 +1084,7 @@ function preencherSeletorJogadores() {
                 valorAtual
             )
     ) {
+
         elementos
             .seletorJogador
             .value =
@@ -1098,6 +1132,7 @@ function adicionarJogadorSelecionado() {
                 nome
             )
     ) {
+
         return;
     }
 
@@ -1337,6 +1372,7 @@ function limparTodosFiltros() {
         )
         .forEach(
             input => {
+
                 input.checked =
                     false;
             }
@@ -1377,6 +1413,7 @@ function ordenarPorTimesSelecionados(
             .timesSelecionados
             .size === 0
     ) {
+
         return ordenarPorNome(
             lista
         );
@@ -1420,6 +1457,7 @@ function ordenarPorTimesSelecionados(
         jogadoresPorTime.length ===
         1
     ) {
+
         return [
             ...jogadoresPorTime[0],
             ...jogadoresForaDosTimes
@@ -1681,6 +1719,7 @@ function renderizarCabecalhoTimes() {
     if (
         times.length === 0
     ) {
+
         return;
     }
 
@@ -1737,6 +1776,7 @@ function renderizarCabecalhoTimes() {
         timesExibidos.length ===
         1
     ) {
+
         conteudo
             .classList
             .add(
@@ -1960,22 +2000,19 @@ function criarCardJogador(
 
     definirTexto(
         fragmento,
+        ".jogador-equipe",
+        `${nomesTimes[jogador.time] || jogador.time} · ${jogador.time}`
+    );
+
+
+    definirTexto(
+        fragmento,
         ".jogador-jogos",
         jogador.jogos.length === 1
             ? "1 jogo recente"
             : `${jogador.jogos.length} jogos recentes`
     );
 
-
-    /*
-       FOTO DO JOGADOR.
-
-       Se houver NBA ID no jogadores.json,
-       tenta carregar a foto oficial.
-
-       Caso não exista ID ou a foto falhe,
-       volta automaticamente para a sigla.
-    */
 
     configurarFotoJogador(
         fragmento,
@@ -2085,13 +2122,6 @@ function configurarFotoJogador(
     }
 
 
-    /*
-       Função de fallback.
-
-       Isso garante que nunca fique
-       uma imagem quebrada no card.
-    */
-
     const mostrarSigla =
         () => {
 
@@ -2117,11 +2147,6 @@ function configurarFotoJogador(
             jogador.nome
         ];
 
-
-    /*
-       Jogador ainda não cadastrado
-       no jogadores.json.
-    */
 
     if (!nbaId) {
 
@@ -2398,6 +2423,7 @@ function calcularMedia(
         valores.length ===
         0
     ) {
+
         return "-";
     }
 
@@ -2469,6 +2495,7 @@ function formatarNumero(
             valor
         )
     ) {
+
         return "-";
     }
 
