@@ -274,3 +274,37 @@ button:disabled { cursor: not-allowed; opacity: 0.55; }
     .jogador-time { width: 66px; height: 66px; flex-basis: 66px; border-radius: 16px; }
     .medias { grid-template-columns: repeat(3,1fr); overflow: visible; }
 }
+/* ========================================
+   IDENTIFICAÇÃO DA EQUIPE DO JOGADOR
+======================================== */
+
+.jogador-equipe {
+    margin-bottom: 6px;
+
+    color: var(--blue);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.15px;
+}
+
+/* Mantém todas as médias no mesmo padrão.
+   O destaque depois será controlado
+   pela estatística escolhida na análise. */
+
+.media.destaque-3pm {
+    border-color: #e5ebf3;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.media.destaque-3pm strong {
+    color: #10223c;
+}
+
+@media (max-width: 1250px) {
+
+    .jogador-equipe {
+        font-size: 11px;
+    }
+}
