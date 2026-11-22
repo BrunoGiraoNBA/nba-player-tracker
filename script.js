@@ -395,6 +395,7 @@ function agruparJogadores(linhas) {
         "time",
         "data",
         "adversario",
+        "minutos",
         "pts",
         "reb",
         "ast",
@@ -2110,6 +2111,20 @@ function criarLinhaJogo(
         );
 
 
+    /*
+        Jogos com zero minuto continuam visíveis,
+        mas podem ser identificados visualmente
+        pela coluna MIN.
+    */
+
+    if (jogo.minutos === 0) {
+
+        linha.classList.add(
+            "jogo-nao-disputado"
+        );
+    }
+
+
     const valores = [
 
         formatarData(
@@ -2118,6 +2133,10 @@ function criarLinhaJogo(
 
         jogo.adversario ||
             "-",
+
+        formatarNumero(
+            jogo.minutos
+        ),
 
         formatarNumero(
             jogo.pts
@@ -2184,7 +2203,7 @@ function criarLinhaSemJogos() {
 
 
     celula.colSpan =
-        8;
+        9;
 
 
     celula.textContent =
@@ -2212,41 +2231,61 @@ function calcularMedias(
     jogos
 ) {
 
+    /*
+        Somente partidas com minutos maiores que zero
+        entram no cálculo das médias.
+
+        Partidas com MIN = 0 continuam aparecendo
+        na tabela, mas não reduzem as médias.
+    */
+
+    const jogosDisputados =
+        jogos.filter(
+            jogo =>
+                typeof jogo.minutos ===
+                    "number" &&
+                Number.isFinite(
+                    jogo.minutos
+                ) &&
+                jogo.minutos > 0
+        );
+
+
     return {
 
         pts:
             calcularMedia(
-                jogos,
+                jogosDisputados,
                 "pts"
             ),
 
         reb:
             calcularMedia(
-                jogos,
+                jogosDisputados,
                 "reb"
             ),
 
         ast:
             calcularMedia(
-                jogos,
+                jogosDisputados,
                 "ast"
             ),
 
         tpm:
             calcularMedia(
-                jogos,
+                jogosDisputados,
                 "tpm"
             ),
 
         stl:
             calcularMedia(
-                jogos,
+                jogosDisputados,
                 "stl"
             ),
 
         blk:
             calcularMedia(
-                jogos,
+                jogosDisputados,
                 "blk"
             )
     };
