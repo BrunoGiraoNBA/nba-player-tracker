@@ -96,9 +96,7 @@ async function iniciar() {
 
 async function carregarDados() {
 
-    atualizarStatus(
-        "Carregando jogadores..."
-    );
+    atualizarStatus("Carregando jogadores...");
 
     try {
 
@@ -155,9 +153,7 @@ async function carregarDados() {
 
 
         const separador =
-            detectarSeparador(
-                texto
-            );
+            detectarSeparador(texto);
 
 
         const linhas =
@@ -176,14 +172,10 @@ async function carregarDados() {
 
 
         jogadores =
-            agruparJogadores(
-                linhas
-            );
+            agruparJogadores(linhas);
 
 
-        if (
-            jogadores.length === 0
-        ) {
+        if (jogadores.length === 0) {
 
             throw new Error(
                 "Nenhum jogador pôde ser criado a partir do CSV."
@@ -325,9 +317,7 @@ function parseCSV(
                 )
             ) {
 
-                linhas.push(
-                    linha
-                );
+                linhas.push(linha);
             }
 
 
@@ -357,9 +347,7 @@ function parseCSV(
             )
         ) {
 
-            linhas.push(
-                linha
-            );
+            linhas.push(linha);
         }
     }
 
@@ -372,9 +360,7 @@ function parseCSV(
    AGRUPAMENTO DOS JOGADORES
 ================================================== */
 
-function agruparJogadores(
-    linhas
-) {
+function agruparJogadores(linhas) {
 
     const cabecalhos =
         linhas[0].map(
@@ -426,9 +412,7 @@ function agruparJogadores(
         );
 
 
-    if (
-        faltando.length > 0
-    ) {
+    if (faltando.length > 0) {
 
         throw new Error(
             "Colunas ausentes: " +
@@ -465,11 +449,7 @@ function agruparJogadores(
                     );
 
 
-                if (
-                    !mapa.has(
-                        nome
-                    )
-                ) {
+                if (!mapa.has(nome)) {
 
                     mapa.set(
                         nome,
@@ -552,9 +532,7 @@ function agruparJogadores(
 
 
     return Array
-        .from(
-            mapa.values()
-        )
+        .from(mapa.values())
         .map(
             jogador => ({
 
@@ -575,11 +553,10 @@ function agruparJogadores(
                 a,
                 b
             ) =>
-                a.nome
-                    .localeCompare(
-                        b.nome,
-                        "pt-BR"
-                    )
+                a.nome.localeCompare(
+                    b.nome,
+                    "pt-BR"
+                )
         );
 }
 
@@ -593,9 +570,7 @@ function valorCSV(
     posicao
 ) {
 
-    if (
-        posicao === undefined
-    ) {
+    if (posicao === undefined) {
         return "";
     }
 
@@ -619,9 +594,7 @@ function numeroCSV(
         );
 
 
-    if (
-        valor === ""
-    ) {
+    if (valor === "") {
         return null;
     }
 
@@ -640,9 +613,7 @@ function numeroCSV(
         );
 
 
-    return Number.isFinite(
-        numero
-    )
+    return Number.isFinite(numero)
         ? numero
         : null;
 }
@@ -650,6 +621,7 @@ function numeroCSV(
 
 /* ==================================================
    DATAS E ORDENAÇÃO
+   O dados.csv usa DD/MM/YYYY
 ================================================== */
 
 function converterData(valor) {
@@ -658,27 +630,22 @@ function converterData(valor) {
         return null;
     }
 
+
     const texto =
-        String(valor).trim();
+        String(valor)
+            .trim();
 
-    /*
-        FORMATO OFICIAL DO dados.csv:
-        DD/MM/YYYY
-
-        Exemplos:
-        21/11/2026 = 21 de novembro
-        12/11/2026 = 12 de novembro
-        02/11/2026 = 02 de novembro
-    */
 
     const partes =
         texto.match(
             /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/
         );
 
+
     if (!partes) {
         return null;
     }
+
 
     const dia =
         Number(partes[1]);
@@ -689,6 +656,7 @@ function converterData(valor) {
     const ano =
         Number(partes[3]);
 
+
     const data =
         new Date(
             ano,
@@ -696,10 +664,12 @@ function converterData(valor) {
             dia
         );
 
+
     const dataValida =
         data.getFullYear() === ano &&
         data.getMonth() === mes - 1 &&
         data.getDate() === dia;
+
 
     return dataValida
         ? data
@@ -707,64 +677,7 @@ function converterData(valor) {
 }
 
 
-    /*
-        Aceita também o formato ISO:
-        YYYY-MM-DD
-    */
-
-    const dataISO =
-        texto.match(
-            /^(\d{4})-(\d{1,2})-(\d{1,2})(?:[T\s].*)?$/
-        );
-
-
-    if (dataISO) {
-
-        const ano =
-            Number(
-                dataISO[1]
-            );
-
-
-        const mes =
-            Number(
-                dataISO[2]
-            );
-
-
-        const dia =
-            Number(
-                dataISO[3]
-            );
-
-
-        const data =
-            new Date(
-                ano,
-                mes - 1,
-                dia
-            );
-
-
-        const dataValida =
-            data.getFullYear() === ano &&
-            data.getMonth() === mes - 1 &&
-            data.getDate() === dia;
-
-
-        return dataValida
-            ? data
-            : null;
-    }
-
-
-    return null;
-}
-
-
-function ordenarJogos(
-    jogos
-) {
+function ordenarJogos(jogos) {
 
     return [
         ...jogos
@@ -775,15 +688,10 @@ function ordenarJogos(
         ) => {
 
             const dataA =
-                converterData(
-                    a.data
-                );
-
+                converterData(a.data);
 
             const dataB =
-                converterData(
-                    b.data
-                );
+                converterData(b.data);
 
 
             if (
@@ -845,10 +753,7 @@ function configurarEventos() {
             "keydown",
             evento => {
 
-                if (
-                    evento.key ===
-                    "Enter"
-                ) {
+                if (evento.key === "Enter") {
 
                     evento.preventDefault();
 
@@ -913,9 +818,7 @@ function criarOpcoesTimes() {
                     jogador =>
                         jogador.time
                 )
-                .filter(
-                    Boolean
-                )
+                .filter(Boolean)
         )
     ]
         .sort(
@@ -930,8 +833,8 @@ function criarOpcoesTimes() {
         );
 
 
-    elementos.listaTimes
-        .innerHTML = "";
+    elementos.listaTimes.innerHTML =
+        "";
 
 
     times.forEach(
@@ -983,23 +886,17 @@ function criarOpcoesTimes() {
                 "change",
                 () => {
 
-                    if (
-                        input.checked
-                    ) {
+                    if (input.checked) {
 
                         estado
                             .timesSelecionados
-                            .add(
-                                time
-                            );
+                            .add(time);
 
                     } else {
 
                         estado
                             .timesSelecionados
-                            .delete(
-                                time
-                            );
+                            .delete(time);
                     }
 
 
@@ -1008,20 +905,11 @@ function criarOpcoesTimes() {
             );
 
 
-            item.appendChild(
-                input
-            );
-
-
-            item.appendChild(
-                label
-            );
-
+            item.appendChild(input);
+            item.appendChild(label);
 
             elementos.listaTimes
-                .appendChild(
-                    item
-                );
+                .appendChild(item);
         }
     );
 }
@@ -1076,16 +964,13 @@ function preencherSeletorJogadores() {
 
     opcaoInicial.value = "";
 
-
     opcaoInicial.textContent =
         "Selecione um jogador";
 
 
     elementos
         .seletorJogador
-        .appendChild(
-            opcaoInicial
-        );
+        .appendChild(opcaoInicial);
 
 
     jogadores.forEach(
@@ -1108,16 +993,12 @@ function preencherSeletorJogadores() {
             opcao.disabled =
                 estado
                     .jogadoresSelecionados
-                    .has(
-                        jogador.nome
-                    );
+                    .has(jogador.nome);
 
 
             elementos
                 .seletorJogador
-                .appendChild(
-                    opcao
-                );
+                .appendChild(opcao);
         }
     );
 
@@ -1126,9 +1007,7 @@ function preencherSeletorJogadores() {
         valorAtual &&
         !estado
             .jogadoresSelecionados
-            .has(
-                valorAtual
-            )
+            .has(valorAtual)
     ) {
 
         elementos
@@ -1156,9 +1035,7 @@ function atualizarBotaoAdicionar() {
             !nome ||
             estado
                 .jogadoresSelecionados
-                .has(
-                    nome
-                );
+                .has(nome);
 }
 
 
@@ -1174,9 +1051,7 @@ function adicionarJogadorSelecionado() {
         !nome ||
         estado
             .jogadoresSelecionados
-            .has(
-                nome
-            )
+            .has(nome)
     ) {
 
         return;
@@ -1185,9 +1060,7 @@ function adicionarJogadorSelecionado() {
 
     estado
         .jogadoresSelecionados
-        .add(
-            nome
-        );
+        .add(nome);
 
 
     elementos
@@ -1206,9 +1079,7 @@ function removerJogadorSelecionado(
 
     estado
         .jogadoresSelecionados
-        .delete(
-            nome
-        );
+        .delete(nome);
 
 
     preencherSeletorJogadores();
@@ -1241,8 +1112,7 @@ function renderizarChipsSelecionados() {
 
     const nomes =
         Array.from(
-            estado
-                .jogadoresSelecionados
+            estado.jogadoresSelecionados
         );
 
 
@@ -1252,8 +1122,7 @@ function renderizarChipsSelecionados() {
             const jogador =
                 jogadores.find(
                     item =>
-                        item.nome ===
-                        nome
+                        item.nome === nome
                 );
 
 
@@ -1312,21 +1181,13 @@ function renderizarChipsSelecionados() {
             );
 
 
-            chip.appendChild(
-                texto
-            );
-
-
-            chip.appendChild(
-                remover
-            );
+            chip.appendChild(texto);
+            chip.appendChild(remover);
 
 
             elementos
                 .jogadoresSelecionados
-                .appendChild(
-                    chip
-                );
+                .appendChild(chip);
         }
     );
 
@@ -1460,16 +1321,13 @@ function ordenarPorTimesSelecionados(
             .size === 0
     ) {
 
-        return ordenarPorNome(
-            lista
-        );
+        return ordenarPorNome(lista);
     }
 
 
     const ordemTimes =
         Array.from(
-            estado
-                .timesSelecionados
+            estado.timesSelecionados
         );
 
 
@@ -1479,8 +1337,7 @@ function ordenarPorTimesSelecionados(
                 ordenarPorNome(
                     lista.filter(
                         jogador =>
-                            jogador.time ===
-                            time
+                            jogador.time === time
                     )
                 )
         );
@@ -1492,9 +1349,7 @@ function ordenarPorTimesSelecionados(
                 jogador =>
                     !estado
                         .timesSelecionados
-                        .has(
-                            jogador.time
-                        )
+                        .has(jogador.time)
             )
         );
 
@@ -1540,9 +1395,7 @@ function ordenarPorTimesSelecionados(
                 if (jogador) {
 
                     jogadoresIntercalados
-                        .push(
-                            jogador
-                        );
+                        .push(jogador);
                 }
             }
         );
@@ -1564,9 +1417,7 @@ function obterJogadoresExibidos() {
 
     const busca =
         normalizarTexto(
-            elementos
-                .busca
-                .value
+            elementos.busca.value
         );
 
 
@@ -1582,18 +1433,14 @@ function obterJogadoresExibidos() {
                     const foiSelecionado =
                         estado
                             .jogadoresSelecionados
-                            .has(
-                                jogador.nome
-                            );
+                            .has(jogador.nome);
 
 
                     const correspondeBusca =
                         normalizarTexto(
                             jogador.nome
                         )
-                            .includes(
-                                busca
-                            );
+                            .includes(busca);
 
 
                     return (
@@ -1618,9 +1465,7 @@ function obterJogadoresExibidos() {
                     normalizarTexto(
                         jogador.nome
                     )
-                        .includes(
-                            busca
-                        );
+                        .includes(busca);
 
 
                 const correspondeTime =
@@ -1629,9 +1474,7 @@ function obterJogadoresExibidos() {
                         .size === 0 ||
                     estado
                         .timesSelecionados
-                        .has(
-                            jogador.time
-                        );
+                        .has(jogador.time);
 
 
                 return (
@@ -1663,9 +1506,7 @@ function atualizarTodaInterface() {
         obterJogadoresExibidos();
 
 
-    renderizarJogadores(
-        lista
-    );
+    renderizarJogadores(lista);
 }
 
 
@@ -1685,9 +1526,7 @@ function renderizarJogadores(
         lista.length;
 
 
-    if (
-        lista.length === 0
-    ) {
+    if (lista.length === 0) {
 
         elementos
             .semResultados
@@ -1733,9 +1572,7 @@ function renderizarJogadores(
 
             elementos.lista
                 .appendChild(
-                    criarCardJogador(
-                        jogador
-                    )
+                    criarCardJogador(jogador)
                 );
         }
     );
@@ -1757,14 +1594,11 @@ function renderizarCabecalhoTimes() {
 
     const times =
         Array.from(
-            estado
-                .timesSelecionados
+            estado.timesSelecionados
         );
 
 
-    if (
-        times.length === 0
-    ) {
+    if (times.length === 0) {
 
         return;
     }
@@ -1796,9 +1630,7 @@ function renderizarCabecalhoTimes() {
             : "TIME SELECIONADO";
 
 
-    cabecalho.appendChild(
-        titulo
-    );
+    cabecalho.appendChild(titulo);
 
 
     const conteudo =
@@ -1825,9 +1657,7 @@ function renderizarCabecalhoTimes() {
 
         conteudo
             .classList
-            .add(
-                "um-time"
-            );
+            .add("um-time");
     }
 
 
@@ -1837,10 +1667,7 @@ function renderizarCabecalhoTimes() {
             indice
         ) => {
 
-            if (
-                indice ===
-                1
-            ) {
+            if (indice === 1) {
 
                 const versus =
                     document.createElement(
@@ -1905,19 +1732,10 @@ function renderizarCabecalhoTimes() {
                 time;
 
 
-            bloco.appendChild(
-                sigla
-            );
+            bloco.appendChild(sigla);
+            bloco.appendChild(nome);
 
-
-            bloco.appendChild(
-                nome
-            );
-
-
-            conteudo.appendChild(
-                bloco
-            );
+            conteudo.appendChild(bloco);
         }
     );
 
@@ -1927,9 +1745,7 @@ function renderizarCabecalhoTimes() {
     );
 
 
-    if (
-        times.length > 2
-    ) {
+    if (times.length > 2) {
 
         const outros =
             document.createElement(
@@ -1981,11 +1797,8 @@ function criarMensagemStatus(
 
         partes.push(
             Array.from(
-                estado
-                    .timesSelecionados
-            ).join(
-                " → "
-            )
+                estado.timesSelecionados
+            ).join(" → ")
         );
     }
 
@@ -2032,9 +1845,7 @@ function criarCardJogador(
         elementos
             .template
             .content
-            .cloneNode(
-                true
-            );
+            .cloneNode(true);
 
 
     definirTexto(
@@ -2135,9 +1946,7 @@ function criarCardJogador(
             jogo => {
 
                 corpo.appendChild(
-                    criarLinhaJogo(
-                        jogo
-                    )
+                    criarLinhaJogo(jogo)
                 );
             }
         );
@@ -2465,10 +2274,7 @@ function calcularMedia(
             );
 
 
-    if (
-        valores.length ===
-        0
-    ) {
+    if (valores.length === 0) {
 
         return "-";
     }
@@ -2490,9 +2296,7 @@ function calcularMedia(
         soma /
         valores.length
     )
-        .toFixed(
-            1
-        )
+        .toFixed(1)
         .replace(
             ".",
             ","
@@ -2509,9 +2313,7 @@ function formatarData(
 ) {
 
     const data =
-        converterData(
-            valor
-        );
+        converterData(valor);
 
 
     if (!data) {
@@ -2523,10 +2325,29 @@ function formatarData(
     }
 
 
-    return data
-        .toLocaleDateString(
-            "pt-BR"
+    const dia =
+        String(
+            data.getDate()
+        ).padStart(
+            2,
+            "0"
         );
+
+
+    const mes =
+        String(
+            data.getMonth() + 1
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    const ano =
+        data.getFullYear();
+
+
+    return `${dia}/${mes}/${ano}`;
 }
 
 
@@ -2537,9 +2358,7 @@ function formatarNumero(
     if (
         valor === null ||
         valor === undefined ||
-        !Number.isFinite(
-            valor
-        )
+        !Number.isFinite(valor)
     ) {
 
         return "-";
@@ -2561,9 +2380,7 @@ function normalizarTexto(
         valor ||
         ""
     )
-        .normalize(
-            "NFD"
-        )
+        .normalize("NFD")
         .replace(
             /[\u0300-\u036f]/g,
             ""
@@ -2577,9 +2394,7 @@ function criarIdentificador(
     valor
 ) {
 
-    return normalizarTexto(
-        valor
-    )
+    return normalizarTexto(valor)
         .replace(
             /[^a-z0-9]+/g,
             "-"
