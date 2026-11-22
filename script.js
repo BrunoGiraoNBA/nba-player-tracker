@@ -664,51 +664,114 @@ function converterData(valor) {
             .trim();
 
 
-    let data =
-        new Date(
-            texto
-        );
+    /*
+        FORMATO DO dados.csv:
+        MM/DD/YYYY
 
+        Exemplos:
+        11/21/2026 = 21/11/2026
+        11/12/2026 = 12/11/2026
+        11/02/2026 = 02/11/2026
 
-    if (
-        !Number.isNaN(
-            data.getTime()
-        )
-    ) {
-        return data;
-    }
+        A conversão é feita manualmente para impedir
+        que o navegador misture o padrão americano
+        com o padrão brasileiro.
+    */
 
-
-    const partes =
+    const dataAmericana =
         texto.match(
             /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/
         );
 
 
-    if (partes) {
+    if (dataAmericana) {
 
-        data =
-            new Date(
-                Number(
-                    partes[3]
-                ),
-                Number(
-                    partes[2]
-                ) - 1,
-                Number(
-                    partes[1]
-                )
+        const mes =
+            Number(
+                dataAmericana[1]
             );
 
 
-        if (
-            !Number.isNaN(
-                data.getTime()
-            )
-        ) {
+        const dia =
+            Number(
+                dataAmericana[2]
+            );
 
-            return data;
-        }
+
+        const ano =
+            Number(
+                dataAmericana[3]
+            );
+
+
+        const data =
+            new Date(
+                ano,
+                mes - 1,
+                dia
+            );
+
+
+        const dataValida =
+            data.getFullYear() === ano &&
+            data.getMonth() === mes - 1 &&
+            data.getDate() === dia;
+
+
+        return dataValida
+            ? data
+            : null;
+    }
+
+
+    /*
+        Aceita também o formato ISO:
+        YYYY-MM-DD
+    */
+
+    const dataISO =
+        texto.match(
+            /^(\d{4})-(\d{1,2})-(\d{1,2})(?:[T\s].*)?$/
+        );
+
+
+    if (dataISO) {
+
+        const ano =
+            Number(
+                dataISO[1]
+            );
+
+
+        const mes =
+            Number(
+                dataISO[2]
+            );
+
+
+        const dia =
+            Number(
+                dataISO[3]
+            );
+
+
+        const data =
+            new Date(
+                ano,
+                mes - 1,
+                dia
+            );
+
+
+        const dataValida =
+            data.getFullYear() === ano &&
+            data.getMonth() === mes - 1 &&
+            data.getDate() === dia;
+
+
+        return dataValida
+            ? data
+            : null;
     }
 
 
