@@ -658,70 +658,53 @@ function converterData(valor) {
         return null;
     }
 
-
     const texto =
-        String(valor)
-            .trim();
-
+        String(valor).trim();
 
     /*
-        FORMATO DO dados.csv:
-        MM/DD/YYYY
+        FORMATO OFICIAL DO dados.csv:
+        DD/MM/YYYY
 
         Exemplos:
-        11/21/2026 = 21/11/2026
-        11/12/2026 = 12/11/2026
-        11/02/2026 = 02/11/2026
-
-        A conversão é feita manualmente para impedir
-        que o navegador misture o padrão americano
-        com o padrão brasileiro.
+        21/11/2026 = 21 de novembro
+        12/11/2026 = 12 de novembro
+        02/11/2026 = 02 de novembro
     */
 
-    const dataAmericana =
+    const partes =
         texto.match(
             /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/
         );
 
-
-    if (dataAmericana) {
-
-        const mes =
-            Number(
-                dataAmericana[1]
-            );
-
-
-        const dia =
-            Number(
-                dataAmericana[2]
-            );
-
-
-        const ano =
-            Number(
-                dataAmericana[3]
-            );
-
-
-        const data =
-            new Date(
-                ano,
-                mes - 1,
-                dia
-            );
-
-
-        const dataValida =
-            data.getFullYear() === ano &&
-            data.getMonth() === mes - 1 &&
-            data.getDate() === dia;
-
-
-        return dataValida
-            ? data
-            : null;
+    if (!partes) {
+        return null;
     }
+
+    const dia =
+        Number(partes[1]);
+
+    const mes =
+        Number(partes[2]);
+
+    const ano =
+        Number(partes[3]);
+
+    const data =
+        new Date(
+            ano,
+            mes - 1,
+            dia
+        );
+
+    const dataValida =
+        data.getFullYear() === ano &&
+        data.getMonth() === mes - 1 &&
+        data.getDate() === dia;
+
+    return dataValida
+        ? data
+        : null;
+}
 
 
     /*
