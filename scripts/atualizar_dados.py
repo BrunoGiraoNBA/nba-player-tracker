@@ -10,7 +10,8 @@ from pathlib import Path
 # CONFIGURACAO
 # ==========================================================
 
-ARQUIVO_CBS = Path("jogadores_cbs.json")
+ROOT = Path(__file__).resolve().parent.parent
+ARQUIVO_CBS = ROOT / "jogadores_cbs.json"
 
 JOGADOR_TESTE = "AJ Dybantsa"
 SLUG_TESTE = "aj-dybantsa"
@@ -26,20 +27,8 @@ HEADERS_HTTP = {
         "q=0.9,image/avif,image/webp,*/*;q=0.8"
     ),
     "Accept-Language": "en-US,en;q=0.9",
+    "Cache-Control": "no-cache",
 }
-
-COLUNAS_SAIDA = [
-    "data",
-    "adversario",
-    "casa_fora",
-    "minutos",
-    "pts",
-    "reb",
-    "ast",
-    "tpm",
-    "stl",
-    "blk",
-]
 
 
 # ==========================================================
@@ -92,10 +81,8 @@ class LeitorTabelasHTML(HTMLParser):
 
         tag = tag.lower()
 
-        if (
-            tag in ("th", "td")
-            and self.dentro_celula
-        ):
+        if tag in ("th", "td") and self.dentro_celula:
+
             texto = " ".join(self.celula_atual)
             texto = html.unescape(texto)
             texto = re.sub(r"\s+", " ", texto).strip()
@@ -187,22 +174,143 @@ def normalizar_cabecalho(valor):
 
     valor = limpar_texto(valor).lower()
 
-    valor = (
-        valor
-        .replace("3-point field goals made", "3fgm")
-        .replace("three-point field goals made", "3fgm")
-        .replace("total rebounds", "reb")
-        .replace("minutes", "min")
-        .replace("points", "pts")
-        .replace("rebounds", "reb")
-        .replace("assists", "ast")
-        .replace("steals", "stl")
-        .replace("blocks", "blk")
-        .replace("opponent", "opp")
-        .replace("date", "date")
-    )
-
+    # Remove espacos, tracos e outros caracteres.
     valor = re.sub(r"[^a-z0-9%]+", "", valor)
+
+    # O CBS pode juntar o texto visivel com o nome acessivel.
+    # Exemplos:
+    # minmin
+    # ptspts
+    # rebreb
+    # asttotalast
+    # stltotalstl
+    # blktotalblk
+    # 3fgm3fgm
+
+    if valor in ("date", "gamedate", "datedate"):
+        return "date"
+
+    if valor in (
+        "opp",
+        "opponent",
+        "oppopponent",
+        "opponentopp",
+    ):
+        return "opp"
+
+    if valor in (
+        "result",
+        "res",
+        "resultresult",
+    ):
+        return "result"
+
+    if valor in (
+        "min",
+        "minutes",
+        "minmin",
+        "minminutes",
+        "minutesmin",
+    ):
+        return "min"
+
+    if valor in (
+        "pts",
+        "points",
+        "ptspts",
+        "ptspoints",
+        "pointspts",
+    ):
+        return "pts"
+
+    if valor in (
+        "reb",
+        "rebounds",
+        "totalrebounds",
+        "rebreb",
+        "rebtotalreb",
+        "rebtotalrebounds",
+    ):
+        return "reb"
+
+    if valor in (
+        "ast",
+        "assists",
+        "totalassists",
+        "astast",
+        "asttotalast",
+        "asttotalassists",
+    ):
+        return "ast"
+
+    if valor in (
+        "stl",
+        "steals",
+        "totalsteals",
+        "stlstl",
+        "stltotalstl",
+        "stltotalsteals",
+    ):
+        return "stl"
+
+    if valor in (
+        "blk",
+        "blocks",
+        "totalblocks",
+        "blkblk",
+        "blktotalblk",
+        "blktotalblocks",
+    ):
+        return "blk"
+
+    if valor in (
+        "3fgm",
+        "3pm",
+        "3fg",
+        "3fgm3fgm",
+        "3fgmade",
+        "3fgfieldgoalsmade",
+        "3fgm3pointfieldgoalsmade",
+        "3pointfieldgoalsmade",
+        "threepointfieldgoalsmade",
+    ):
+        return "3fgm"
+
+    # Reconhecimento adicional para variacoes futuras do CBS.
+
+    if valor.startswith("date"):
+        return "date"
+
+    if valor.startswith("opp") or "opponent" in valor:
+        return "opp"
+
+    if valor.startswith("result"):
+        return "result"
+
+    if valor.startswith("min"):
+        return "min"
+
+    if valor.startswith("pts"):
+        return "pts"
+
+    if valor.startswith("reb"):
+        return "reb"
+
+    if valor.startswith("ast"):
+        return "ast"
+
+    if valor.startswith("stl"):
+        return "stl"
+
+    if valor.startswith("blk"):
+        return "blk"
+
+    if (
+        valor.startswith("3fgm")
+        or valor.startswith("3pm")
+        or "3pointfieldgoalsmade" in valor
+    ):
+        return "3fgm"
 
     return valor
 
@@ -217,6 +325,7 @@ def somente_numero(valor, padrao="0"):
     )
 
     if correspondencia:
+
         numero = correspondencia.group(0)
 
         if numero.endswith(".0"):
@@ -242,7 +351,10 @@ def localizar_tabela_game_log(tabelas):
         "ast",
     }
 
-    for numero_tabela, tabela in enumerate(tabelas, start=1):
+    for numero_tabela, tabela in enumerate(
+        tabelas,
+        start=1
+    ):
 
         for numero_linha, linha in enumerate(tabela):
 
@@ -252,9 +364,16 @@ def localizar_tabela_game_log(tabelas):
             ]
 
             conjunto = set(cabecalhos)
+
             pontos = len(
                 termos_necessarios.intersection(conjunto)
             )
+
+            if "date" in conjunto:
+                pontos += 1
+
+            if "opp" in conjunto:
+                pontos += 1
 
             if "stl" in conjunto:
                 pontos += 1
@@ -262,11 +381,7 @@ def localizar_tabela_game_log(tabelas):
             if "blk" in conjunto:
                 pontos += 1
 
-            if (
-                "3fgm" in conjunto
-                or "3pm" in conjunto
-                or "3fg" in conjunto
-            ):
+            if "3fgm" in conjunto:
                 pontos += 1
 
             melhores.append(
@@ -307,12 +422,10 @@ def localizar_tabela_game_log(tabelas):
     print(
         f"Pontuacao da tabela: {pontos}"
     )
-    print(
-        "Cabecalhos identificados:"
-    )
+    print("Cabecalhos identificados:")
     print(" | ".join(cabecalhos))
 
-    if pontos < 4:
+    if pontos < 6:
         raise RuntimeError(
             "A tabela do game log nao foi identificada "
             "com seguranca."
@@ -323,12 +436,16 @@ def localizar_tabela_game_log(tabelas):
 
 def encontrar_indice(cabecalhos, opcoes):
 
+    # Primeiro busca correspondencia exata.
     for opcao in opcoes:
         if opcao in cabecalhos:
             return cabecalhos.index(opcao)
 
+    # Depois tenta correspondencia parcial.
     for indice, cabecalho in enumerate(cabecalhos):
+
         for opcao in opcoes:
+
             if opcao in cabecalho:
                 return indice
 
@@ -390,29 +507,39 @@ def identificar_adversario(texto):
 
     if "@" in texto:
         casa_fora = "F"
-    elif re.search(r"\bvs\.?\b", texto, re.IGNORECASE):
+
+    elif re.search(
+        r"\bvs\.?\b",
+        texto,
+        re.IGNORECASE
+    ):
         casa_fora = "C"
+
     else:
         casa_fora = ""
 
     return adversario, casa_fora
 
 
-def extrair_jogos(tabela, linha_cabecalho, cabecalhos):
+def extrair_jogos(
+    tabela,
+    linha_cabecalho,
+    cabecalhos
+):
 
     indice_data = encontrar_indice(
         cabecalhos,
-        ["date", "data"]
+        ["date"]
     )
 
     indice_adversario = encontrar_indice(
         cabecalhos,
-        ["opp", "opponent", "matchup"]
+        ["opp"]
     )
 
     indice_resultado = encontrar_indice(
         cabecalhos,
-        ["result", "res"]
+        ["result"]
     )
 
     indice_min = encontrar_indice(
@@ -447,14 +574,12 @@ def extrair_jogos(tabela, linha_cabecalho, cabecalhos):
 
     indice_tpm = encontrar_indice(
         cabecalhos,
-        [
-            "3fgm",
-            "3pm",
-            "3fg",
-        ]
+        ["3fgm"]
     )
 
     indices_obrigatorios = {
+        "date": indice_data,
+        "opp": indice_adversario,
         "min": indice_min,
         "pts": indice_pts,
         "reb": indice_reb,
@@ -462,6 +587,15 @@ def extrair_jogos(tabela, linha_cabecalho, cabecalhos):
         "stl": indice_stl,
         "blk": indice_blk,
     }
+
+    print()
+    print("Indices encontrados:")
+
+    for nome, indice in indices_obrigatorios.items():
+        print(f"  {nome}: {indice}")
+
+    print(f"  3fgm: {indice_tpm}")
+    print(f"  result: {indice_resultado}")
 
     faltando = [
         nome
@@ -496,12 +630,21 @@ def extrair_jogos(tabela, linha_cabecalho, cabecalhos):
             indice_data
         )
 
+        if not data:
+            continue
+
+        if not re.search(r"\d", data):
+            continue
+
         texto_adversario = obter_celula(
             linha,
             indice_adversario
         )
 
-        if not texto_adversario and indice_resultado is not None:
+        if (
+            not texto_adversario
+            and indice_resultado is not None
+        ):
             texto_adversario = obter_celula(
                 linha,
                 indice_resultado
@@ -540,15 +683,6 @@ def extrair_jogos(tabela, linha_cabecalho, cabecalhos):
             padrao="0"
         )
 
-        if not data:
-            continue
-
-        if not re.search(
-            r"\d",
-            data
-        ):
-            continue
-
         jogo = {
             "data": data,
             "adversario": adversario,
@@ -575,9 +709,10 @@ def imprimir_jogos(jogos):
 
     print()
     print("=" * 105)
+
     print(
         f"{'DATA':<16}"
-        f"{'ADV':<8}"
+        f"{'ADV':<12}"
         f"{'C/F':<6}"
         f"{'MIN':>6}"
         f"{'PTS':>6}"
@@ -587,13 +722,14 @@ def imprimir_jogos(jogos):
         f"{'STL':>6}"
         f"{'BLK':>6}"
     )
+
     print("=" * 105)
 
     for jogo in jogos[:10]:
 
         print(
             f"{jogo['data']:<16}"
-            f"{jogo['adversario']:<8}"
+            f"{jogo['adversario']:<12}"
             f"{jogo['casa_fora']:<6}"
             f"{jogo['minutos']:>6}"
             f"{jogo['pts']:>6}"
