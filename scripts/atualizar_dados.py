@@ -1,17 +1,17 @@
 import json
-import re
 import urllib.request
 from pathlib import Path
 
 
-# ----------------------------------------------------------
-# CONFIGURAÇÃO
-# ----------------------------------------------------------
+# ==========================================================
+# CONFIGURACAO
+# ==========================================================
 
-ARQUIVO_JOGADORES = Path("jogadores.json")
+ARQUIVO_CBS = Path("jogadores_cbs.json")
 
-# Primeiro teste: apenas um jogador
+# Primeiro teste: apenas AJ Dybantsa
 JOGADOR_TESTE = "AJ Dybantsa"
+SLUG_TESTE = "aj-dybantsa"
 
 HEADERS = {
     "User-Agent": (
@@ -27,26 +27,27 @@ HEADERS = {
 }
 
 
-# ----------------------------------------------------------
-# FUNÇÕES
-# ----------------------------------------------------------
+# ==========================================================
+# FUNCOES
+# ==========================================================
 
-def carregar_jogadores():
-    if not ARQUIVO_JOGADORES.exists():
+def carregar_jogadores_cbs():
+    if not ARQUIVO_CBS.exists():
         raise FileNotFoundError(
-            f"Arquivo não encontrado: {ARQUIVO_JOGADORES}"
+            f"Arquivo nao encontrado: {ARQUIVO_CBS}"
         )
 
-    with ARQUIVO_JOGADORES.open(
-        "r",
-        encoding="utf-8"
-    ) as arquivo:
+    with ARQUIVO_CBS.open("r", encoding="utf-8") as arquivo:
         jogadores = json.load(arquivo)
 
     return jogadores
 
 
 def baixar_pagina(url):
+    print()
+    print("Acessando CBS Sports...")
+    print(url)
+
     requisicao = urllib.request.Request(
         url,
         headers=HEADERS
@@ -56,152 +57,153 @@ def baixar_pagina(url):
         requisicao,
         timeout=30
     ) as resposta:
-        return resposta.read().decode(
+
+        print(
+            f"HTTP Status: {resposta.status}"
+        )
+
+        html = resposta.read().decode(
             "utf-8",
             errors="ignore"
         )
 
-
-def procurar_game_log(nome):
-    nome_busca = nome.lower().replace(" ", "-")
-
-    url_busca = (
-        "https://www.cbssports.com/"
-        f"search/?q={nome_busca}"
-    )
-
-    print()
-    print("==========================================")
-    print(f"TESTANDO: {nome}")
-    print("==========================================")
-    print(f"Buscando jogador no CBS Sports...")
-
-    pagina_busca = baixar_pagina(url_busca)
-
-    # Procura uma URL de player do CBS Sports
-    padrao = re.compile(
-        r'href="(/nba/players/\d+/[^"]+/)"',
-        re.IGNORECASE
-    )
-
-    resultados = padrao.findall(pagina_busca)
-
-    if not resultados:
-        raise RuntimeError(
-            "Não foi possível localizar a página do jogador "
-            "no CBS Sports."
-        )
-
-    # Remove duplicados mantendo a ordem
-    resultados_unicos = list(dict.fromkeys(resultados))
-
-    pagina_jogador = None
-
-    for caminho in resultados_unicos:
-        if nome_busca in caminho.lower():
-            pagina_jogador = caminho
-            break
-
-    if pagina_jogador is None:
-        pagina_jogador = resultados_unicos[0]
-
-    url_game_log = (
-        "https://www.cbssports.com"
-        + pagina_jogador
-        + "game-log/"
-    )
-
-    print(f"Game log encontrado:")
-    print(url_game_log)
-
-    pagina_game_log = baixar_pagina(url_game_log)
-
-    return url_game_log, pagina_game_log
+    return html
 
 
 def validar_game_log(html):
-    verificacoes = {
-        "Minutes": "min",
-        "Points": "pts",
-        "Rebounds": "reb",
-        "Assists": "ast",
-        "Steals": "stl",
-        "Blocks": "blk",
-    }
+    html_lower = html.lower()
 
-    html_minusculo = html.lower()
+    verificacoes = {
+        "Minutes": [
+            "minutes",
+            ">min<"
+        ],
+        "Points": [
+            "points",
+            ">pts<"
+        ],
+        "Rebounds": [
+            "rebounds",
+            ">reb<"
+        ],
+        "Assists": [
+            "assists",
+            ">ast<"
+        ],
+        "Steals": [
+            "steals",
+            ">stl<"
+        ],
+        "Blocks": [
+            "blocks",
+            ">blk<"
+        ],
+    }
 
     encontrados = []
 
-    for descricao, termo in verificacoes.items():
-        if termo in html_minusculo:
-            encontrados.append(descricao)
+    for campo, termos in verificacoes.items():
+
+        encontrado = any(
+            termo in html_lower
+            for termo in termos
+        )
+
+        if encontrado:
+            encontrados.append(campo)
 
     return encontrados
 
 
-# ----------------------------------------------------------
-# EXECUÇÃO
-# ----------------------------------------------------------
+# ==========================================================
+# EXECUCAO
+# ==========================================================
 
 def main():
 
+    print("=" * 60)
     print("NBA PLAYER TRACKER")
-    print("Teste automático de coleta")
+    print("TESTE DIRETO COM ID DO CBS SPORTS")
+    print("=" * 60)
+
+    jogadores = carregar_jogadores_cbs()
+
     print()
-
-    jogadores = carregar_jogadores()
-
     print(
-        f"Jogadores encontrados em jogadores.json: "
+        f"Jogadores encontrados em jogadores_cbs.json: "
         f"{len(jogadores)}"
     )
 
     if JOGADOR_TESTE not in jogadores:
         raise RuntimeError(
-            f"{JOGADOR_TESTE} não foi encontrado "
-            "em jogadores.json"
+            f"{JOGADOR_TESTE} nao encontrado "
+            "em jogadores_cbs.json"
         )
 
-    nba_id = jogadores[JOGADOR_TESTE]
-
-    print(
-        f"{JOGADOR_TESTE} encontrado no JSON."
-    )
-    print(
-        f"NBA ID: {nba_id}"
-    )
-
-    url, html = procurar_game_log(
-        JOGADOR_TESTE
-    )
+    cbs_id = str(
+        jogadores[JOGADOR_TESTE]
+    ).strip()
 
     print()
     print(
-        f"Página recebida com "
-        f"{len(html):,} caracteres."
+        f"Jogador: {JOGADOR_TESTE}"
+    )
+
+    print(
+        f"CBS ID: {cbs_id}"
+    )
+
+    url = (
+        "https://www.cbssports.com/"
+        "nba/players/"
+        f"{cbs_id}/"
+        f"{SLUG_TESTE}/"
+        "game-log/"
+    )
+
+    print()
+    print("URL montada:")
+    print(url)
+
+    html = baixar_pagina(url)
+
+    print()
+    print(
+        f"Pagina recebida: {len(html):,} caracteres"
     )
 
     campos = validar_game_log(html)
 
     print()
     print("Campos encontrados:")
-    for campo in campos:
-        print(f"  OK - {campo}")
 
-    if len(campos) < 4:
-        raise RuntimeError(
-            "A página foi acessada, mas os campos "
-            "esperados do game log não foram encontrados."
+    for campo in campos:
+        print(
+            f"OK - {campo}"
         )
 
     print()
-    print("==========================================")
-    print("TESTE CONCLUÍDO COM SUCESSO!")
-    print("==========================================")
+
+    if len(campos) < 4:
+
+        raise RuntimeError(
+            "CBS respondeu, mas o game log "
+            "nao foi identificado corretamente."
+        )
+
+    print("=" * 60)
+    print("TESTE CONCLUIDO COM SUCESSO!")
+    print("=" * 60)
+
     print()
     print(
-        "IMPORTANTE: dados.csv NÃO foi alterado."
+        "O GitHub Actions conseguiu acessar "
+        "diretamente o game log do CBS Sports."
+    )
+
+    print()
+    print(
+        "dados.csv NAO foi alterado."
     )
 
 
