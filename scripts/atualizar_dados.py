@@ -15,12 +15,12 @@ ROOT = Path(__file__).resolve().parent.parent
 
 ARQUIVO_CBS = ROOT / "jogadores_cbs.json"
 
-JOGADOR_TESTE = "AJ Dybantsa"
-SLUG_JOGADOR = "aj-dybantsa"
+JOGADOR_TESTE = "Ja Morant"
+SLUG_JOGADOR = "ja-morant"
 
-SIGLA_TIME = "WAS"
-NOME_TIME = "Washington Wizards"
-SLUG_TIME = "washington-wizards"
+SIGLA_TIME = "POR"
+NOME_TIME = "Portland Trail Blazers"
+SLUG_TIME = "portland-trail-blazers"
 
 URL_SCHEDULE = (
     "https://www.cbssports.com/nba/teams/"
