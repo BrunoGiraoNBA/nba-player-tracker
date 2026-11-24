@@ -23,7 +23,7 @@ NOME_TIME = "Washington Wizards"
 SLUG_TIME = "washington-wizards"
 
 URL_SCHEDULE = (
-    f"https://www.cbssports.com/nba/teams/"
+    "https://www.cbssports.com/nba/teams/"
     f"{SIGLA_TIME.lower()}/{SLUG_TIME}/schedule/"
 )
 
@@ -156,7 +156,6 @@ def baixar_pagina(url, descricao):
 def extrair_tabelas(conteudo):
 
     leitor = LeitorTabelasHTML()
-
     leitor.feed(conteudo)
 
     return leitor.tabelas
@@ -168,8 +167,6 @@ def normalizar_cabecalho(texto):
     texto = texto.lower()
     texto = re.sub(r"\s+", "", texto)
     texto = re.sub(r"[^a-z0-9%]", "", texto)
-
-    # Corrige duplicacoes comuns do CBS
 
     substituicoes = {
         "minmin": "min",
@@ -230,7 +227,6 @@ def numero_inteiro(valor):
 def interpretar_data(texto):
 
     texto = str(texto).strip()
-
     texto = re.sub(r"\s+", " ", texto)
 
     formatos = [
@@ -309,7 +305,10 @@ def encontrar_tabela_game_log(tabelas):
         "3fgm",
     }
 
-    for numero_tabela, tabela in enumerate(tabelas, start=1):
+    for numero_tabela, tabela in enumerate(
+        tabelas,
+        start=1
+    ):
 
         for indice_linha, linha in enumerate(tabela):
 
@@ -350,7 +349,10 @@ def encontrar_tabela_schedule(tabelas):
         "result",
     }
 
-    for numero_tabela, tabela in enumerate(tabelas, start=1):
+    for numero_tabela, tabela in enumerate(
+        tabelas,
+        start=1
+    ):
 
         for indice_linha, linha in enumerate(tabela):
 
@@ -379,6 +381,41 @@ def encontrar_tabela_schedule(tabelas):
 
 
 # ==========================================================
+# DIAGNOSTICO
+# ==========================================================
+
+def imprimir_diagnostico_game_log(tabela):
+
+    print()
+    print("=" * 80)
+    print("DIAGNOSTICO DA TABELA DO GAME LOG")
+    print("=" * 80)
+
+    quantidade = min(10, len(tabela))
+
+    for numero_linha in range(quantidade):
+
+        linha = tabela[numero_linha]
+
+        print()
+        print(f"LINHA {numero_linha}:")
+        print(linha)
+
+        print("NORMALIZADA:")
+        print(
+            [
+                normalizar_cabecalho(celula)
+                for celula in linha
+            ]
+        )
+
+    print()
+    print("=" * 80)
+    print("FIM DO DIAGNOSTICO")
+    print("=" * 80)
+
+
+# ==========================================================
 # GAME LOG DO JOGADOR
 # ==========================================================
 
@@ -387,7 +424,10 @@ def extrair_game_log(conteudo):
     tabelas = extrair_tabelas(conteudo)
 
     print()
-    print(f"Tabelas encontradas no game log: {len(tabelas)}")
+    print(
+        f"Tabelas encontradas no game log: "
+        f"{len(tabelas)}"
+    )
 
     (
         tabela,
@@ -403,8 +443,24 @@ def extrair_game_log(conteudo):
 
     cabecalhos = tabela[indice_cabecalho]
 
-    print(f"Melhor tabela do game log: {numero_tabela}")
+    print(
+        f"Melhor tabela do game log: {numero_tabela}"
+    )
     print(f"Pontuacao: {pontuacao}")
+    print(
+        f"Linha escolhida como cabecalho: "
+        f"{indice_cabecalho}"
+    )
+
+    # ------------------------------------------------------
+    # DIAGNOSTICO
+    # ------------------------------------------------------
+
+    imprimir_diagnostico_game_log(tabela)
+
+    # ------------------------------------------------------
+    # LOCALIZAR COLUNAS
+    # ------------------------------------------------------
 
     idx_data = localizar_coluna(
         cabecalhos,
@@ -476,10 +532,33 @@ def extrair_game_log(conteudo):
     ]
 
     if faltando:
+
+        print()
+        print("=" * 80)
+        print("ATENCAO")
+        print("=" * 80)
+        print(
+            "O CBS retornou a tabela, mas algumas "
+            "colunas ainda nao foram identificadas."
+        )
+        print(
+            "Colunas ausentes: "
+            + ", ".join(faltando)
+        )
+        print()
+        print(
+            "Use o diagnostico acima para ajustar "
+            "o formato real do cabecalho."
+        )
+
         raise RuntimeError(
             "Colunas ausentes no game log: "
             + ", ".join(faltando)
         )
+
+    # ------------------------------------------------------
+    # EXTRAIR JOGOS
+    # ------------------------------------------------------
 
     jogos = {}
 
@@ -494,34 +573,68 @@ def extrair_game_log(conteudo):
 
         jogos[data] = {
             "data": data,
+
             "adversario": limpar_adversario(
-                valor_celula(linha, idx_opp)
+                valor_celula(
+                    linha,
+                    idx_opp
+                )
             ),
+
             "minutos": numero_inteiro(
-                valor_celula(linha, idx_min)
+                valor_celula(
+                    linha,
+                    idx_min
+                )
             ),
+
             "pts": numero_inteiro(
-                valor_celula(linha, idx_pts)
+                valor_celula(
+                    linha,
+                    idx_pts
+                )
             ),
+
             "reb": numero_inteiro(
-                valor_celula(linha, idx_reb)
+                valor_celula(
+                    linha,
+                    idx_reb
+                )
             ),
+
             "ast": numero_inteiro(
-                valor_celula(linha, idx_ast)
+                valor_celula(
+                    linha,
+                    idx_ast
+                )
             ),
+
             "tpm": numero_inteiro(
-                valor_celula(linha, idx_3pm)
+                valor_celula(
+                    linha,
+                    idx_3pm
+                )
             ),
+
             "stl": numero_inteiro(
-                valor_celula(linha, idx_stl)
+                valor_celula(
+                    linha,
+                    idx_stl
+                )
             ),
+
             "blk": numero_inteiro(
-                valor_celula(linha, idx_blk)
+                valor_celula(
+                    linha,
+                    idx_blk
+                )
             ),
         }
 
     print()
-    print(f"Jogos extraidos do jogador: {len(jogos)}")
+    print(
+        f"Jogos extraidos do jogador: {len(jogos)}"
+    )
 
     return jogos
 
@@ -535,7 +648,10 @@ def extrair_schedule(conteudo):
     tabelas = extrair_tabelas(conteudo)
 
     print()
-    print(f"Tabelas encontradas no schedule: {len(tabelas)}")
+    print(
+        f"Tabelas encontradas no schedule: "
+        f"{len(tabelas)}"
+    )
 
     (
         tabela,
@@ -551,7 +667,9 @@ def extrair_schedule(conteudo):
 
     cabecalhos = tabela[indice_cabecalho]
 
-    print(f"Melhor tabela do schedule: {numero_tabela}")
+    print(
+        f"Melhor tabela do schedule: {numero_tabela}"
+    )
     print(f"Pontuacao: {pontuacao}")
 
     idx_data = localizar_coluna(
@@ -589,8 +707,6 @@ def extrair_schedule(conteudo):
         )
 
         # Somente jogos concluidos.
-        # Resultado precisa comecar em W ou L.
-
         if not re.match(
             r"^\s*[WL]\b",
             resultado,
@@ -599,14 +715,20 @@ def extrair_schedule(conteudo):
             continue
 
         data = interpretar_data(
-            valor_celula(linha, idx_data)
+            valor_celula(
+                linha,
+                idx_data
+            )
         )
 
         if data is None:
             continue
 
         adversario = limpar_adversario(
-            valor_celula(linha, idx_opp)
+            valor_celula(
+                linha,
+                idx_opp
+            )
         )
 
         jogos.append(
@@ -625,7 +747,10 @@ def extrair_schedule(conteudo):
     jogos = jogos[:10]
 
     print()
-    print(f"Jogos concluidos selecionados: {len(jogos)}")
+    print(
+        f"Jogos concluidos selecionados: "
+        f"{len(jogos)}"
+    )
 
     return jogos
 
@@ -740,6 +865,7 @@ def main():
     print("=" * 60)
 
     if not ARQUIVO_CBS.exists():
+
         raise FileNotFoundError(
             f"Arquivo nao encontrado: {ARQUIVO_CBS}"
         )
@@ -752,12 +878,14 @@ def main():
         jogadores = json.load(arquivo)
 
     print()
+
     print(
         "Jogadores encontrados em jogadores_cbs.json: "
         f"{len(jogadores)}"
     )
 
     if JOGADOR_TESTE not in jogadores:
+
         raise KeyError(
             f"{JOGADOR_TESTE} nao encontrado "
             "em jogadores_cbs.json"
@@ -817,9 +945,20 @@ def main():
     )
 
     print()
-    print(f"Jogos do time analisados: {len(jogos_finais)}")
-    print(f"Jogos disputados pelo jogador: {quantidade_jogou}")
-    print(f"Jogos sem participacao: {quantidade_ausente}")
+    print(
+        f"Jogos do time analisados: "
+        f"{len(jogos_finais)}"
+    )
+
+    print(
+        f"Jogos disputados pelo jogador: "
+        f"{quantidade_jogou}"
+    )
+
+    print(
+        f"Jogos sem participacao: "
+        f"{quantidade_ausente}"
+    )
 
     print()
     print("=" * 60)
@@ -829,6 +968,7 @@ def main():
     print()
     print("IMPORTANTE:")
     print("dados.csv NAO foi alterado.")
+
     print(
         "Este teste apenas imprime o resultado "
         "do cruzamento no GitHub Actions."
