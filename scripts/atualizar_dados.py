@@ -169,6 +169,46 @@ def normalizar_cabecalho(texto):
     texto = re.sub(r"[^a-z0-9%]", "", texto)
 
     substituicoes = {
+        # Colunas basicas
+        "date": "date",
+        "opponent": "opp",
+        "opp": "opp",
+        "result": "result",
+
+        # Estatisticas principais
+        "min": "min",
+        "minminutes": "min",
+
+        "pts": "pts",
+        "ptspoints": "pts",
+
+        "reb": "reb",
+        "rebtotalrebounds": "reb",
+
+        "ast": "ast",
+        "asttotalassists": "ast",
+
+        "stl": "stl",
+        "stltotalsteals": "stl",
+
+        "blk": "blk",
+        "blktotalblocks": "blk",
+
+        # 3 pontos convertidos
+        "3fgm": "3fgm",
+        "3fgmthreepointfieldgoalsmade": "3fgm",
+
+        # Outras colunas do CBS
+        "fptsfantasypoints": "fpts",
+        "fgafieldgoalsattempted": "fga",
+        "fgmfieldgoalsmade": "fgm",
+        "fg%fieldgoalpercentage": "fg%",
+        "3fgathreepointfieldgoalsattempted": "3fga",
+        "3fg%threepointfieldgoalpercentage": "3fg%",
+        "toturnovers": "to",
+        "pftotalpersonalfouls": "pf",
+
+        # Compatibilidade com formatos anteriores
         "minmin": "min",
         "ptspts": "pts",
         "rebreb": "reb",
@@ -176,7 +216,6 @@ def normalizar_cabecalho(texto):
         "stltotalstl": "stl",
         "blktotalblk": "blk",
         "3fgm3fgm": "3fgm",
-        "fptsfantasypoints": "fptsfantasypoints",
     }
 
     return substituicoes.get(texto, texto)
