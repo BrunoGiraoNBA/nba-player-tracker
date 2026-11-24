@@ -14,7 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 ARQUIVO_JOGADORES_CBS = ROOT / "jogadores_cbs.json"
 ARQUIVO_DADOS_ATUAL = ROOT / "dados.csv"
-ARQUIVO_SAIDA = ROOT / "dados_teste.csv"
+ARQUIVO_SAIDA = ROOT / "dados.csv"
 ARQUIVO_RELATORIO = ROOT / "relatorio_atualizacao.txt"
 
 QUANTIDADE_JOGOS = 10
@@ -509,8 +509,7 @@ def gravar_relatorio(qtd_json, processados, linhas, zeros, erros):
         f"Linhas geradas: {linhas}", f"Linhas esperadas: {esperado}",
         f"Linhas com MIN = 0: {zeros}", f"Erros encontrados: {len(erros)}", "",
         "VALIDACAO 1730 LINHAS: " + ("OK" if linhas == esperado else "FALHOU"), "",
-        "IMPORTANTE:", "dados.csv original nao foi alterado.",
-        "O resultado foi salvo em dados_teste.csv.", "", "=" * 60, "ERROS", "=" * 60,
+        "IMPORTANTE:", "dados.csv somente e atualizado apos validacao completa.", "", "=" * 60, "ERROS", "=" * 60,
     ]
     conteudo.extend(erros or ["Nenhum erro encontrado."])
     ARQUIVO_RELATORIO.write_text("\n".join(conteudo), encoding="utf-8")
@@ -599,7 +598,6 @@ def main():
 
     erros_validacao = validar_resultado(linhas_ordenadas, jogadores_cbs)
     erros.extend(erros_validacao)
-    gravar_csv_atomico(linhas_ordenadas)
     zeros = sum(1 for linha in linhas_ordenadas if linha["minutos"] == 0)
     gravar_relatorio(len(jogadores_cbs), processados, len(linhas_ordenadas), zeros, erros)
 
@@ -610,11 +608,19 @@ def main():
     print(f"Linhas esperadas: {len(jogadores_cbs) * QUANTIDADE_JOGOS}")
     print(f"Linhas com MIN = 0: {zeros}")
     print(f"Erros registrados: {len(erros)}")
-    print(f"\nArquivo gerado: {ARQUIVO_SAIDA.name}")
-    print(f"Relatorio gerado: {ARQUIVO_RELATORIO.name}")
-    print("\ndados.csv original NAO foi alterado.")
+    print(f"\nRelatorio gerado: {ARQUIVO_RELATORIO.name}")
 
-    if processados == len(jogadores_cbs) and len(linhas_ordenadas) == len(jogadores_cbs) * QUANTIDADE_JOGOS and not erros_validacao:
+    sucesso_total = (
+        processados == len(jogadores_cbs)
+        and len(linhas_ordenadas) == len(jogadores_cbs) * QUANTIDADE_JOGOS
+        and not erros
+        and not erros_validacao
+    )
+
+    if sucesso_total:
+        gravar_csv_atomico(linhas_ordenadas)
+        print(f"Arquivo atualizado: {ARQUIVO_SAIDA.name}")
+        print("dados.csv atualizado com sucesso.")
         print("\n" + "=" * 70)
         print("VALIDACAO CONCLUIDA: 1730 LINHAS GERADAS!")
         print("=" * 70)
