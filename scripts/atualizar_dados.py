@@ -1,31 +1,41 @@
+import csv
 import html
 import json
 import re
+import time
+import unicodedata
+import urllib.error
 import urllib.request
+
 from datetime import datetime
 from html.parser import HTMLParser
 from pathlib import Path
 
 
 # ==========================================================
-# CONFIGURACAO
+# CAMINHOS
 # ==========================================================
 
 ROOT = Path(__file__).resolve().parent.parent
 
 ARQUIVO_CBS = ROOT / "jogadores_cbs.json"
+ARQUIVO_DADOS = ROOT / "dados.csv"
+ARQUIVO_TEMPORARIO = ROOT / "dados_novo.csv"
 
-JOGADOR_TESTE = "Ja Morant"
-SLUG_JOGADOR = "ja-morant"
 
-SIGLA_TIME = "POR"
-NOME_TIME = "Portland Trail Blazers"
-SLUG_TIME = "portland-trail-blazers"
+# ==========================================================
+# CONFIGURACAO
+# ==========================================================
 
-URL_SCHEDULE = (
-    "https://www.cbssports.com/nba/teams/"
-    f"{SIGLA_TIME.lower()}/{SLUG_TIME}/schedule/"
-)
+QUANTIDADE_JOGOS = 10
+
+PAUSA_ENTRE_JOGADORES = 0.30
+PAUSA_ENTRE_TENTATIVAS = 4
+
+MAX_TENTATIVAS = 4
+TIMEOUT_HTTP = 45
+
+URL_BASE = "https://www.cbssports.com"
 
 HEADERS_HTTP = {
     "User-Agent": (
@@ -43,7 +53,135 @@ HEADERS_HTTP = {
 
 
 # ==========================================================
-# LEITOR GENERICO DE TABELAS HTML
+# TIMES DA NBA
+# ==========================================================
+
+TIMES_NBA = {
+    "Atlanta Hawks": {
+        "sigla": "ATL",
+        "slug": "atlanta-hawks",
+    },
+    "Boston Celtics": {
+        "sigla": "BOS",
+        "slug": "boston-celtics",
+    },
+    "Brooklyn Nets": {
+        "sigla": "BKN",
+        "slug": "brooklyn-nets",
+    },
+    "Charlotte Hornets": {
+        "sigla": "CHA",
+        "slug": "charlotte-hornets",
+    },
+    "Chicago Bulls": {
+        "sigla": "CHI",
+        "slug": "chicago-bulls",
+    },
+    "Cleveland Cavaliers": {
+        "sigla": "CLE",
+        "slug": "cleveland-cavaliers",
+    },
+    "Dallas Mavericks": {
+        "sigla": "DAL",
+        "slug": "dallas-mavericks",
+    },
+    "Denver Nuggets": {
+        "sigla": "DEN",
+        "slug": "denver-nuggets",
+    },
+    "Detroit Pistons": {
+        "sigla": "DET",
+        "slug": "detroit-pistons",
+    },
+    "Golden State Warriors": {
+        "sigla": "GS",
+        "slug": "golden-state-warriors",
+    },
+    "Houston Rockets": {
+        "sigla": "HOU",
+        "slug": "houston-rockets",
+    },
+    "Indiana Pacers": {
+        "sigla": "IND",
+        "slug": "indiana-pacers",
+    },
+    "Los Angeles Clippers": {
+        "sigla": "LAC",
+        "slug": "los-angeles-clippers",
+    },
+    "Los Angeles Lakers": {
+        "sigla": "LAL",
+        "slug": "los-angeles-lakers",
+    },
+    "Memphis Grizzlies": {
+        "sigla": "MEM",
+        "slug": "memphis-grizzlies",
+    },
+    "Miami Heat": {
+        "sigla": "MIA",
+        "slug": "miami-heat",
+    },
+    "Milwaukee Bucks": {
+        "sigla": "MIL",
+        "slug": "milwaukee-bucks",
+    },
+    "Minnesota Timberwolves": {
+        "sigla": "MIN",
+        "slug": "minnesota-timberwolves",
+    },
+    "New Orleans Pelicans": {
+        "sigla": "NO",
+        "slug": "new-orleans-pelicans",
+    },
+    "New York Knicks": {
+        "sigla": "NY",
+        "slug": "new-york-knicks",
+    },
+    "Oklahoma City Thunder": {
+        "sigla": "OKC",
+        "slug": "oklahoma-city-thunder",
+    },
+    "Orlando Magic": {
+        "sigla": "ORL",
+        "slug": "orlando-magic",
+    },
+    "Philadelphia 76ers": {
+        "sigla": "PHI",
+        "slug": "philadelphia-76ers",
+    },
+    "Phoenix Suns": {
+        "sigla": "PHO",
+        "slug": "phoenix-suns",
+    },
+    "Portland Trail Blazers": {
+        "sigla": "POR",
+        "slug": "portland-trail-blazers",
+    },
+    "Sacramento Kings": {
+        "sigla": "SAC",
+        "slug": "sacramento-kings",
+    },
+    "San Antonio Spurs": {
+        "sigla": "SA",
+        "slug": "san-antonio-spurs",
+    },
+    "Toronto Raptors": {
+        "sigla": "TOR",
+        "slug": "toronto-raptors",
+    },
+    "Utah Jazz": {
+        "sigla": "UTA",
+        "slug": "utah-jazz",
+    },
+    "Washington Wizards": {
+        "sigla": "WAS",
+        "slug": "washington-wizards",
+    },
+}
+
+
+# ==========================================================
+# LEITOR DE TABELAS HTML
 # ==========================================================
 
 class LeitorTabelasHTML(HTMLParser):
@@ -66,10 +204,12 @@ class LeitorTabelasHTML(HTMLParser):
         tag = tag.lower()
 
         if tag == "table":
+
             self.dentro_tabela = True
             self.tabela_atual = []
 
         elif tag == "tr" and self.dentro_tabela:
+
             self.dentro_linha = True
             self.linha_atual = []
 
@@ -78,26 +218,35 @@ class LeitorTabelasHTML(HTMLParser):
             and self.dentro_tabela
             and self.dentro_linha
         ):
+
             self.dentro_celula = True
             self.celula_atual = []
 
         elif tag == "br" and self.dentro_celula:
+
             self.celula_atual.append(" ")
 
     def handle_data(self, data):
 
-        if self.dentro_celula and self.celula_atual is not None:
+        if (
+            self.dentro_celula
+            and self.celula_atual is not None
+        ):
             self.celula_atual.append(data)
 
     def handle_endtag(self, tag):
 
         tag = tag.lower()
 
-        if tag in ("th", "td") and self.dentro_celula:
+        if (
+            tag in ("th", "td")
+            and self.dentro_celula
+        ):
 
             texto = " ".join(self.celula_atual)
             texto = html.unescape(texto)
-            texto = re.sub(r"\s+", " ", texto).strip()
+            texto = re.sub(r"\s+", " ", texto)
+            texto = texto.strip()
 
             self.linha_atual.append(texto)
 
@@ -107,7 +256,9 @@ class LeitorTabelasHTML(HTMLParser):
         elif tag == "tr" and self.dentro_linha:
 
             if self.linha_atual:
-                self.tabela_atual.append(self.linha_atual)
+                self.tabela_atual.append(
+                    self.linha_atual
+                )
 
             self.linha_atual = None
             self.dentro_linha = False
@@ -115,50 +266,50 @@ class LeitorTabelasHTML(HTMLParser):
         elif tag == "table" and self.dentro_tabela:
 
             if self.tabela_atual:
-                self.tabelas.append(self.tabela_atual)
+                self.tabelas.append(
+                    self.tabela_atual
+                )
 
             self.tabela_atual = None
             self.dentro_tabela = False
 
 
 # ==========================================================
-# FUNCOES AUXILIARES
+# TEXTO E URL
 # ==========================================================
 
-def baixar_pagina(url, descricao):
+def limpar_texto(valor):
 
-    print()
-    print(descricao)
-    print(url)
+    valor = html.unescape(str(valor))
+    valor = re.sub(r"\s+", " ", valor)
 
-    requisicao = urllib.request.Request(
-        url,
-        headers=HEADERS_HTTP
+    return valor.strip()
+
+
+def criar_slug(texto):
+
+    texto = unicodedata.normalize(
+        "NFKD",
+        str(texto)
     )
 
-    with urllib.request.urlopen(
-        requisicao,
-        timeout=30
-    ) as resposta:
+    texto = texto.encode(
+        "ascii",
+        "ignore"
+    ).decode("ascii")
 
-        print(f"HTTP Status: {resposta.status}")
+    texto = texto.lower()
 
-        conteudo = resposta.read().decode(
-            "utf-8",
-            errors="ignore"
-        )
+    texto = texto.replace("'", "")
+    texto = texto.replace(".", "")
 
-    print(f"Pagina recebida: {len(conteudo):,} caracteres")
+    texto = re.sub(
+        r"[^a-z0-9]+",
+        "-",
+        texto
+    )
 
-    return conteudo
-
-
-def extrair_tabelas(conteudo):
-
-    leitor = LeitorTabelasHTML()
-    leitor.feed(conteudo)
-
-    return leitor.tabelas
+    return texto.strip("-")
 
 
 def normalizar_cabecalho(texto):
@@ -169,36 +320,39 @@ def normalizar_cabecalho(texto):
     texto = re.sub(r"[^a-z0-9%]", "", texto)
 
     substituicoes = {
-        # Colunas basicas
         "date": "date",
         "opponent": "opp",
         "opp": "opp",
         "result": "result",
 
-        # Estatisticas principais
         "min": "min",
         "minminutes": "min",
+        "minmin": "min",
 
         "pts": "pts",
         "ptspoints": "pts",
+        "ptspts": "pts",
 
         "reb": "reb",
         "rebtotalrebounds": "reb",
+        "rebreb": "reb",
 
         "ast": "ast",
         "asttotalassists": "ast",
+        "asttotalast": "ast",
 
         "stl": "stl",
         "stltotalsteals": "stl",
+        "stltotalstl": "stl",
 
         "blk": "blk",
         "blktotalblocks": "blk",
+        "blktotalblk": "blk",
 
-        # 3 pontos convertidos
         "3fgm": "3fgm",
+        "3fgm3fgm": "3fgm",
         "3fgmthreepointfieldgoalsmade": "3fgm",
 
-        # Outras colunas do CBS
         "fptsfantasypoints": "fpts",
         "fgafieldgoalsattempted": "fga",
         "fgmfieldgoalsmade": "fgm",
@@ -207,25 +361,109 @@ def normalizar_cabecalho(texto):
         "3fg%threepointfieldgoalpercentage": "3fg%",
         "toturnovers": "to",
         "pftotalpersonalfouls": "pf",
-
-        # Compatibilidade com formatos anteriores
-        "minmin": "min",
-        "ptspts": "pts",
-        "rebreb": "reb",
-        "asttotalast": "ast",
-        "stltotalstl": "stl",
-        "blktotalblk": "blk",
-        "3fgm3fgm": "3fgm",
     }
 
     return substituicoes.get(texto, texto)
+
+
+# ==========================================================
+# DOWNLOAD
+# ==========================================================
+
+def baixar_pagina(url, descricao):
+
+    ultimo_erro = None
+
+    for tentativa in range(1, MAX_TENTATIVAS + 1):
+
+        try:
+
+            print(
+                f"    {descricao} "
+                f"(tentativa {tentativa}/{MAX_TENTATIVAS})"
+            )
+
+            requisicao = urllib.request.Request(
+                url,
+                headers=HEADERS_HTTP
+            )
+
+            with urllib.request.urlopen(
+                requisicao,
+                timeout=TIMEOUT_HTTP
+            ) as resposta:
+
+                status = resposta.status
+
+                if status != 200:
+                    raise RuntimeError(
+                        f"HTTP {status}"
+                    )
+
+                conteudo = resposta.read().decode(
+                    "utf-8",
+                    errors="ignore"
+                )
+
+            if len(conteudo) < 1000:
+                raise RuntimeError(
+                    "Pagina recebida com conteudo insuficiente."
+                )
+
+            return conteudo
+
+        except (
+            urllib.error.HTTPError,
+            urllib.error.URLError,
+            TimeoutError,
+            RuntimeError,
+        ) as erro:
+
+            ultimo_erro = erro
+
+            print(
+                f"    Falha: {erro}"
+            )
+
+            if tentativa < MAX_TENTATIVAS:
+
+                espera = (
+                    PAUSA_ENTRE_TENTATIVAS
+                    * tentativa
+                )
+
+                print(
+                    f"    Nova tentativa em "
+                    f"{espera} segundos..."
+                )
+
+                time.sleep(espera)
+
+    raise RuntimeError(
+        f"Nao foi possivel acessar: {url}. "
+        f"Ultimo erro: {ultimo_erro}"
+    )
+
+
+# ==========================================================
+# FUNCOES DE TABELA
+# ==========================================================
+
+def extrair_tabelas(conteudo):
+
+    leitor = LeitorTabelasHTML()
+    leitor.feed(conteudo)
+
+    return leitor.tabelas
 
 
 def localizar_coluna(cabecalhos, candidatos):
 
     for indice, cabecalho in enumerate(cabecalhos):
 
-        normalizado = normalizar_cabecalho(cabecalho)
+        normalizado = normalizar_cabecalho(
+            cabecalho
+        )
 
         if normalizado in candidatos:
             return indice
@@ -238,20 +476,26 @@ def valor_celula(linha, indice):
     if indice is None:
         return ""
 
+    if indice < 0:
+        return ""
+
     if indice >= len(linha):
         return ""
 
-    return str(linha[indice]).strip()
+    return limpar_texto(linha[indice])
 
 
 def numero_inteiro(valor):
 
-    valor = str(valor).strip()
+    valor = limpar_texto(valor)
 
     if not valor:
         return 0
 
-    busca = re.search(r"-?\d+", valor)
+    busca = re.search(
+        r"-?\d+",
+        valor
+    )
 
     if not busca:
         return 0
@@ -259,14 +503,56 @@ def numero_inteiro(valor):
     return int(busca.group())
 
 
+def encontrar_melhor_tabela(
+    tabelas,
+    cabecalhos_desejados
+):
+
+    melhor_tabela = None
+    melhor_numero = None
+    melhor_linha = None
+    melhor_pontuacao = -1
+
+    for numero_tabela, tabela in enumerate(
+        tabelas,
+        start=1
+    ):
+
+        for indice_linha, linha in enumerate(tabela):
+
+            normalizados = {
+                normalizar_cabecalho(celula)
+                for celula in linha
+            }
+
+            pontuacao = len(
+                normalizados.intersection(
+                    cabecalhos_desejados
+                )
+            )
+
+            if pontuacao > melhor_pontuacao:
+
+                melhor_tabela = tabela
+                melhor_numero = numero_tabela
+                melhor_linha = indice_linha
+                melhor_pontuacao = pontuacao
+
+    return (
+        melhor_tabela,
+        melhor_numero,
+        melhor_linha,
+        melhor_pontuacao,
+    )
+
+
 # ==========================================================
-# DATA
+# DATAS
 # ==========================================================
 
 def interpretar_data(texto):
 
-    texto = str(texto).strip()
-    texto = re.sub(r"\s+", " ", texto)
+    texto = limpar_texto(texto)
 
     formatos = [
         "%b %d, %Y",
@@ -283,10 +569,15 @@ def interpretar_data(texto):
 
         try:
 
-            data = datetime.strptime(texto, formato)
+            data = datetime.strptime(
+                texto,
+                formato
+            )
 
             if "%Y" not in formato:
-                data = data.replace(year=ano_atual)
+                data = data.replace(
+                    year=ano_atual
+                )
 
             return data.date()
 
@@ -302,13 +593,118 @@ def data_br(data):
 
 
 # ==========================================================
+# TIMES
+# ==========================================================
+
+def identificar_time(conteudo):
+
+    conteudo_decodificado = html.unescape(
+        conteudo
+    )
+
+    busca_titulo = re.search(
+        r"<title[^>]*>(.*?)</title>",
+        conteudo_decodificado,
+        flags=re.IGNORECASE | re.DOTALL
+    )
+
+    if busca_titulo:
+
+        titulo = limpar_texto(
+            re.sub(
+                r"<[^>]+>",
+                " ",
+                busca_titulo.group(1)
+            )
+        )
+
+    else:
+        titulo = ""
+
+    for nome_time, dados_time in TIMES_NBA.items():
+
+        if nome_time.lower() in titulo.lower():
+
+            return {
+                "nome": nome_time,
+                "sigla": dados_time["sigla"],
+                "slug": dados_time["slug"],
+            }
+
+    # Segunda tentativa usando o HTML completo.
+    for nome_time, dados_time in TIMES_NBA.items():
+
+        if nome_time.lower() in conteudo_decodificado.lower():
+
+            padrao_titulo = re.compile(
+                rf"<title[^>]*>[^<]*"
+                rf"{re.escape(nome_time)}"
+                rf"[^<]*</title>",
+                flags=re.IGNORECASE
+            )
+
+            if padrao_titulo.search(
+                conteudo_decodificado
+            ):
+
+                return {
+                    "nome": nome_time,
+                    "sigla": dados_time["sigla"],
+                    "slug": dados_time["slug"],
+                }
+
+    raise RuntimeError(
+        "Nao foi possivel identificar o time "
+        f"atual no titulo da pagina. Titulo: {titulo}"
+    )
+
+
+# ==========================================================
 # ADVERSARIO
 # ==========================================================
 
+SIGLAS_ADVERSARIOS = {
+    "ATL": "Atlanta",
+    "BOS": "Boston",
+    "BKN": "Brooklyn",
+    "CHA": "Charlotte",
+    "CHI": "Chicago",
+    "CLE": "Cleveland",
+    "DAL": "Dallas",
+    "DEN": "Denver",
+    "DET": "Detroit",
+    "GS": "Golden State",
+    "GSW": "Golden State",
+    "HOU": "Houston",
+    "IND": "Indiana",
+    "LAC": "L.A. Clippers",
+    "LAL": "L.A. Lakers",
+    "MEM": "Memphis",
+    "MIA": "Miami",
+    "MIL": "Milwaukee",
+    "MIN": "Minnesota",
+    "NO": "New Orleans",
+    "NOP": "New Orleans",
+    "NY": "New York",
+    "NYK": "New York",
+    "OKC": "Oklahoma City",
+    "ORL": "Orlando",
+    "PHI": "Philadelphia",
+    "PHO": "Phoenix",
+    "PHX": "Phoenix",
+    "POR": "Portland",
+    "SAC": "Sacramento",
+    "SA": "San Antonio",
+    "SAS": "San Antonio",
+    "TOR": "Toronto",
+    "UTA": "Utah",
+    "WAS": "Washington",
+}
+
+
 def limpar_adversario(texto):
 
-    texto = html.unescape(str(texto))
-    texto = re.sub(r"\s+", " ", texto).strip()
+    texto = limpar_texto(texto)
 
     texto = re.sub(
         r"^(vs\.?|@)\s*",
@@ -317,19 +713,65 @@ def limpar_adversario(texto):
         flags=re.IGNORECASE
     )
 
-    return texto.strip()
+    texto = texto.strip()
+
+    sigla = texto.upper()
+
+    if sigla in SIGLAS_ADVERSARIOS:
+        return SIGLAS_ADVERSARIOS[sigla]
+
+    nomes_conhecidos = [
+        "Atlanta",
+        "Boston",
+        "Brooklyn",
+        "Charlotte",
+        "Chicago",
+        "Cleveland",
+        "Dallas",
+        "Denver",
+        "Detroit",
+        "Golden State",
+        "Houston",
+        "Indiana",
+        "L.A. Clippers",
+        "L.A. Lakers",
+        "LA Clippers",
+        "LA Lakers",
+        "Memphis",
+        "Miami",
+        "Milwaukee",
+        "Minnesota",
+        "New Orleans",
+        "New York",
+        "Oklahoma City",
+        "Orlando",
+        "Philadelphia",
+        "Phoenix",
+        "Portland",
+        "Sacramento",
+        "San Antonio",
+        "Toronto",
+        "Utah",
+        "Washington",
+    ]
+
+    for nome in nomes_conhecidos:
+
+        if texto.lower().startswith(
+            nome.lower()
+        ):
+            return nome
+
+    return texto
 
 
 # ==========================================================
-# BUSCAR MELHOR TABELA
+# GAME LOG
 # ==========================================================
 
-def encontrar_tabela_game_log(tabelas):
+def extrair_game_log(conteudo):
 
-    melhor = None
-    melhor_pontuacao = -1
-    melhor_indice = None
-    melhor_cabecalho = None
+    tabelas = extrair_tabelas(conteudo)
 
     desejados = {
         "date",
@@ -344,162 +786,28 @@ def encontrar_tabela_game_log(tabelas):
         "3fgm",
     }
 
-    for numero_tabela, tabela in enumerate(
-        tabelas,
-        start=1
-    ):
-
-        for indice_linha, linha in enumerate(tabela):
-
-            normalizados = {
-                normalizar_cabecalho(celula)
-                for celula in linha
-            }
-
-            pontuacao = len(
-                normalizados.intersection(desejados)
-            )
-
-            if pontuacao > melhor_pontuacao:
-
-                melhor = tabela
-                melhor_pontuacao = pontuacao
-                melhor_indice = numero_tabela
-                melhor_cabecalho = indice_linha
-
-    return (
-        melhor,
-        melhor_indice,
-        melhor_cabecalho,
-        melhor_pontuacao,
-    )
-
-
-def encontrar_tabela_schedule(tabelas):
-
-    melhor = None
-    melhor_pontuacao = -1
-    melhor_indice = None
-    melhor_cabecalho = None
-
-    desejados = {
-        "date",
-        "opp",
-        "result",
-    }
-
-    for numero_tabela, tabela in enumerate(
-        tabelas,
-        start=1
-    ):
-
-        for indice_linha, linha in enumerate(tabela):
-
-            normalizados = {
-                normalizar_cabecalho(celula)
-                for celula in linha
-            }
-
-            pontuacao = len(
-                normalizados.intersection(desejados)
-            )
-
-            if pontuacao > melhor_pontuacao:
-
-                melhor = tabela
-                melhor_pontuacao = pontuacao
-                melhor_indice = numero_tabela
-                melhor_cabecalho = indice_linha
-
-    return (
-        melhor,
-        melhor_indice,
-        melhor_cabecalho,
-        melhor_pontuacao,
-    )
-
-
-# ==========================================================
-# DIAGNOSTICO
-# ==========================================================
-
-def imprimir_diagnostico_game_log(tabela):
-
-    print()
-    print("=" * 80)
-    print("DIAGNOSTICO DA TABELA DO GAME LOG")
-    print("=" * 80)
-
-    quantidade = min(10, len(tabela))
-
-    for numero_linha in range(quantidade):
-
-        linha = tabela[numero_linha]
-
-        print()
-        print(f"LINHA {numero_linha}:")
-        print(linha)
-
-        print("NORMALIZADA:")
-        print(
-            [
-                normalizar_cabecalho(celula)
-                for celula in linha
-            ]
-        )
-
-    print()
-    print("=" * 80)
-    print("FIM DO DIAGNOSTICO")
-    print("=" * 80)
-
-
-# ==========================================================
-# GAME LOG DO JOGADOR
-# ==========================================================
-
-def extrair_game_log(conteudo):
-
-    tabelas = extrair_tabelas(conteudo)
-
-    print()
-    print(
-        f"Tabelas encontradas no game log: "
-        f"{len(tabelas)}"
-    )
-
     (
         tabela,
         numero_tabela,
         indice_cabecalho,
         pontuacao,
-    ) = encontrar_tabela_game_log(tabelas)
+    ) = encontrar_melhor_tabela(
+        tabelas,
+        desejados
+    )
 
     if tabela is None:
         raise RuntimeError(
-            "Nao foi encontrada tabela de game log."
+            "Tabela do game log nao encontrada."
+        )
+
+    if pontuacao < 9:
+        raise RuntimeError(
+            "Tabela do game log encontrada com "
+            f"pontuacao insuficiente: {pontuacao}"
         )
 
     cabecalhos = tabela[indice_cabecalho]
-
-    print(
-        f"Melhor tabela do game log: {numero_tabela}"
-    )
-    print(f"Pontuacao: {pontuacao}")
-    print(
-        f"Linha escolhida como cabecalho: "
-        f"{indice_cabecalho}"
-    )
-
-    # ------------------------------------------------------
-    # DIAGNOSTICO
-    # ------------------------------------------------------
-
-    imprimir_diagnostico_game_log(tabela)
-
-    # ------------------------------------------------------
-    # LOCALIZAR COLUNAS
-    # ------------------------------------------------------
 
     idx_data = localizar_coluna(
         cabecalhos,
@@ -558,12 +866,6 @@ def extrair_game_log(conteudo):
         "3fgm": idx_3pm,
     }
 
-    print()
-    print("Indices game log:")
-
-    for nome, indice in obrigatorias.items():
-        print(f"{nome}: {indice}")
-
     faltando = [
         nome
         for nome, indice in obrigatorias.items()
@@ -571,40 +873,20 @@ def extrair_game_log(conteudo):
     ]
 
     if faltando:
-
-        print()
-        print("=" * 80)
-        print("ATENCAO")
-        print("=" * 80)
-        print(
-            "O CBS retornou a tabela, mas algumas "
-            "colunas ainda nao foram identificadas."
-        )
-        print(
-            "Colunas ausentes: "
-            + ", ".join(faltando)
-        )
-        print()
-        print(
-            "Use o diagnostico acima para ajustar "
-            "o formato real do cabecalho."
-        )
-
         raise RuntimeError(
             "Colunas ausentes no game log: "
             + ", ".join(faltando)
         )
-
-    # ------------------------------------------------------
-    # EXTRAIR JOGOS
-    # ------------------------------------------------------
 
     jogos = {}
 
     for linha in tabela[indice_cabecalho + 1:]:
 
         data = interpretar_data(
-            valor_celula(linha, idx_data)
+            valor_celula(
+                linha,
+                idx_data
+            )
         )
 
         if data is None:
@@ -612,56 +894,48 @@ def extrair_game_log(conteudo):
 
         jogos[data] = {
             "data": data,
-
             "adversario": limpar_adversario(
                 valor_celula(
                     linha,
                     idx_opp
                 )
             ),
-
             "minutos": numero_inteiro(
                 valor_celula(
                     linha,
                     idx_min
                 )
             ),
-
             "pts": numero_inteiro(
                 valor_celula(
                     linha,
                     idx_pts
                 )
             ),
-
             "reb": numero_inteiro(
                 valor_celula(
                     linha,
                     idx_reb
                 )
             ),
-
             "ast": numero_inteiro(
                 valor_celula(
                     linha,
                     idx_ast
                 )
             ),
-
             "tpm": numero_inteiro(
                 valor_celula(
                     linha,
                     idx_3pm
                 )
             ),
-
             "stl": numero_inteiro(
                 valor_celula(
                     linha,
                     idx_stl
                 )
             ),
-
             "blk": numero_inteiro(
                 valor_celula(
                     linha,
@@ -670,46 +944,45 @@ def extrair_game_log(conteudo):
             ),
         }
 
-    print()
-    print(
-        f"Jogos extraidos do jogador: {len(jogos)}"
-    )
-
     return jogos
 
 
 # ==========================================================
-# ULTIMOS 10 JOGOS DO TIME
+# SCHEDULE
 # ==========================================================
 
 def extrair_schedule(conteudo):
 
     tabelas = extrair_tabelas(conteudo)
 
-    print()
-    print(
-        f"Tabelas encontradas no schedule: "
-        f"{len(tabelas)}"
-    )
+    desejados = {
+        "date",
+        "opp",
+        "result",
+    }
 
     (
         tabela,
         numero_tabela,
         indice_cabecalho,
         pontuacao,
-    ) = encontrar_tabela_schedule(tabelas)
+    ) = encontrar_melhor_tabela(
+        tabelas,
+        desejados
+    )
 
     if tabela is None:
         raise RuntimeError(
-            "Nao foi encontrada tabela do calendario."
+            "Tabela do calendario nao encontrada."
+        )
+
+    if pontuacao < 3:
+        raise RuntimeError(
+            "Tabela do calendario encontrada com "
+            f"pontuacao insuficiente: {pontuacao}"
         )
 
     cabecalhos = tabela[indice_cabecalho]
-
-    print(
-        f"Melhor tabela do schedule: {numero_tabela}"
-    )
-    print(f"Pontuacao: {pontuacao}")
 
     idx_data = localizar_coluna(
         cabecalhos,
@@ -732,8 +1005,8 @@ def extrair_schedule(conteudo):
         or idx_result is None
     ):
         raise RuntimeError(
-            "Nao foi possivel localizar "
-            "date/opp/result no schedule."
+            "Colunas date/opp/result ausentes "
+            "no calendario."
         )
 
     jogos = []
@@ -745,7 +1018,6 @@ def extrair_schedule(conteudo):
             idx_result
         )
 
-        # Somente jogos concluidos.
         if not re.match(
             r"^\s*[WL]\b",
             resultado,
@@ -783,13 +1055,15 @@ def extrair_schedule(conteudo):
         reverse=True
     )
 
-    jogos = jogos[:10]
+    jogos = jogos[:QUANTIDADE_JOGOS]
 
-    print()
-    print(
-        f"Jogos concluidos selecionados: "
-        f"{len(jogos)}"
-    )
+    if len(jogos) != QUANTIDADE_JOGOS:
+
+        raise RuntimeError(
+            "Era esperado encontrar "
+            f"{QUANTIDADE_JOGOS} jogos concluídos, "
+            f"mas foram encontrados {len(jogos)}."
+        )
 
     return jogos
 
@@ -798,9 +1072,15 @@ def extrair_schedule(conteudo):
 # CRUZAMENTO
 # ==========================================================
 
-def cruzar_dados(schedule, game_log):
+def cruzar_jogador(
+    nome_jogador,
+    cbs_id,
+    time,
+    schedule,
+    game_log
+):
 
-    resultado = []
+    linhas = []
 
     for jogo_time in schedule:
 
@@ -810,85 +1090,110 @@ def cruzar_dados(schedule, game_log):
 
             jogo_jogador = game_log[data]
 
-            linha = {
-                "data": data,
-                "adversario": jogo_time["adversario"],
-                "minutos": jogo_jogador["minutos"],
-                "pts": jogo_jogador["pts"],
-                "reb": jogo_jogador["reb"],
-                "ast": jogo_jogador["ast"],
-                "tpm": jogo_jogador["tpm"],
-                "stl": jogo_jogador["stl"],
-                "blk": jogo_jogador["blk"],
-                "jogou": True,
-            }
+            minutos = jogo_jogador["minutos"]
+            pts = jogo_jogador["pts"]
+            reb = jogo_jogador["reb"]
+            ast = jogo_jogador["ast"]
+            tpm = jogo_jogador["tpm"]
+            stl = jogo_jogador["stl"]
+            blk = jogo_jogador["blk"]
+            status = "JOGOU"
 
         else:
 
-            linha = {
-                "data": data,
-                "adversario": jogo_time["adversario"],
-                "minutos": 0,
-                "pts": 0,
-                "reb": 0,
-                "ast": 0,
-                "tpm": 0,
-                "stl": 0,
-                "blk": 0,
-                "jogou": False,
+            minutos = 0
+            pts = 0
+            reb = 0
+            ast = 0
+            tpm = 0
+            stl = 0
+            blk = 0
+            status = "NAO JOGOU"
+
+        linhas.append(
+            {
+                "JOGADOR": nome_jogador,
+                "CBS_ID": cbs_id,
+                "TIME": time["nome"],
+                "SIGLA_TIME": time["sigla"],
+                "DATA": data_br(data),
+                "ADVERSARIO": jogo_time["adversario"],
+                "MIN": minutos,
+                "PTS": pts,
+                "REB": reb,
+                "AST": ast,
+                "3PM": tpm,
+                "STL": stl,
+                "BLK": blk,
+                "STATUS": status,
             }
+        )
 
-        resultado.append(linha)
+    if len(linhas) != QUANTIDADE_JOGOS:
 
-    return resultado
+        raise RuntimeError(
+            f"{nome_jogador} terminou com "
+            f"{len(linhas)} linhas."
+        )
+
+    return linhas
 
 
 # ==========================================================
-# IMPRESSAO
+# CSV
 # ==========================================================
 
-def imprimir_resultado(jogos):
+COLUNAS_CSV = [
+    "JOGADOR",
+    "CBS_ID",
+    "TIME",
+    "SIGLA_TIME",
+    "DATA",
+    "ADVERSARIO",
+    "MIN",
+    "PTS",
+    "REB",
+    "AST",
+    "3PM",
+    "STL",
+    "BLK",
+    "STATUS",
+]
 
-    print()
-    print("=" * 104)
 
-    print(
-        f"{'DATA':<12}"
-        f"{'ADVERSARIO':<24}"
-        f"{'MIN':>5}"
-        f"{'PTS':>6}"
-        f"{'REB':>6}"
-        f"{'AST':>6}"
-        f"{'3PM':>6}"
-        f"{'STL':>6}"
-        f"{'BLK':>6}"
-        f"{'STATUS':>13}"
+def salvar_csv_temporario(linhas):
+
+    if ARQUIVO_TEMPORARIO.exists():
+        ARQUIVO_TEMPORARIO.unlink()
+
+    with ARQUIVO_TEMPORARIO.open(
+        "w",
+        encoding="utf-8-sig",
+        newline=""
+    ) as arquivo:
+
+        escritor = csv.DictWriter(
+            arquivo,
+            fieldnames=COLUNAS_CSV,
+            delimiter=",",
+            quoting=csv.QUOTE_MINIMAL
+        )
+
+        escritor.writeheader()
+        escritor.writerows(linhas)
+
+
+def substituir_dados_csv():
+
+    if not ARQUIVO_TEMPORARIO.exists():
+
+        raise FileNotFoundError(
+            "O arquivo temporario nao foi criado."
+        )
+
+    ARQUIVO_TEMPORARIO.replace(
+        ARQUIVO_DADOS
     )
-
-    print("=" * 104)
-
-    for jogo in jogos:
-
-        status = (
-            "JOGOU"
-            if jogo["jogou"]
-            else "NAO JOGOU"
-        )
-
-        print(
-            f"{data_br(jogo['data']):<12}"
-            f"{jogo['adversario'][:22]:<24}"
-            f"{jogo['minutos']:>5}"
-            f"{jogo['pts']:>6}"
-            f"{jogo['reb']:>6}"
-            f"{jogo['ast']:>6}"
-            f"{jogo['tpm']:>6}"
-            f"{jogo['stl']:>6}"
-            f"{jogo['blk']:>6}"
-            f"{status:>13}"
-        )
-
-    print("=" * 104)
 
 
 # ==========================================================
@@ -898,10 +1203,10 @@ def imprimir_resultado(jogos):
 def main():
 
     print()
-    print("=" * 60)
+    print("=" * 72)
     print("NBA PLAYER TRACKER")
-    print("CRUZAMENTO TIME + GAME LOG DO JOGADOR")
-    print("=" * 60)
+    print("ATUALIZACAO COMPLETA DOS 173 JOGADORES")
+    print("=" * 72)
 
     if not ARQUIVO_CBS.exists():
 
@@ -916,101 +1221,284 @@ def main():
 
         jogadores = json.load(arquivo)
 
-    print()
+    if not isinstance(jogadores, dict):
 
-    print(
-        "Jogadores encontrados em jogadores_cbs.json: "
-        f"{len(jogadores)}"
-    )
-
-    if JOGADOR_TESTE not in jogadores:
-
-        raise KeyError(
-            f"{JOGADOR_TESTE} nao encontrado "
-            "em jogadores_cbs.json"
+        raise TypeError(
+            "jogadores_cbs.json precisa ser "
+            "um objeto JSON no formato nome: ID."
         )
 
-    cbs_id = str(
-        jogadores[JOGADOR_TESTE]
-    ).strip()
+    quantidade_jogadores = len(jogadores)
 
     print()
-    print(f"Jogador: {JOGADOR_TESTE}")
-    print(f"Time: {NOME_TIME}")
-    print(f"CBS ID: {cbs_id}")
-
-    url_jogador = (
-        "https://www.cbssports.com/nba/players/"
-        f"{cbs_id}/{SLUG_JOGADOR}/game-log/"
+    print(
+        f"Jogadores encontrados: "
+        f"{quantidade_jogadores}"
     )
 
-    html_schedule = baixar_pagina(
-        URL_SCHEDULE,
-        "Acessando os jogos do time..."
+    if quantidade_jogadores != 173:
+
+        raise RuntimeError(
+            "Era esperado encontrar 173 jogadores, "
+            f"mas foram encontrados {quantidade_jogadores}."
+        )
+
+    linhas_finais = []
+
+    # Calendario baixado uma unica vez por time.
+    cache_schedules = {}
+
+    resumo_times = {}
+    resumo_ausencias = {}
+
+    for numero, (nome_jogador, cbs_id) in enumerate(
+        jogadores.items(),
+        start=1
+    ):
+
+        cbs_id = str(cbs_id).strip()
+        slug_jogador = criar_slug(nome_jogador)
+
+        print()
+        print("-" * 72)
+        print(
+            f"[{numero:03d}/{quantidade_jogadores}] "
+            f"{nome_jogador}"
+        )
+        print(f"    CBS ID: {cbs_id}")
+
+        url_game_log = (
+            f"{URL_BASE}/nba/players/"
+            f"{cbs_id}/{slug_jogador}/game-log/"
+        )
+
+        html_jogador = baixar_pagina(
+            url_game_log,
+            "Acessando game log"
+        )
+
+        time_jogador = identificar_time(
+            html_jogador
+        )
+
+        nome_time = time_jogador["nome"]
+        sigla_time = time_jogador["sigla"]
+        slug_time = time_jogador["slug"]
+
+        print(
+            f"    Time identificado: "
+            f"{nome_time} ({sigla_time})"
+        )
+
+        resumo_times[nome_time] = (
+            resumo_times.get(nome_time, 0) + 1
+        )
+
+        if sigla_time not in cache_schedules:
+
+            print(
+                "    Calendario ainda nao esta no cache."
+            )
+
+            url_schedule = (
+                f"{URL_BASE}/nba/teams/"
+                f"{sigla_time.lower()}/"
+                f"{slug_time}/schedule/"
+            )
+
+            html_schedule = baixar_pagina(
+                url_schedule,
+                "Acessando calendario do time"
+            )
+
+            schedule = extrair_schedule(
+                html_schedule
+            )
+
+            cache_schedules[sigla_time] = schedule
+
+            print(
+                f"    Calendario armazenado no cache: "
+                f"{len(schedule)} jogos"
+            )
+
+        else:
+
+            schedule = cache_schedules[sigla_time]
+
+            print(
+                "    Calendario reutilizado do cache."
+            )
+
+        game_log = extrair_game_log(
+            html_jogador
+        )
+
+        print(
+            f"    Jogos existentes no game log: "
+            f"{len(game_log)}"
+        )
+
+        linhas_jogador = cruzar_jogador(
+            nome_jogador=nome_jogador,
+            cbs_id=cbs_id,
+            time=time_jogador,
+            schedule=schedule,
+            game_log=game_log,
+        )
+
+        quantidade_jogou = sum(
+            1
+            for linha in linhas_jogador
+            if linha["STATUS"] == "JOGOU"
+        )
+
+        quantidade_ausente = sum(
+            1
+            for linha in linhas_jogador
+            if linha["STATUS"] == "NAO JOGOU"
+        )
+
+        resumo_ausencias[nome_jogador] = (
+            quantidade_ausente
+        )
+
+        print(
+            f"    Resultado: "
+            f"{quantidade_jogou} jogou / "
+            f"{quantidade_ausente} nao jogou"
+        )
+
+        linhas_finais.extend(
+            linhas_jogador
+        )
+
+        total_parcial_esperado = (
+            numero * QUANTIDADE_JOGOS
+        )
+
+        if len(linhas_finais) != total_parcial_esperado:
+
+            raise RuntimeError(
+                "Total parcial inconsistente. "
+                f"Esperado: {total_parcial_esperado}. "
+                f"Obtido: {len(linhas_finais)}."
+            )
+
+        if numero < quantidade_jogadores:
+            time.sleep(PAUSA_ENTRE_JOGADORES)
+
+    total_esperado = (
+        quantidade_jogadores
+        * QUANTIDADE_JOGOS
     )
 
-    html_jogador = baixar_pagina(
-        url_jogador,
-        "Acessando o game log do jogador..."
+    print()
+    print("=" * 72)
+    print("VALIDACAO FINAL")
+    print("=" * 72)
+
+    print(
+        f"Jogadores processados: "
+        f"{quantidade_jogadores}"
     )
 
-    schedule = extrair_schedule(
-        html_schedule
+    print(
+        f"Times identificados: "
+        f"{len(cache_schedules)}"
     )
 
-    game_log = extrair_game_log(
-        html_jogador
+    print(
+        f"Linhas esperadas: "
+        f"{total_esperado}"
     )
 
-    jogos_finais = cruzar_dados(
-        schedule,
-        game_log
+    print(
+        f"Linhas geradas: "
+        f"{len(linhas_finais)}"
     )
 
-    imprimir_resultado(
-        jogos_finais
+    if len(linhas_finais) != total_esperado:
+
+        raise RuntimeError(
+            "A quantidade final de linhas esta incorreta. "
+            "O dados.csv atual foi preservado."
+        )
+
+    jogadores_no_resultado = {
+        linha["JOGADOR"]
+        for linha in linhas_finais
+    }
+
+    if len(jogadores_no_resultado) != quantidade_jogadores:
+
+        raise RuntimeError(
+            "A quantidade de jogadores no resultado "
+            "final esta incorreta. "
+            "O dados.csv atual foi preservado."
+        )
+
+    for nome_jogador in jogadores:
+
+        quantidade = sum(
+            1
+            for linha in linhas_finais
+            if linha["JOGADOR"] == nome_jogador
+        )
+
+        if quantidade != QUANTIDADE_JOGOS:
+
+            raise RuntimeError(
+                f"{nome_jogador} terminou com "
+                f"{quantidade} linhas. "
+                "O dados.csv atual foi preservado."
+            )
+
+    salvar_csv_temporario(
+        linhas_finais
     )
 
-    quantidade_jogou = sum(
+    substituir_dados_csv()
+
+    total_jogou = sum(
         1
-        for jogo in jogos_finais
-        if jogo["jogou"]
+        for linha in linhas_finais
+        if linha["STATUS"] == "JOGOU"
     )
 
-    quantidade_ausente = sum(
+    total_ausencias = sum(
         1
-        for jogo in jogos_finais
-        if not jogo["jogou"]
+        for linha in linhas_finais
+        if linha["STATUS"] == "NAO JOGOU"
     )
 
     print()
-    print(
-        f"Jogos do time analisados: "
-        f"{len(jogos_finais)}"
-    )
-
-    print(
-        f"Jogos disputados pelo jogador: "
-        f"{quantidade_jogou}"
-    )
-
-    print(
-        f"Jogos sem participacao: "
-        f"{quantidade_ausente}"
-    )
+    print("=" * 72)
+    print("ATUALIZACAO CONCLUIDA COM SUCESSO")
+    print("=" * 72)
 
     print()
-    print("=" * 60)
-    print("CRUZAMENTO CONCLUIDO!")
-    print("=" * 60)
+    print(f"Arquivo atualizado: {ARQUIVO_DADOS}")
+    print(f"Total de linhas: {len(linhas_finais)}")
+    print(f"Linhas JOGOU: {total_jogou}")
+    print(f"Linhas NAO JOGOU: {total_ausencias}")
 
     print()
-    print("IMPORTANTE:")
-    print("dados.csv NAO foi alterado.")
+    print("Jogadores por time:")
 
+    for nome_time in sorted(resumo_times):
+
+        quantidade = resumo_times[nome_time]
+
+        print(
+            f"  {nome_time}: "
+            f"{quantidade} jogador(es)"
+        )
+
+    print()
     print(
-        "Este teste apenas imprime o resultado "
-        "do cruzamento no GitHub Actions."
+        "O dados.csv somente foi substituido "
+        "apos todas as validacoes."
     )
 
 
