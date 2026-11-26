@@ -49,6 +49,7 @@ AJ Dybantsa;WAS;12/11/2026;Detroit;44;5;8;4;1;1;1
 AJ Dybantsa;WAS;11/11/2026;Indiana;34;13;4;2;0;1;1
 AJ Dybantsa;WAS;09/11/2026;Detroit;37;21;8;1;1;0;2
 AJ Dybantsa;WAS;07/11/2026;Oklahoma City;31;19;6;3;1;0;0
+Ajay Mitchell;OKC;25/11/2026;Minnesota;31;25;3;3;2;1;0
 Ajay Mitchell;OKC;23/11/2026;Indiana;35;12;4;3;2;0;0
 Ajay Mitchell;OKC;22/11/2026;Miami;22;17;3;3;2;2;0
 Ajay Mitchell;OKC;20/11/2026;New Orleans;30;8;2;4;1;0;0
@@ -58,7 +59,7 @@ Ajay Mitchell;OKC;13/11/2026;L.A. Clippers;0;0;0;0;0;0;0
 Ajay Mitchell;OKC;11/11/2026;Portland;0;0;0;0;0;0;0
 Ajay Mitchell;OKC;10/11/2026;Portland;28;14;3;3;0;1;0
 Ajay Mitchell;OKC;07/11/2026;Washington;22;12;4;0;0;1;0
-Ajay Mitchell;OKC;06/11/2026;Memphis;30;35;1;5;4;0;0
+Alex Caruso;OKC;25/11/2026;Minnesota;26;11;2;2;3;2;4
 Alex Caruso;OKC;23/11/2026;Indiana;0;0;0;0;0;0;0
 Alex Caruso;OKC;22/11/2026;Miami;0;0;0;0;0;0;0
 Alex Caruso;OKC;20/11/2026;New Orleans;0;0;0;0;0;0;0
@@ -68,7 +69,6 @@ Alex Caruso;OKC;13/11/2026;L.A. Clippers;27;5;1;4;1;1;1
 Alex Caruso;OKC;11/11/2026;Portland;29;14;7;2;4;3;0
 Alex Caruso;OKC;10/11/2026;Portland;19;5;2;1;1;0;1
 Alex Caruso;OKC;07/11/2026;Washington;13;0;3;3;0;1;0
-Alex Caruso;OKC;06/11/2026;Memphis;20;5;6;2;1;1;1
 Alex Sarr;WAS;24/11/2026;Boston;24;7;2;0;1;0;1
 Alex Sarr;WAS;22/11/2026;Orlando;26;10;9;2;2;2;1
 Alex Sarr;WAS;20/11/2026;Chicago;20;3;3;0;1;1;1
@@ -79,6 +79,7 @@ Alex Sarr;WAS;12/11/2026;Detroit;44;30;9;2;4;2;1
 Alex Sarr;WAS;11/11/2026;Indiana;25;5;8;0;1;0;0
 Alex Sarr;WAS;09/11/2026;Detroit;25;4;8;0;0;1;1
 Alex Sarr;WAS;07/11/2026;Oklahoma City;28;15;14;1;1;0;0
+Alperen Sengun;HOU;25/11/2026;Phoenix;32;23;11;11;3;0;0
 Alperen Sengun;HOU;23/11/2026;L.A. Clippers;31;20;8;7;1;0;2
 Alperen Sengun;HOU;20/11/2026;Denver;36;28;11;10;1;1;1
 Alperen Sengun;HOU;18/11/2026;Indiana;14;7;7;1;1;0;0
@@ -88,7 +89,7 @@ Alperen Sengun;HOU;13/11/2026;Utah;37;43;12;5;1;1;1
 Alperen Sengun;HOU;11/11/2026;Golden St.;37;19;13;9;1;1;1
 Alperen Sengun;HOU;09/11/2026;Denver;35;20;11;8;1;1;1
 Alperen Sengun;HOU;07/11/2026;Phoenix;32;15;6;5;1;0;1
-Alperen Sengun;HOU;04/11/2026;Minnesota;39;17;12;10;0;0;3
+Amen Thompson;HOU;25/11/2026;Phoenix;36;18;10;4;0;0;2
 Amen Thompson;HOU;23/11/2026;L.A. Clippers;28;20;4;5;1;0;1
 Amen Thompson;HOU;20/11/2026;Denver;26;22;6;0;0;1;0
 Amen Thompson;HOU;18/11/2026;Indiana;31;15;9;3;0;1;1
@@ -98,7 +99,7 @@ Amen Thompson;HOU;13/11/2026;Utah;41;12;10;3;0;0;1
 Amen Thompson;HOU;11/11/2026;Golden St.;29;19;7;4;0;1;2
 Amen Thompson;HOU;09/11/2026;Denver;35;8;9;3;0;1;0
 Amen Thompson;HOU;07/11/2026;Phoenix;39;17;8;0;0;1;4
-Amen Thompson;HOU;04/11/2026;Minnesota;32;11;8;1;0;0;0
+Andre Drummond;NYK;25/11/2026;Cleveland;9;3;2;0;1;0;0
 Andre Drummond;NYK;22/11/2026;Indiana;19;2;10;1;0;0;1
 Andre Drummond;NYK;21/11/2026;Portland;23;7;13;1;1;1;3
 Andre Drummond;NYK;19/11/2026;Minnesota;15;4;4;0;0;1;0
@@ -108,7 +109,6 @@ Andre Drummond;NYK;13/11/2026;Indiana;14;0;6;0;0;1;1
 Andre Drummond;NYK;11/11/2026;Cleveland;14;0;4;3;0;0;1
 Andre Drummond;NYK;10/11/2026;Milwaukee;16;2;14;3;0;0;0
 Andre Drummond;NYK;07/11/2026;Cleveland;14;0;8;0;0;2;1
-Andre Drummond;NYK;04/11/2026;Chicago;12;6;9;0;0;0;0
 Andrew Nembhard;IND;23/11/2026;Oklahoma City;38;15;2;6;2;2;0
 Andrew Nembhard;IND;22/11/2026;New York;32;16;2;8;2;0;0
 Andrew Nembhard;IND;20/11/2026;Cleveland;26;12;3;8;3;1;0
@@ -119,6 +119,7 @@ Andrew Nembhard;IND;11/11/2026;Washington;34;17;2;10;3;0;0
 Andrew Nembhard;IND;09/11/2026;Dallas;34;12;3;12;1;0;1
 Andrew Nembhard;IND;07/11/2026;Denver;31;9;1;8;3;0;0
 Andrew Nembhard;IND;04/11/2026;Memphis;38;22;2;4;2;1;1
+Andrew Wiggins;MIA;25/11/2026;Philadelphia;24;8;2;2;0;0;0
 Andrew Wiggins;MIA;22/11/2026;Oklahoma City;22;5;2;1;1;0;1
 Andrew Wiggins;MIA;18/11/2026;Milwaukee;26;11;2;2;1;1;0
 Andrew Wiggins;MIA;16/11/2026;Houston;34;17;5;1;3;1;3
@@ -128,7 +129,7 @@ Andrew Wiggins;MIA;10/11/2026;Utah;19;13;0;0;2;0;0
 Andrew Wiggins;MIA;08/11/2026;Sacramento;32;6;3;1;2;0;1
 Andrew Wiggins;MIA;05/11/2026;Golden St.;21;2;6;4;0;0;1
 Andrew Wiggins;MIA;04/11/2026;L.A. Clippers;23;3;4;1;1;1;1
-Andrew Wiggins;MIA;02/11/2026;L.A. Lakers;24;7;0;2;2;0;0
+Anfernee Simons;PHI;25/11/2026;Miami;15;6;1;1;2;1;0
 Anfernee Simons;PHI;23/11/2026;Portland;18;3;0;0;0;0;0
 Anfernee Simons;PHI;21/11/2026;Milwaukee;26;18;0;1;4;0;0
 Anfernee Simons;PHI;18/11/2026;Orlando;38;18;2;2;3;0;0
@@ -138,7 +139,6 @@ Anfernee Simons;PHI;12/11/2026;Toronto;23;17;3;2;5;0;0
 Anfernee Simons;PHI;10/11/2026;Boston;18;17;3;0;3;0;0
 Anfernee Simons;PHI;08/11/2026;Chicago;16;3;4;2;1;0;0
 Anfernee Simons;PHI;06/11/2026;Cleveland;19;6;2;2;1;0;0
-Anfernee Simons;PHI;04/11/2026;Detroit;10;0;1;0;0;0;0
 Anthony Black;ORL;24/11/2026;Detroit;28;5;4;2;0;0;1
 Anthony Black;ORL;22/11/2026;Washington;35;14;5;2;2;2;0
 Anthony Black;ORL;20/11/2026;Brooklyn;37;13;7;6;2;3;2
@@ -159,6 +159,7 @@ Anthony Davis;WAS;12/11/2026;Detroit;44;30;15;4;0;1;0
 Anthony Davis;WAS;11/11/2026;Indiana;34;21;13;0;0;1;2
 Anthony Davis;WAS;09/11/2026;Detroit;34;44;13;1;2;1;0
 Anthony Davis;WAS;07/11/2026;Oklahoma City;0;0;0;0;0;0;0
+Anthony Edwards;MIN;25/11/2026;Oklahoma City;0;0;0;0;0;0;0
 Anthony Edwards;MIN;23/11/2026;Brooklyn;0;0;0;0;0;0;0
 Anthony Edwards;MIN;21/11/2026;Memphis;0;0;0;0;0;0;0
 Anthony Edwards;MIN;19/11/2026;New York;0;0;0;0;0;0;0
@@ -168,7 +169,6 @@ Anthony Edwards;MIN;14/11/2026;Chicago;0;0;0;0;0;0;0
 Anthony Edwards;MIN;12/11/2026;Dallas;0;0;0;0;0;0;0
 Anthony Edwards;MIN;08/11/2026;Utah;0;0;0;0;0;0;0
 Anthony Edwards;MIN;06/11/2026;New Orleans;0;0;0;0;0;0;0
-Anthony Edwards;MIN;04/11/2026;Houston;0;0;0;0;0;0;0
 Ausar Thompson;DET;24/11/2026;Orlando;31;6;10;7;0;1;4
 Ausar Thompson;DET;22/11/2026;Atlanta;38;18;12;5;0;1;2
 Ausar Thompson;DET;20/11/2026;Toronto;33;13;6;3;0;2;0
@@ -189,6 +189,7 @@ Austin Reaves;LAL;09/11/2026;Atlanta;0;0;0;0;0;0;0
 Austin Reaves;LAL;08/11/2026;Detroit;37;43;5;4;4;0;0
 Austin Reaves;LAL;06/11/2026;Portland;38;25;3;2;1;4;0
 Austin Reaves;LAL;04/11/2026;Sacramento;37;21;3;4;1;0;0
+Ayo Dosunmu;MIN;25/11/2026;Oklahoma City;35;16;3;4;4;1;0
 Ayo Dosunmu;MIN;23/11/2026;Brooklyn;30;23;3;5;4;0;0
 Ayo Dosunmu;MIN;21/11/2026;Memphis;34;19;2;2;1;3;0
 Ayo Dosunmu;MIN;19/11/2026;New York;32;6;4;4;2;1;0
@@ -198,7 +199,7 @@ Ayo Dosunmu;MIN;14/11/2026;Chicago;33;24;4;0;0;3;0
 Ayo Dosunmu;MIN;12/11/2026;Dallas;27;18;2;1;2;1;1
 Ayo Dosunmu;MIN;08/11/2026;Utah;30;26;4;1;4;2;0
 Ayo Dosunmu;MIN;06/11/2026;New Orleans;39;26;2;4;4;0;1
-Ayo Dosunmu;MIN;04/11/2026;Houston;34;21;1;6;0;2;0
+Bam Adebayo;MIA;25/11/2026;Philadelphia;35;17;11;3;1;1;0
 Bam Adebayo;MIA;22/11/2026;Oklahoma City;37;24;15;12;0;2;2
 Bam Adebayo;MIA;18/11/2026;Milwaukee;30;26;4;2;3;2;0
 Bam Adebayo;MIA;16/11/2026;Houston;16;4;1;2;0;2;0
@@ -208,7 +209,6 @@ Bam Adebayo;MIA;10/11/2026;Utah;37;11;8;4;0;3;2
 Bam Adebayo;MIA;08/11/2026;Sacramento;34;18;8;4;1;3;0
 Bam Adebayo;MIA;05/11/2026;Golden St.;33;18;10;0;0;1;1
 Bam Adebayo;MIA;04/11/2026;L.A. Clippers;41;35;10;4;1;1;0
-Bam Adebayo;MIA;02/11/2026;L.A. Lakers;31;16;9;4;1;2;2
 Bennedict Mathurin;NOP;23/11/2026;Phoenix;0;0;0;0;0;0;0
 Bennedict Mathurin;NOP;21/11/2026;San Antonio;0;0;0;0;0;0;0
 Bennedict Mathurin;NOP;20/11/2026;Oklahoma City;0;0;0;0;0;0;0
@@ -229,6 +229,7 @@ Bilal Coulibaly;WAS;12/11/2026;Detroit;29;4;7;0;0;1;2
 Bilal Coulibaly;WAS;11/11/2026;Indiana;25;5;6;2;0;1;1
 Bilal Coulibaly;WAS;09/11/2026;Detroit;0;0;0;0;0;0;0
 Bilal Coulibaly;WAS;07/11/2026;Oklahoma City;20;0;5;0;0;0;0
+Bones Hyland;MIN;25/11/2026;Oklahoma City;17;9;1;2;1;1;2
 Bones Hyland;MIN;23/11/2026;Brooklyn;16;14;2;6;4;1;0
 Bones Hyland;MIN;21/11/2026;Memphis;16;7;0;4;1;0;0
 Bones Hyland;MIN;19/11/2026;New York;15;6;1;1;1;0;0
@@ -238,7 +239,7 @@ Bones Hyland;MIN;14/11/2026;Chicago;21;12;1;2;3;0;0
 Bones Hyland;MIN;12/11/2026;Dallas;23;24;3;8;5;2;0
 Bones Hyland;MIN;08/11/2026;Utah;13;14;2;2;1;0;1
 Bones Hyland;MIN;06/11/2026;New Orleans;10;4;1;0;1;0;0
-Bones Hyland;MIN;04/11/2026;Houston;16;19;2;4;4;1;0
+Brandin Podziemski;GSW;25/11/2026;Sacramento;32;13;2;6;3;1;1
 Brandin Podziemski;GSW;22/11/2026;Boston;38;18;7;2;4;0;0
 Brandin Podziemski;GSW;19/11/2026;Memphis;32;15;3;2;0;1;0
 Brandin Podziemski;GSW;18/11/2026;Dallas;29;10;3;4;0;0;0
@@ -248,7 +249,7 @@ Brandin Podziemski;GSW;11/11/2026;Houston;37;22;6;4;4;2;0
 Brandin Podziemski;GSW;09/11/2026;New Orleans;26;25;2;4;5;1;1
 Brandin Podziemski;GSW;07/11/2026;Orlando;39;15;7;1;4;2;1
 Brandin Podziemski;GSW;05/11/2026;Miami;32;9;6;3;2;1;1
-Brandin Podziemski;GSW;02/11/2026;Phoenix;33;20;3;2;3;1;0
+Brandon Miller;CHO;25/11/2026;Chicago;34;35;3;1;4;3;0
 Brandon Miller;CHO;23/11/2026;Memphis;35;20;3;5;4;0;3
 Brandon Miller;CHO;20/11/2026;Atlanta;33;19;8;3;5;1;0
 Brandon Miller;CHO;17/11/2026;L.A. Lakers;32;28;2;4;5;0;1
@@ -258,7 +259,7 @@ Brandon Miller;CHO;09/11/2026;Cleveland;0;0;0;0;0;0;0
 Brandon Miller;CHO;06/11/2026;Boston;14;8;2;1;0;1;0
 Brandon Miller;CHO;04/11/2026;Brooklyn;26;10;4;1;1;0;0
 Brandon Miller;CHO;02/11/2026;Detroit;31;17;1;4;3;0;0
-Brandon Miller;CHO;31/10/2026;Philadelphia;33;24;5;5;5;2;1
+Brandon Williams;GSW;25/11/2026;Sacramento;13;14;2;3;0;0;1
 Brandon Williams;GSW;22/11/2026;Boston;0;0;0;0;0;0;0
 Brandon Williams;GSW;19/11/2026;Memphis;0;0;0;0;0;0;0
 Brandon Williams;GSW;18/11/2026;Dallas;0;0;0;0;0;0;0
@@ -268,7 +269,7 @@ Brandon Williams;GSW;11/11/2026;Houston;0;0;0;0;0;0;0
 Brandon Williams;GSW;09/11/2026;New Orleans;2;4;0;0;0;0;0
 Brandon Williams;GSW;07/11/2026;Orlando;17;9;0;2;0;2;0
 Brandon Williams;GSW;05/11/2026;Miami;21;10;1;4;0;0;2
-Brandon Williams;GSW;02/11/2026;Phoenix;0;0;0;0;0;0;0
+Brook Lopez;LAC;25/11/2026;Memphis;18;6;3;1;1;0;1
 Brook Lopez;LAC;23/11/2026;Houston;21;3;4;1;1;0;0
 Brook Lopez;LAC;21/11/2026;Dallas;25;21;6;0;1;0;1
 Brook Lopez;LAC;19/11/2026;San Antonio;27;23;3;4;5;1;0
@@ -278,7 +279,6 @@ Brook Lopez;LAC;13/11/2026;Oklahoma City;31;26;7;4;3;1;1
 Brook Lopez;LAC;10/11/2026;Phoenix;19;8;4;1;1;0;0
 Brook Lopez;LAC;08/11/2026;New Orleans;26;20;7;1;1;0;0
 Brook Lopez;LAC;04/11/2026;Miami;35;20;8;1;2;0;2
-Brook Lopez;LAC;02/11/2026;Toronto;22;12;6;1;1;1;1
 Cade Cunningham;DET;24/11/2026;Orlando;0;0;0;0;0;0;0
 Cade Cunningham;DET;22/11/2026;Atlanta;33;5;4;15;1;1;1
 Cade Cunningham;DET;20/11/2026;Toronto;36;23;5;9;2;1;0
@@ -289,6 +289,7 @@ Cade Cunningham;DET;12/11/2026;Washington;48;52;5;11;3;1;1
 Cade Cunningham;DET;09/11/2026;Washington;27;17;3;7;0;1;0
 Cade Cunningham;DET;08/11/2026;L.A. Lakers;38;14;4;8;1;2;0
 Cade Cunningham;DET;04/11/2026;Philadelphia;40;26;7;11;1;2;1
+Caleb Wilson;CHI;25/11/2026;Charlotte;0;0;0;0;0;0;0
 Caleb Wilson;CHI;23/11/2026;Cleveland;0;0;0;0;0;0;0
 Caleb Wilson;CHI;22/11/2026;Denver;0;0;0;0;0;0;0
 Caleb Wilson;CHI;20/11/2026;Washington;0;0;0;0;0;0;0
@@ -298,7 +299,7 @@ Caleb Wilson;CHI;14/11/2026;Minnesota;0;0;0;0;0;0;0
 Caleb Wilson;CHI;13/11/2026;Atlanta;0;0;0;0;0;0;0
 Caleb Wilson;CHI;11/11/2026;San Antonio;15;15;5;0;2;1;0
 Caleb Wilson;CHI;08/11/2026;Philadelphia;32;18;5;0;2;2;0
-Caleb Wilson;CHI;04/11/2026;New York;22;5;5;0;1;1;0
+Cam Spencer;MEM;25/11/2026;L.A. Clippers;24;16;0;4;2;0;0
 Cam Spencer;MEM;23/11/2026;Charlotte;21;24;1;5;3;0;0
 Cam Spencer;MEM;21/11/2026;Minnesota;30;9;5;5;0;2;0
 Cam Spencer;MEM;19/11/2026;Golden St.;27;9;2;11;1;1;0
@@ -308,7 +309,7 @@ Cam Spencer;MEM;14/11/2026;Brooklyn;34;17;1;8;3;2;0
 Cam Spencer;MEM;13/11/2026;New Orleans;24;14;2;5;3;0;0
 Cam Spencer;MEM;11/11/2026;Denver;20;15;3;3;3;0;1
 Cam Spencer;MEM;09/11/2026;Toronto;17;7;2;4;1;2;0
-Cam Spencer;MEM;06/11/2026;Oklahoma City;19;7;1;0;1;1;0
+Cameron Boozer;MEM;25/11/2026;L.A. Clippers;0;0;0;0;0;0;0
 Cameron Boozer;MEM;23/11/2026;Charlotte;0;0;0;0;0;0;0
 Cameron Boozer;MEM;21/11/2026;Minnesota;0;0;0;0;0;0;0
 Cameron Boozer;MEM;19/11/2026;Golden St.;27;16;6;5;0;0;1
@@ -318,7 +319,6 @@ Cameron Boozer;MEM;14/11/2026;Brooklyn;29;15;8;5;0;2;2
 Cameron Boozer;MEM;13/11/2026;New Orleans;25;12;10;3;1;2;1
 Cameron Boozer;MEM;11/11/2026;Denver;33;13;11;5;2;1;0
 Cameron Boozer;MEM;09/11/2026;Toronto;33;22;7;8;0;1;0
-Cameron Boozer;MEM;06/11/2026;Oklahoma City;31;8;12;4;0;0;0
 Cameron Johnson;DEN;24/11/2026;Dallas;34;17;5;3;4;0;0
 Cameron Johnson;DEN;22/11/2026;Chicago;36;16;2;5;4;2;0
 Cameron Johnson;DEN;20/11/2026;Houston;28;19;3;6;2;2;0
@@ -329,6 +329,7 @@ Cameron Johnson;DEN;11/11/2026;Memphis;30;23;4;3;4;1;0
 Cameron Johnson;DEN;09/11/2026;Houston;31;8;2;1;2;2;0
 Cameron Johnson;DEN;07/11/2026;Indiana;29;18;4;1;2;1;0
 Cameron Johnson;DEN;04/11/2026;Toronto;30;12;2;2;4;1;0
+Cason Wallace;OKC;25/11/2026;Minnesota;0;0;0;0;0;0;0
 Cason Wallace;OKC;23/11/2026;Indiana;0;0;0;0;0;0;0
 Cason Wallace;OKC;22/11/2026;Miami;0;0;0;0;0;0;0
 Cason Wallace;OKC;20/11/2026;New Orleans;0;0;0;0;0;0;0
@@ -338,7 +339,7 @@ Cason Wallace;OKC;13/11/2026;L.A. Clippers;0;0;0;0;0;0;0
 Cason Wallace;OKC;11/11/2026;Portland;0;0;0;0;0;0;0
 Cason Wallace;OKC;10/11/2026;Portland;0;0;0;0;0;0;0
 Cason Wallace;OKC;07/11/2026;Washington;0;0;0;0;0;0;0
-Cason Wallace;OKC;06/11/2026;Memphis;0;0;0;0;0;0;0
+Cedric Coward;MEM;25/11/2026;L.A. Clippers;26;14;10;1;0;1;1
 Cedric Coward;MEM;23/11/2026;Charlotte;30;16;9;3;0;1;0
 Cedric Coward;MEM;21/11/2026;Minnesota;30;23;7;2;4;4;0
 Cedric Coward;MEM;19/11/2026;Golden St.;25;19;4;4;5;1;1
@@ -348,7 +349,7 @@ Cedric Coward;MEM;14/11/2026;Brooklyn;33;23;12;4;4;2;2
 Cedric Coward;MEM;13/11/2026;New Orleans;30;14;7;6;0;1;0
 Cedric Coward;MEM;11/11/2026;Denver;27;15;11;4;1;0;0
 Cedric Coward;MEM;09/11/2026;Toronto;28;3;6;4;1;2;1
-Cedric Coward;MEM;06/11/2026;Oklahoma City;23;10;9;0;2;2;0
+Chet Holmgren;OKC;25/11/2026;Minnesota;0;0;0;0;0;0;0
 Chet Holmgren;OKC;23/11/2026;Indiana;0;0;0;0;0;0;0
 Chet Holmgren;OKC;22/11/2026;Miami;0;0;0;0;0;0;0
 Chet Holmgren;OKC;20/11/2026;New Orleans;0;0;0;0;0;0;0
@@ -358,7 +359,6 @@ Chet Holmgren;OKC;13/11/2026;L.A. Clippers;0;0;0;0;0;0;0
 Chet Holmgren;OKC;11/11/2026;Portland;0;0;0;0;0;0;0
 Chet Holmgren;OKC;10/11/2026;Portland;0;0;0;0;0;0;0
 Chet Holmgren;OKC;07/11/2026;Washington;0;0;0;0;0;0;0
-Chet Holmgren;OKC;06/11/2026;Memphis;0;0;0;0;0;0;0
 Christian Braun;DEN;24/11/2026;Dallas;29;15;2;4;3;1;1
 Christian Braun;DEN;22/11/2026;Chicago;38;21;8;3;3;1;0
 Christian Braun;DEN;20/11/2026;Houston;31;19;5;3;3;4;1
@@ -379,6 +379,7 @@ CJ McCollum;ATL;07/11/2026;Brooklyn;21;9;4;3;1;2;2
 CJ McCollum;ATL;06/11/2026;Washington;23;4;3;4;0;0;1
 CJ McCollum;ATL;04/11/2026;Washington;25;15;5;5;2;2;0
 CJ McCollum;ATL;02/11/2026;Indiana;32;13;9;12;2;1;1
+Coby White;CHO;25/11/2026;Chicago;25;11;5;6;0;1;1
 Coby White;CHO;23/11/2026;Memphis;28;21;3;2;5;0;1
 Coby White;CHO;20/11/2026;Atlanta;26;11;4;9;0;1;1
 Coby White;CHO;17/11/2026;L.A. Lakers;26;19;3;4;2;3;0
@@ -388,7 +389,7 @@ Coby White;CHO;09/11/2026;Cleveland;20;10;2;9;0;0;0
 Coby White;CHO;06/11/2026;Boston;16;7;1;1;1;0;0
 Coby White;CHO;04/11/2026;Brooklyn;18;4;5;2;0;0;1
 Coby White;CHO;02/11/2026;Detroit;16;7;0;3;1;0;0
-Coby White;CHO;31/10/2026;Philadelphia;0;0;0;0;0;0;0
+Collin Gillespie;PHO;25/11/2026;Houston;22;5;4;2;0;2;0
 Collin Gillespie;PHO;23/11/2026;New Orleans;30;18;3;3;3;0;0
 Collin Gillespie;PHO;20/11/2026;Utah;27;16;4;5;3;0;0
 Collin Gillespie;PHO;18/11/2026;Sacramento;17;9;3;1;2;1;0
@@ -398,7 +399,6 @@ Collin Gillespie;PHO;12/11/2026;Charlotte;27;13;2;1;3;2;0
 Collin Gillespie;PHO;10/11/2026;L.A. Clippers;22;12;2;8;4;1;0
 Collin Gillespie;PHO;09/11/2026;San Antonio;24;6;2;3;2;0;0
 Collin Gillespie;PHO;07/11/2026;Houston;20;7;3;4;1;0;0
-Collin Gillespie;PHO;05/11/2026;Orlando;24;6;2;2;2;3;0
 Collin Murray-Boyles;TOR;23/11/2026;Milwaukee;24;6;10;1;0;3;0
 Collin Murray-Boyles;TOR;20/11/2026;Detroit;0;0;0;0;0;0;0
 Collin Murray-Boyles;TOR;18/11/2026;Washington;5;1;2;1;0;0;0
@@ -429,6 +429,7 @@ Cooper Flagg;DAL;12/11/2026;Minnesota;27;12;7;3;1;2;0
 Cooper Flagg;DAL;09/11/2026;Indiana;39;43;10;6;3;3;1
 Cooper Flagg;DAL;08/11/2026;Brooklyn;28;25;5;12;3;1;0
 Cooper Flagg;DAL;06/11/2026;Utah;33;21;10;7;1;3;1
+Damian Lillard;POR;25/11/2026;San Antonio;34;29;3;7;5;2;0
 Damian Lillard;POR;23/11/2026;Philadelphia;29;18;3;5;1;1;0
 Damian Lillard;POR;21/11/2026;New York;33;15;3;3;1;0;1
 Damian Lillard;POR;19/11/2026;Milwaukee;35;33;6;0;5;0;0
@@ -438,7 +439,6 @@ Damian Lillard;POR;13/11/2026;Sacramento;33;29;2;6;6;0;0
 Damian Lillard;POR;11/11/2026;Oklahoma City;32;18;3;3;2;1;0
 Damian Lillard;POR;10/11/2026;Oklahoma City;24;25;3;3;4;1;0
 Damian Lillard;POR;07/11/2026;San Antonio;20;12;0;7;2;0;0
-Damian Lillard;POR;06/11/2026;L.A. Lakers;37;22;0;4;4;1;0
 Daniss Jenkins;DET;24/11/2026;Orlando;35;15;4;10;1;2;0
 Daniss Jenkins;DET;22/11/2026;Atlanta;38;11;4;3;1;1;0
 Daniss Jenkins;DET;20/11/2026;Toronto;39;14;4;1;2;2;0
@@ -449,6 +449,7 @@ Daniss Jenkins;DET;12/11/2026;Washington;42;21;6;0;3;2;0
 Daniss Jenkins;DET;09/11/2026;Washington;36;22;6;8;2;4;0
 Daniss Jenkins;DET;08/11/2026;L.A. Lakers;32;31;5;4;8;1;0
 Daniss Jenkins;DET;04/11/2026;Philadelphia;21;5;1;4;1;0;0
+Danny Wolf;BRK;25/11/2026;Milwaukee;19;5;0;1;1;0;0
 Danny Wolf;BRK;23/11/2026;Minnesota;25;11;5;4;3;0;1
 Danny Wolf;BRK;20/11/2026;Orlando;26;20;5;2;4;1;0
 Danny Wolf;BRK;18/11/2026;Chicago;23;6;6;2;1;0;0
@@ -458,7 +459,7 @@ Danny Wolf;BRK;11/11/2026;New Orleans;29;10;11;4;1;1;2
 Danny Wolf;BRK;08/11/2026;Dallas;36;10;3;2;1;1;0
 Danny Wolf;BRK;07/11/2026;Atlanta;31;11;10;1;2;0;0
 Danny Wolf;BRK;04/11/2026;Charlotte;19;13;5;3;2;0;0
-Danny Wolf;BRK;02/11/2026;New York;0;0;0;0;0;0;0
+Darius Acuff Jr.;SAC;25/11/2026;Golden St.;37;22;4;9;3;0;0
 Darius Acuff Jr.;SAC;23/11/2026;San Antonio;33;12;1;4;0;0;0
 Darius Acuff Jr.;SAC;21/11/2026;Boston;40;21;6;8;2;0;0
 Darius Acuff Jr.;SAC;20/11/2026;L.A. Lakers;36;18;1;12;2;1;0
@@ -468,7 +469,7 @@ Darius Acuff Jr.;SAC;13/11/2026;Portland;35;17;4;6;3;2;0
 Darius Acuff Jr.;SAC;10/11/2026;Orlando;40;29;4;6;4;2;0
 Darius Acuff Jr.;SAC;08/11/2026;Miami;39;32;5;10;3;1;0
 Darius Acuff Jr.;SAC;06/11/2026;San Antonio;33;22;3;8;3;2;0
-Darius Acuff Jr.;SAC;04/11/2026;L.A. Lakers;42;22;3;12;3;2;0
+Darius Garland;LAC;25/11/2026;Memphis;29;12;3;4;2;0;0
 Darius Garland;LAC;23/11/2026;Houston;34;26;1;8;4;0;0
 Darius Garland;LAC;21/11/2026;Dallas;32;16;1;2;2;0;2
 Darius Garland;LAC;19/11/2026;San Antonio;35;23;0;5;3;2;1
@@ -478,7 +479,6 @@ Darius Garland;LAC;13/11/2026;Oklahoma City;37;24;4;7;3;0;1
 Darius Garland;LAC;10/11/2026;Phoenix;24;13;5;6;1;0;0
 Darius Garland;LAC;08/11/2026;New Orleans;32;24;0;10;3;1;0
 Darius Garland;LAC;04/11/2026;Miami;39;26;1;7;4;0;0
-Darius Garland;LAC;02/11/2026;Toronto;36;16;4;8;1;0;0
 Darryn Peterson;UTA;23/11/2026;L.A. Lakers;28;13;6;5;0;1;0
 Darryn Peterson;UTA;22/11/2026;Dallas;25;6;3;5;0;0;0
 Darryn Peterson;UTA;20/11/2026;Phoenix;32;20;10;8;0;2;1
@@ -489,6 +489,7 @@ Darryn Peterson;UTA;13/11/2026;Houston;34;28;7;2;4;2;1
 Darryn Peterson;UTA;11/11/2026;Orlando;33;22;4;5;2;1;1
 Darryn Peterson;UTA;10/11/2026;Miami;31;25;4;4;4;1;0
 Darryn Peterson;UTA;08/11/2026;Minnesota;35;26;6;4;4;1;0
+Davion Mitchell;MIA;25/11/2026;Philadelphia;40;20;4;10;3;0;0
 Davion Mitchell;MIA;22/11/2026;Oklahoma City;34;14;4;3;1;1;0
 Davion Mitchell;MIA;18/11/2026;Milwaukee;36;24;2;6;6;0;1
 Davion Mitchell;MIA;16/11/2026;Houston;33;16;3;10;1;4;0
@@ -498,7 +499,7 @@ Davion Mitchell;MIA;10/11/2026;Utah;38;19;5;8;3;2;0
 Davion Mitchell;MIA;08/11/2026;Sacramento;40;17;3;11;2;0;1
 Davion Mitchell;MIA;05/11/2026;Golden St.;38;22;2;8;4;1;0
 Davion Mitchell;MIA;04/11/2026;L.A. Clippers;43;11;2;10;0;4;1
-Davion Mitchell;MIA;02/11/2026;L.A. Lakers;29;15;0;7;4;0;1
+Day'Ron Sharpe;BRK;25/11/2026;Milwaukee;31;11;14;5;1;3;2
 Day'Ron Sharpe;BRK;23/11/2026;Minnesota;26;6;5;7;0;1;0
 Day'Ron Sharpe;BRK;20/11/2026;Orlando;26;17;11;2;0;1;1
 Day'Ron Sharpe;BRK;18/11/2026;Chicago;22;6;5;1;0;0;1
@@ -508,7 +509,7 @@ Day'Ron Sharpe;BRK;11/11/2026;New Orleans;19;15;4;5;2;1;4
 Day'Ron Sharpe;BRK;08/11/2026;Dallas;20;6;4;6;0;2;2
 Day'Ron Sharpe;BRK;07/11/2026;Atlanta;32;12;10;13;0;0;1
 Day'Ron Sharpe;BRK;04/11/2026;Charlotte;27;5;5;8;0;1;2
-Day'Ron Sharpe;BRK;02/11/2026;New York;22;4;6;3;0;0;1
+De'Aaron Fox;SAS;25/11/2026;Portland;0;0;0;0;0;0;0
 De'Aaron Fox;SAS;23/11/2026;Sacramento;0;0;0;0;0;0;0
 De'Aaron Fox;SAS;21/11/2026;New Orleans;26;5;2;10;0;0;0
 De'Aaron Fox;SAS;19/11/2026;L.A. Clippers;32;10;2;5;0;1;0
@@ -518,7 +519,7 @@ De'Aaron Fox;SAS;13/11/2026;Golden St.;17;7;5;1;0;1;0
 De'Aaron Fox;SAS;11/11/2026;Chicago;31;17;4;9;2;3;0
 De'Aaron Fox;SAS;09/11/2026;Phoenix;29;15;9;6;2;0;0
 De'Aaron Fox;SAS;07/11/2026;Portland;22;8;3;6;1;1;1
-De'Aaron Fox;SAS;06/11/2026;Sacramento;26;9;2;4;0;1;1
+De'Andre Hunter;SAC;25/11/2026;Golden St.;39;15;7;3;3;1;0
 De'Andre Hunter;SAC;23/11/2026;San Antonio;38;15;7;8;1;1;0
 De'Andre Hunter;SAC;21/11/2026;Boston;41;20;6;2;2;0;1
 De'Andre Hunter;SAC;20/11/2026;L.A. Lakers;37;30;6;2;5;0;1
@@ -528,7 +529,6 @@ De'Andre Hunter;SAC;13/11/2026;Portland;42;24;5;2;2;2;0
 De'Andre Hunter;SAC;10/11/2026;Orlando;34;15;4;2;3;0;0
 De'Andre Hunter;SAC;08/11/2026;Miami;31;14;3;1;2;0;0
 De'Andre Hunter;SAC;06/11/2026;San Antonio;0;0;0;0;0;0;0
-De'Andre Hunter;SAC;04/11/2026;L.A. Lakers;38;14;2;2;1;0;0
 Dejounte Murray;NOP;23/11/2026;Phoenix;0;0;0;0;0;0;0
 Dejounte Murray;NOP;21/11/2026;San Antonio;0;0;0;0;0;0;0
 Dejounte Murray;NOP;20/11/2026;Oklahoma City;0;0;0;0;0;0;0
@@ -549,6 +549,7 @@ DeMar DeRozan;DEN;11/11/2026;Memphis;20;8;1;4;0;0;1
 DeMar DeRozan;DEN;09/11/2026;Houston;19;7;4;2;0;0;0
 DeMar DeRozan;DEN;07/11/2026;Indiana;22;11;1;5;0;0;0
 DeMar DeRozan;DEN;04/11/2026;Toronto;0;0;0;0;0;0;0
+Deni Avdija;POR;25/11/2026;San Antonio;36;33;12;7;5;2;0
 Deni Avdija;POR;23/11/2026;Philadelphia;30;31;3;7;5;1;0
 Deni Avdija;POR;21/11/2026;New York;36;20;9;5;2;0;2
 Deni Avdija;POR;19/11/2026;Milwaukee;0;0;0;0;0;0;0
@@ -558,7 +559,7 @@ Deni Avdija;POR;13/11/2026;Sacramento;35;34;6;4;3;0;1
 Deni Avdija;POR;11/11/2026;Oklahoma City;35;28;3;6;4;4;2
 Deni Avdija;POR;10/11/2026;Oklahoma City;34;24;6;8;2;1;0
 Deni Avdija;POR;07/11/2026;San Antonio;24;15;4;1;2;1;0
-Deni Avdija;POR;06/11/2026;L.A. Lakers;39;22;9;11;1;2;0
+Dennis Schroder;CHO;25/11/2026;Chicago;0;0;0;0;0;0;0
 Dennis Schroder;CHO;23/11/2026;Memphis;0;0;0;0;0;0;0
 Dennis Schroder;CHO;20/11/2026;Atlanta;0;0;0;0;0;0;0
 Dennis Schroder;CHO;17/11/2026;L.A. Lakers;0;0;0;0;0;0;0
@@ -568,7 +569,6 @@ Dennis Schroder;CHO;09/11/2026;Cleveland;0;0;0;0;0;0;0
 Dennis Schroder;CHO;06/11/2026;Boston;0;0;0;0;0;0;0
 Dennis Schroder;CHO;04/11/2026;Brooklyn;19;5;5;4;1;1;0
 Dennis Schroder;CHO;02/11/2026;Detroit;23;5;2;1;0;2;0
-Dennis Schroder;CHO;31/10/2026;Philadelphia;35;4;3;7;0;0;0
 Derik Queen;NOP;23/11/2026;Phoenix;21;11;9;2;0;1;1
 Derik Queen;NOP;21/11/2026;San Antonio;35;15;15;0;0;1;0
 Derik Queen;NOP;20/11/2026;Oklahoma City;18;11;7;3;0;0;1
@@ -579,6 +579,7 @@ Derik Queen;NOP;13/11/2026;Memphis;23;10;6;2;0;1;2
 Derik Queen;NOP;11/11/2026;Brooklyn;14;9;0;0;1;2;0
 Derik Queen;NOP;09/11/2026;Golden St.;21;16;4;0;0;0;3
 Derik Queen;NOP;08/11/2026;L.A. Clippers;21;8;5;3;0;1;1
+Derrick Jones Jr.;LAC;25/11/2026;Memphis;23;4;2;1;0;0;0
 Derrick Jones Jr.;LAC;23/11/2026;Houston;23;7;4;3;1;2;1
 Derrick Jones Jr.;LAC;21/11/2026;Dallas;26;4;7;1;1;0;0
 Derrick Jones Jr.;LAC;19/11/2026;San Antonio;27;8;2;1;0;2;0
@@ -588,7 +589,6 @@ Derrick Jones Jr.;LAC;13/11/2026;Oklahoma City;29;14;5;0;4;1;4
 Derrick Jones Jr.;LAC;10/11/2026;Phoenix;24;11;3;0;2;2;1
 Derrick Jones Jr.;LAC;08/11/2026;New Orleans;29;8;4;3;0;0;0
 Derrick Jones Jr.;LAC;04/11/2026;Miami;37;12;8;1;2;1;3
-Derrick Jones Jr.;LAC;02/11/2026;Toronto;0;0;0;0;0;0;0
 Derrick White;BOS;24/11/2026;Washington;30;6;7;5;2;1;0
 Derrick White;BOS;22/11/2026;Golden St.;32;14;3;5;2;1;0
 Derrick White;BOS;21/11/2026;Sacramento;0;0;0;0;0;0;0
@@ -609,6 +609,7 @@ Desmond Bane;ORL;11/11/2026;Utah;34;25;3;2;7;1;0
 Desmond Bane;ORL;10/11/2026;Sacramento;36;15;6;4;4;0;0
 Desmond Bane;ORL;07/11/2026;Golden St.;0;0;0;0;0;0;0
 Desmond Bane;ORL;05/11/2026;Phoenix;32;15;6;0;3;0;0
+Devin Booker;PHO;25/11/2026;Houston;36;25;0;5;2;1;0
 Devin Booker;PHO;23/11/2026;New Orleans;42;22;5;8;2;3;1
 Devin Booker;PHO;20/11/2026;Utah;38;23;2;3;1;0;0
 Devin Booker;PHO;18/11/2026;Sacramento;33;29;2;6;2;1;0
@@ -618,7 +619,7 @@ Devin Booker;PHO;12/11/2026;Charlotte;35;30;1;7;4;3;1
 Devin Booker;PHO;10/11/2026;L.A. Clippers;29;17;3;5;2;0;0
 Devin Booker;PHO;09/11/2026;San Antonio;29;32;2;4;3;1;1
 Devin Booker;PHO;07/11/2026;Houston;39;24;2;3;2;3;0
-Devin Booker;PHO;05/11/2026;Orlando;34;30;1;8;4;3;0
+Devin Vassell;SAS;25/11/2026;Portland;38;18;3;1;3;2;1
 Devin Vassell;SAS;23/11/2026;Sacramento;34;16;6;2;4;1;0
 Devin Vassell;SAS;21/11/2026;New Orleans;26;10;4;2;2;0;2
 Devin Vassell;SAS;19/11/2026;L.A. Clippers;32;15;4;4;1;3;1
@@ -628,7 +629,7 @@ Devin Vassell;SAS;13/11/2026;Golden St.;23;7;2;2;0;0;0
 Devin Vassell;SAS;11/11/2026;Chicago;0;0;0;0;0;0;0
 Devin Vassell;SAS;09/11/2026;Phoenix;0;0;0;0;0;0;0
 Devin Vassell;SAS;07/11/2026;Portland;21;15;2;3;2;2;0
-Devin Vassell;SAS;06/11/2026;Sacramento;26;19;2;2;5;1;1
+Dillon Brooks;PHO;25/11/2026;Houston;31;12;6;4;0;1;0
 Dillon Brooks;PHO;23/11/2026;New Orleans;34;16;5;7;2;1;0
 Dillon Brooks;PHO;20/11/2026;Utah;25;18;3;3;2;0;0
 Dillon Brooks;PHO;18/11/2026;Sacramento;31;29;3;5;5;0;0
@@ -638,7 +639,7 @@ Dillon Brooks;PHO;12/11/2026;Charlotte;30;15;3;1;3;1;0
 Dillon Brooks;PHO;10/11/2026;L.A. Clippers;22;8;4;2;0;1;0
 Dillon Brooks;PHO;09/11/2026;San Antonio;26;7;4;0;1;0;0
 Dillon Brooks;PHO;07/11/2026;Houston;37;11;4;1;3;0;0
-Dillon Brooks;PHO;05/11/2026;Orlando;29;24;1;1;4;2;1
+Domantas Sabonis;SAC;25/11/2026;Golden St.;37;27;10;6;1;1;0
 Domantas Sabonis;SAC;23/11/2026;San Antonio;30;20;12;8;0;0;0
 Domantas Sabonis;SAC;21/11/2026;Boston;32;15;17;4;0;0;1
 Domantas Sabonis;SAC;20/11/2026;L.A. Lakers;38;19;16;1;1;0;0
@@ -648,7 +649,7 @@ Domantas Sabonis;SAC;13/11/2026;Portland;35;21;12;5;1;0;0
 Domantas Sabonis;SAC;10/11/2026;Orlando;24;0;2;5;0;0;0
 Domantas Sabonis;SAC;08/11/2026;Miami;0;0;0;0;0;0;0
 Domantas Sabonis;SAC;06/11/2026;San Antonio;31;17;12;5;1;0;0
-Domantas Sabonis;SAC;04/11/2026;L.A. Lakers;35;16;17;1;0;1;0
+Donovan Clingan;POR;25/11/2026;San Antonio;21;5;8;2;0;0;1
 Donovan Clingan;POR;23/11/2026;Philadelphia;29;15;18;5;1;0;2
 Donovan Clingan;POR;21/11/2026;New York;31;22;13;4;3;1;1
 Donovan Clingan;POR;19/11/2026;Milwaukee;26;7;13;2;0;1;1
@@ -658,7 +659,7 @@ Donovan Clingan;POR;13/11/2026;Sacramento;27;13;11;2;1;2;2
 Donovan Clingan;POR;11/11/2026;Oklahoma City;30;5;12;2;1;1;3
 Donovan Clingan;POR;10/11/2026;Oklahoma City;26;7;13;3;1;0;2
 Donovan Clingan;POR;07/11/2026;San Antonio;22;6;5;0;0;0;0
-Donovan Clingan;POR;06/11/2026;L.A. Lakers;28;17;11;1;3;1;2
+Donovan Mitchell;CLE;25/11/2026;New York;34;30;4;4;1;4;2
 Donovan Mitchell;CLE;23/11/2026;Chicago;37;28;3;5;1;1;2
 Donovan Mitchell;CLE;20/11/2026;Indiana;29;20;3;3;2;0;0
 Donovan Mitchell;CLE;18/11/2026;Memphis;35;34;4;3;2;1;0
@@ -668,7 +669,6 @@ Donovan Mitchell;CLE;13/11/2026;Miami;33;25;4;7;5;0;0
 Donovan Mitchell;CLE;11/11/2026;New York;36;23;7;6;2;2;1
 Donovan Mitchell;CLE;09/11/2026;Charlotte;23;11;2;4;1;1;0
 Donovan Mitchell;CLE;07/11/2026;New York;37;37;4;4;5;2;1
-Donovan Mitchell;CLE;06/11/2026;Philadelphia;33;23;7;8;1;2;1
 Dorian Finney-Smith;ATL;22/11/2026;Detroit;0;0;0;0;0;0;0
 Dorian Finney-Smith;ATL;20/11/2026;Charlotte;3;0;0;1;0;0;0
 Dorian Finney-Smith;ATL;18/11/2026;Oklahoma City;5;0;2;0;0;1;0
@@ -679,6 +679,7 @@ Dorian Finney-Smith;ATL;07/11/2026;Brooklyn;0;0;0;0;0;0;0
 Dorian Finney-Smith;ATL;06/11/2026;Washington;0;0;0;0;0;0;0
 Dorian Finney-Smith;ATL;04/11/2026;Washington;0;0;0;0;0;0;0
 Dorian Finney-Smith;ATL;02/11/2026;Indiana;0;0;0;0;0;0;0
+Draymond Green;GSW;25/11/2026;Sacramento;26;6;4;11;2;0;0
 Draymond Green;GSW;22/11/2026;Boston;27;9;6;3;3;0;0
 Draymond Green;GSW;19/11/2026;Memphis;0;0;0;0;0;0;0
 Draymond Green;GSW;18/11/2026;Dallas;23;3;1;2;1;1;2
@@ -688,7 +689,6 @@ Draymond Green;GSW;11/11/2026;Houston;27;7;5;7;1;0;1
 Draymond Green;GSW;09/11/2026;New Orleans;21;2;3;6;0;1;0
 Draymond Green;GSW;07/11/2026;Orlando;34;2;6;13;0;2;2
 Draymond Green;GSW;05/11/2026;Miami;27;2;5;11;0;1;1
-Draymond Green;GSW;02/11/2026;Phoenix;17;4;4;2;0;1;0
 Duncan Robinson;DET;24/11/2026;Orlando;0;0;0;0;0;0;0
 Duncan Robinson;DET;22/11/2026;Atlanta;0;0;0;0;0;0;0
 Duncan Robinson;DET;20/11/2026;Toronto;0;0;0;0;0;0;0
@@ -699,6 +699,7 @@ Duncan Robinson;DET;12/11/2026;Washington;41;13;3;1;3;1;0
 Duncan Robinson;DET;09/11/2026;Washington;34;22;3;2;4;0;0
 Duncan Robinson;DET;08/11/2026;L.A. Lakers;27;12;0;3;3;0;0
 Duncan Robinson;DET;04/11/2026;Philadelphia;37;27;1;2;7;1;0
+Dylan Harper;SAS;25/11/2026;Portland;0;0;0;0;0;0;0
 Dylan Harper;SAS;23/11/2026;Sacramento;0;0;0;0;0;0;0
 Dylan Harper;SAS;21/11/2026;New Orleans;0;0;0;0;0;0;0
 Dylan Harper;SAS;19/11/2026;L.A. Clippers;0;0;0;0;0;0;0
@@ -708,7 +709,6 @@ Dylan Harper;SAS;13/11/2026;Golden St.;25;9;3;4;1;1;0
 Dylan Harper;SAS;11/11/2026;Chicago;36;18;6;10;2;4;1
 Dylan Harper;SAS;09/11/2026;Phoenix;26;17;5;4;0;0;0
 Dylan Harper;SAS;07/11/2026;Portland;28;13;7;4;1;0;1
-Dylan Harper;SAS;06/11/2026;Sacramento;28;19;2;3;1;0;0
 Dyson Daniels;ATL;22/11/2026;Detroit;39;5;14;8;0;5;2
 Dyson Daniels;ATL;20/11/2026;Charlotte;35;11;8;10;1;4;0
 Dyson Daniels;ATL;18/11/2026;Oklahoma City;37;10;10;4;0;2;0
@@ -719,6 +719,7 @@ Dyson Daniels;ATL;07/11/2026;Brooklyn;31;9;10;7;0;6;1
 Dyson Daniels;ATL;06/11/2026;Washington;34;13;9;12;0;2;0
 Dyson Daniels;ATL;04/11/2026;Washington;34;8;16;8;0;0;0
 Dyson Daniels;ATL;02/11/2026;Indiana;30;6;9;4;0;3;1
+Egor Demin;BRK;25/11/2026;Milwaukee;25;15;3;4;0;1;1
 Egor Demin;BRK;23/11/2026;Minnesota;25;10;3;4;2;2;0
 Egor Demin;BRK;20/11/2026;Orlando;21;6;3;2;0;0;0
 Egor Demin;BRK;18/11/2026;Chicago;31;22;4;4;3;3;0
@@ -728,7 +729,7 @@ Egor Demin;BRK;11/11/2026;New Orleans;23;22;1;1;4;1;0
 Egor Demin;BRK;08/11/2026;Dallas;0;0;0;0;0;0;0
 Egor Demin;BRK;07/11/2026;Atlanta;0;0;0;0;0;0;0
 Egor Demin;BRK;04/11/2026;Charlotte;0;0;0;0;0;0;0
-Egor Demin;BRK;02/11/2026;New York;0;0;0;0;0;0;0
+Evan Mobley;CLE;25/11/2026;New York;0;0;0;0;0;0;0
 Evan Mobley;CLE;23/11/2026;Chicago;0;0;0;0;0;0;0
 Evan Mobley;CLE;20/11/2026;Indiana;0;0;0;0;0;0;0
 Evan Mobley;CLE;18/11/2026;Memphis;0;0;0;0;0;0;0
@@ -738,7 +739,6 @@ Evan Mobley;CLE;13/11/2026;Miami;0;0;0;0;0;0;0
 Evan Mobley;CLE;11/11/2026;New York;33;10;5;3;0;0;1
 Evan Mobley;CLE;09/11/2026;Charlotte;24;9;2;3;2;2;1
 Evan Mobley;CLE;07/11/2026;New York;33;12;9;5;1;0;0
-Evan Mobley;CLE;06/11/2026;Philadelphia;32;22;6;4;3;1;1
 Franz Wagner;ORL;24/11/2026;Detroit;38;20;9;6;0;0;1
 Franz Wagner;ORL;22/11/2026;Washington;32;16;8;6;0;2;0
 Franz Wagner;ORL;20/11/2026;Brooklyn;36;35;5;7;2;0;1
@@ -749,6 +749,7 @@ Franz Wagner;ORL;11/11/2026;Utah;39;38;8;1;3;1;0
 Franz Wagner;ORL;10/11/2026;Sacramento;38;33;7;7;1;2;0
 Franz Wagner;ORL;07/11/2026;Golden St.;40;30;6;11;3;2;0
 Franz Wagner;ORL;05/11/2026;Phoenix;38;15;8;15;0;4;0
+Fred VanVleet;HOU;25/11/2026;Phoenix;34;13;3;6;3;1;1
 Fred VanVleet;HOU;23/11/2026;L.A. Clippers;31;6;2;4;2;1;1
 Fred VanVleet;HOU;20/11/2026;Denver;33;25;1;9;3;1;0
 Fred VanVleet;HOU;18/11/2026;Indiana;27;15;2;6;3;1;0
@@ -758,7 +759,7 @@ Fred VanVleet;HOU;13/11/2026;Utah;34;17;2;3;3;0;1
 Fred VanVleet;HOU;11/11/2026;Golden St.;30;18;2;6;4;3;0
 Fred VanVleet;HOU;09/11/2026;Denver;30;12;1;2;3;0;0
 Fred VanVleet;HOU;07/11/2026;Phoenix;31;16;3;4;4;0;1
-Fred VanVleet;HOU;04/11/2026;Minnesota;30;18;3;3;4;0;0
+Giannis Antetokounmpo;MIA;25/11/2026;Philadelphia;36;32;14;4;0;2;1
 Giannis Antetokounmpo;MIA;22/11/2026;Oklahoma City;0;0;0;0;0;0;0
 Giannis Antetokounmpo;MIA;18/11/2026;Milwaukee;32;27;14;9;0;1;1
 Giannis Antetokounmpo;MIA;16/11/2026;Houston;29;20;13;6;0;1;3
@@ -768,7 +769,7 @@ Giannis Antetokounmpo;MIA;10/11/2026;Utah;31;30;11;4;1;0;0
 Giannis Antetokounmpo;MIA;08/11/2026;Sacramento;34;29;14;3;0;2;2
 Giannis Antetokounmpo;MIA;05/11/2026;Golden St.;31;20;14;4;1;0;0
 Giannis Antetokounmpo;MIA;04/11/2026;L.A. Clippers;41;27;14;6;0;2;3
-Giannis Antetokounmpo;MIA;02/11/2026;L.A. Lakers;34;30;12;7;0;1;2
+Grayson Allen;CHO;25/11/2026;Chicago;0;0;0;0;0;0;0
 Grayson Allen;CHO;23/11/2026;Memphis;0;0;0;0;0;0;0
 Grayson Allen;CHO;20/11/2026;Atlanta;0;0;0;0;0;0;0
 Grayson Allen;CHO;17/11/2026;L.A. Lakers;0;0;0;0;0;0;0
@@ -778,7 +779,6 @@ Grayson Allen;CHO;09/11/2026;Cleveland;34;27;4;6;6;2;0
 Grayson Allen;CHO;06/11/2026;Boston;22;0;2;3;0;1;0
 Grayson Allen;CHO;04/11/2026;Brooklyn;27;22;2;4;5;1;1
 Grayson Allen;CHO;02/11/2026;Detroit;19;11;1;0;3;0;0
-Grayson Allen;CHO;31/10/2026;Philadelphia;30;27;4;3;7;1;1
 Herb Jones;NOP;23/11/2026;Phoenix;21;7;3;4;1;3;0
 Herb Jones;NOP;21/11/2026;San Antonio;25;2;4;2;0;3;0
 Herb Jones;NOP;20/11/2026;Oklahoma City;33;14;2;3;4;1;0
@@ -799,6 +799,7 @@ Immanuel Quickley;TOR;11/11/2026;Boston;28;11;4;4;1;1;0
 Immanuel Quickley;TOR;09/11/2026;Memphis;0;0;0;0;0;0;0
 Immanuel Quickley;TOR;06/11/2026;Milwaukee;0;0;0;0;0;0;0
 Immanuel Quickley;TOR;04/11/2026;Denver;32;13;1;7;2;2;0
+Isaiah Hartenstein;OKC;25/11/2026;Minnesota;31;8;16;6;0;2;0
 Isaiah Hartenstein;OKC;23/11/2026;Indiana;30;18;9;3;0;0;1
 Isaiah Hartenstein;OKC;22/11/2026;Miami;23;2;8;4;0;1;0
 Isaiah Hartenstein;OKC;20/11/2026;New Orleans;28;5;8;4;0;1;2
@@ -808,7 +809,6 @@ Isaiah Hartenstein;OKC;13/11/2026;L.A. Clippers;30;21;16;6;0;1;0
 Isaiah Hartenstein;OKC;11/11/2026;Portland;34;20;11;6;0;2;0
 Isaiah Hartenstein;OKC;10/11/2026;Portland;24;7;9;5;0;0;1
 Isaiah Hartenstein;OKC;07/11/2026;Washington;18;2;14;6;0;2;0
-Isaiah Hartenstein;OKC;06/11/2026;Memphis;26;2;6;7;0;1;1
 Isaiah Joe;DET;24/11/2026;Orlando;30;21;4;0;5;1;0
 Isaiah Joe;DET;22/11/2026;Atlanta;26;19;2;3;3;3;0
 Isaiah Joe;DET;20/11/2026;Toronto;18;9;1;0;1;0;0
@@ -819,6 +819,7 @@ Isaiah Joe;DET;12/11/2026;Washington;0;0;0;0;0;0;0
 Isaiah Joe;DET;09/11/2026;Washington;0;0;0;0;0;0;0
 Isaiah Joe;DET;08/11/2026;L.A. Lakers;0;0;0;0;0;0;0
 Isaiah Joe;DET;04/11/2026;Philadelphia;0;0;0;0;0;0;0
+Isaiah Stewart;MEM;25/11/2026;L.A. Clippers;14;10;3;1;2;1;2
 Isaiah Stewart;MEM;23/11/2026;Charlotte;21;11;4;0;1;0;0
 Isaiah Stewart;MEM;21/11/2026;Minnesota;21;10;2;1;0;0;3
 Isaiah Stewart;MEM;19/11/2026;Golden St.;18;8;4;1;0;0;0
@@ -828,7 +829,6 @@ Isaiah Stewart;MEM;14/11/2026;Brooklyn;15;11;3;3;0;0;0
 Isaiah Stewart;MEM;13/11/2026;New Orleans;20;12;5;0;0;0;4
 Isaiah Stewart;MEM;11/11/2026;Denver;18;3;1;2;1;0;0
 Isaiah Stewart;MEM;09/11/2026;Toronto;0;0;0;0;0;0;0
-Isaiah Stewart;MEM;06/11/2026;Oklahoma City;0;0;0;0;0;0;0
 Ivica Zubac;IND;23/11/2026;Oklahoma City;26;14;15;1;0;0;0
 Ivica Zubac;IND;22/11/2026;New York;31;10;14;1;0;0;0
 Ivica Zubac;IND;20/11/2026;Cleveland;27;21;10;2;0;0;3
@@ -839,6 +839,7 @@ Ivica Zubac;IND;11/11/2026;Washington;31;20;12;1;0;0;2
 Ivica Zubac;IND;09/11/2026;Dallas;28;16;3;0;0;0;0
 Ivica Zubac;IND;07/11/2026;Denver;19;10;12;5;0;0;0
 Ivica Zubac;IND;04/11/2026;Memphis;19;1;4;2;0;0;0
+Ja Morant;POR;25/11/2026;San Antonio;0;0;0;0;0;0;0
 Ja Morant;POR;23/11/2026;Philadelphia;0;0;0;0;0;0;0
 Ja Morant;POR;21/11/2026;New York;0;0;0;0;0;0;0
 Ja Morant;POR;19/11/2026;Milwaukee;0;0;0;0;0;0;0
@@ -848,7 +849,6 @@ Ja Morant;POR;13/11/2026;Sacramento;0;0;0;0;0;0;0
 Ja Morant;POR;11/11/2026;Oklahoma City;0;0;0;0;0;0;0
 Ja Morant;POR;10/11/2026;Oklahoma City;0;0;0;0;0;0;0
 Ja Morant;POR;07/11/2026;San Antonio;0;0;0;0;0;0;0
-Ja Morant;POR;06/11/2026;L.A. Lakers;0;0;0;0;0;0;0
 Ja'Kobe Walter;TOR;23/11/2026;Milwaukee;36;15;6;2;2;1;1
 Ja'Kobe Walter;TOR;20/11/2026;Detroit;33;8;3;3;2;1;0
 Ja'Kobe Walter;TOR;18/11/2026;Washington;38;18;7;6;3;2;0
@@ -859,6 +859,7 @@ Ja'Kobe Walter;TOR;11/11/2026;Boston;35;17;3;1;5;2;0
 Ja'Kobe Walter;TOR;09/11/2026;Memphis;34;12;6;0;2;0;0
 Ja'Kobe Walter;TOR;06/11/2026;Milwaukee;29;7;6;2;1;1;1
 Ja'Kobe Walter;TOR;04/11/2026;Denver;27;8;1;2;1;0;0
+Jabari Smith Jr.;HOU;25/11/2026;Phoenix;32;13;4;1;2;1;2
 Jabari Smith Jr.;HOU;23/11/2026;L.A. Clippers;28;13;6;2;1;0;0
 Jabari Smith Jr.;HOU;20/11/2026;Denver;32;21;4;3;3;0;0
 Jabari Smith Jr.;HOU;18/11/2026;Indiana;26;17;4;2;3;0;1
@@ -868,7 +869,7 @@ Jabari Smith Jr.;HOU;13/11/2026;Utah;24;6;3;0;1;0;1
 Jabari Smith Jr.;HOU;11/11/2026;Golden St.;35;14;8;0;2;1;3
 Jabari Smith Jr.;HOU;09/11/2026;Denver;38;14;7;3;2;0;0
 Jabari Smith Jr.;HOU;07/11/2026;Phoenix;39;15;9;2;1;3;1
-Jabari Smith Jr.;HOU;04/11/2026;Minnesota;35;11;4;2;2;0;3
+Jaden Ivey;CHI;25/11/2026;Charlotte;0;0;0;0;0;0;0
 Jaden Ivey;CHI;23/11/2026;Cleveland;0;0;0;0;0;0;0
 Jaden Ivey;CHI;22/11/2026;Denver;0;0;0;0;0;0;0
 Jaden Ivey;CHI;20/11/2026;Washington;0;0;0;0;0;0;0
@@ -878,7 +879,7 @@ Jaden Ivey;CHI;14/11/2026;Minnesota;0;0;0;0;0;0;0
 Jaden Ivey;CHI;13/11/2026;Atlanta;0;0;0;0;0;0;0
 Jaden Ivey;CHI;11/11/2026;San Antonio;0;0;0;0;0;0;0
 Jaden Ivey;CHI;08/11/2026;Philadelphia;0;0;0;0;0;0;0
-Jaden Ivey;CHI;04/11/2026;New York;0;0;0;0;0;0;0
+Jaden McDaniels;MIN;25/11/2026;Oklahoma City;37;32;10;5;4;1;1
 Jaden McDaniels;MIN;23/11/2026;Brooklyn;34;34;10;6;4;2;0
 Jaden McDaniels;MIN;21/11/2026;Memphis;36;25;5;4;1;1;0
 Jaden McDaniels;MIN;19/11/2026;New York;39;17;4;1;4;2;2
@@ -888,7 +889,7 @@ Jaden McDaniels;MIN;14/11/2026;Chicago;37;18;5;6;2;2;1
 Jaden McDaniels;MIN;12/11/2026;Dallas;25;16;9;3;0;0;1
 Jaden McDaniels;MIN;08/11/2026;Utah;33;16;6;3;2;1;1
 Jaden McDaniels;MIN;06/11/2026;New Orleans;40;23;6;5;2;1;2
-Jaden McDaniels;MIN;04/11/2026;Houston;37;14;8;4;0;2;0
+Jaime Jaquez Jr.;MIL;25/11/2026;Brooklyn;34;21;5;4;1;2;0
 Jaime Jaquez Jr.;MIL;23/11/2026;Toronto;25;3;4;2;1;0;0
 Jaime Jaquez Jr.;MIL;21/11/2026;Philadelphia;25;9;0;1;1;0;0
 Jaime Jaquez Jr.;MIL;19/11/2026;Portland;22;9;1;2;1;1;0
@@ -898,7 +899,7 @@ Jaime Jaquez Jr.;MIL;13/11/2026;Orlando;28;22;6;4;5;0;0
 Jaime Jaquez Jr.;MIL;11/11/2026;L.A. Lakers;30;25;5;3;2;2;0
 Jaime Jaquez Jr.;MIL;10/11/2026;New York;25;16;5;3;2;1;0
 Jaime Jaquez Jr.;MIL;08/11/2026;Boston;22;4;2;2;0;1;0
-Jaime Jaquez Jr.;MIL;06/11/2026;Toronto;28;14;3;3;2;0;1
+Jalen Brunson;NYK;25/11/2026;Cleveland;36;19;3;5;2;0;0
 Jalen Brunson;NYK;22/11/2026;Indiana;32;22;3;7;1;1;0
 Jalen Brunson;NYK;21/11/2026;Portland;36;30;7;5;6;0;0
 Jalen Brunson;NYK;19/11/2026;Minnesota;35;21;2;7;4;2;0
@@ -908,7 +909,6 @@ Jalen Brunson;NYK;13/11/2026;Indiana;36;33;1;11;4;2;0
 Jalen Brunson;NYK;11/11/2026;Cleveland;35;27;3;5;3;1;1
 Jalen Brunson;NYK;10/11/2026;Milwaukee;28;23;4;2;1;0;0
 Jalen Brunson;NYK;07/11/2026;Cleveland;34;31;6;9;3;0;0
-Jalen Brunson;NYK;04/11/2026;Chicago;28;33;2;4;5;0;0
 Jalen Duren;DET;24/11/2026;Orlando;0;0;0;0;0;0;0
 Jalen Duren;DET;22/11/2026;Atlanta;0;0;0;0;0;0;0
 Jalen Duren;DET;20/11/2026;Toronto;0;0;0;0;0;0;0
@@ -919,6 +919,7 @@ Jalen Duren;DET;12/11/2026;Washington;0;0;0;0;0;0;0
 Jalen Duren;DET;09/11/2026;Washington;0;0;0;0;0;0;0
 Jalen Duren;DET;08/11/2026;L.A. Lakers;0;0;0;0;0;0;0
 Jalen Duren;DET;04/11/2026;Philadelphia;0;0;0;0;0;0;0
+Jalen Green;PHO;25/11/2026;Houston;35;16;4;5;0;1;1
 Jalen Green;PHO;23/11/2026;New Orleans;37;25;3;0;3;2;0
 Jalen Green;PHO;20/11/2026;Utah;25;14;4;3;1;0;0
 Jalen Green;PHO;18/11/2026;Sacramento;30;18;7;7;4;1;0
@@ -928,7 +929,6 @@ Jalen Green;PHO;12/11/2026;Charlotte;21;12;4;0;1;1;0
 Jalen Green;PHO;10/11/2026;L.A. Clippers;21;13;5;1;3;0;0
 Jalen Green;PHO;09/11/2026;San Antonio;24;6;5;4;0;0;0
 Jalen Green;PHO;07/11/2026;Houston;34;16;3;6;0;1;0
-Jalen Green;PHO;05/11/2026;Orlando;24;6;0;3;0;2;0
 Jalen Johnson;ATL;22/11/2026;Detroit;30;12;11;0;0;1;0
 Jalen Johnson;ATL;20/11/2026;Charlotte;36;26;6;6;3;4;1
 Jalen Johnson;ATL;18/11/2026;Oklahoma City;34;16;12;11;1;0;1
@@ -939,6 +939,7 @@ Jalen Johnson;ATL;07/11/2026;Brooklyn;36;30;7;6;0;1;0
 Jalen Johnson;ATL;06/11/2026;Washington;0;0;0;0;0;0;0
 Jalen Johnson;ATL;04/11/2026;Washington;0;0;0;0;0;0;0
 Jalen Johnson;ATL;02/11/2026;Indiana;0;0;0;0;0;0;0
+Jalen Smith;CHI;25/11/2026;Charlotte;0;0;0;0;0;0;0
 Jalen Smith;CHI;23/11/2026;Cleveland;25;11;6;4;1;0;0
 Jalen Smith;CHI;22/11/2026;Denver;34;26;4;1;6;2;2
 Jalen Smith;CHI;20/11/2026;Washington;0;0;0;0;0;0;0
@@ -948,7 +949,6 @@ Jalen Smith;CHI;14/11/2026;Minnesota;0;0;0;0;0;0;0
 Jalen Smith;CHI;13/11/2026;Atlanta;32;15;12;3;1;3;0
 Jalen Smith;CHI;11/11/2026;San Antonio;30;23;4;3;5;0;0
 Jalen Smith;CHI;08/11/2026;Philadelphia;30;17;8;2;2;0;4
-Jalen Smith;CHI;04/11/2026;New York;7;3;2;0;1;0;1
 Jalen Suggs;ORL;24/11/2026;Detroit;33;4;3;5;0;2;0
 Jalen Suggs;ORL;22/11/2026;Washington;22;9;4;2;0;0;0
 Jalen Suggs;ORL;20/11/2026;Brooklyn;30;8;6;2;2;1;0
@@ -959,6 +959,7 @@ Jalen Suggs;ORL;11/11/2026;Utah;0;0;0;0;0;0;0
 Jalen Suggs;ORL;10/11/2026;Sacramento;0;0;0;0;0;0;0
 Jalen Suggs;ORL;07/11/2026;Golden St.;0;0;0;0;0;0;0
 Jalen Suggs;ORL;05/11/2026;Phoenix;0;0;0;0;0;0;0
+Jalen Williams;OKC;25/11/2026;Minnesota;0;0;0;0;0;0;0
 Jalen Williams;OKC;23/11/2026;Indiana;0;0;0;0;0;0;0
 Jalen Williams;OKC;22/11/2026;Miami;0;0;0;0;0;0;0
 Jalen Williams;OKC;20/11/2026;New Orleans;0;0;0;0;0;0;0
@@ -968,7 +969,6 @@ Jalen Williams;OKC;13/11/2026;L.A. Clippers;0;0;0;0;0;0;0
 Jalen Williams;OKC;11/11/2026;Portland;0;0;0;0;0;0;0
 Jalen Williams;OKC;10/11/2026;Portland;0;0;0;0;0;0;0
 Jalen Williams;OKC;07/11/2026;Washington;0;0;0;0;0;0;0
-Jalen Williams;OKC;06/11/2026;Memphis;0;0;0;0;0;0;0
 Jamal Murray;DEN;24/11/2026;Dallas;36;20;2;3;2;0;2
 Jamal Murray;DEN;22/11/2026;Chicago;45;45;5;7;6;3;2
 Jamal Murray;DEN;20/11/2026;Houston;36;14;2;7;1;0;0
@@ -989,6 +989,7 @@ Jamal Shead;TOR;11/11/2026;Boston;22;3;3;6;0;1;0
 Jamal Shead;TOR;09/11/2026;Memphis;36;20;3;11;4;2;0
 Jamal Shead;TOR;06/11/2026;Milwaukee;34;10;3;16;1;2;0
 Jamal Shead;TOR;04/11/2026;Denver;20;3;3;6;1;1;0
+James Harden;CLE;25/11/2026;New York;36;28;1;5;1;0;1
 James Harden;CLE;23/11/2026;Chicago;37;21;6;5;3;0;0
 James Harden;CLE;20/11/2026;Indiana;40;51;6;6;7;1;0
 James Harden;CLE;18/11/2026;Memphis;36;14;6;9;3;0;1
@@ -998,7 +999,6 @@ James Harden;CLE;13/11/2026;Miami;35;20;6;8;2;3;1
 James Harden;CLE;11/11/2026;New York;33;32;2;4;5;2;0
 James Harden;CLE;09/11/2026;Charlotte;25;11;3;5;2;1;0
 James Harden;CLE;07/11/2026;New York;34;7;2;5;1;0;2
-James Harden;CLE;06/11/2026;Philadelphia;30;17;6;3;3;0;0
 Jarace Walker;IND;23/11/2026;Oklahoma City;14;4;8;3;0;0;1
 Jarace Walker;IND;22/11/2026;New York;1;0;0;0;0;0;0
 Jarace Walker;IND;20/11/2026;Cleveland;11;8;1;3;1;0;0
@@ -1009,6 +1009,7 @@ Jarace Walker;IND;11/11/2026;Washington;7;1;1;0;0;0;0
 Jarace Walker;IND;09/11/2026;Dallas;10;7;1;0;2;0;0
 Jarace Walker;IND;07/11/2026;Denver;20;9;5;2;1;0;2
 Jarace Walker;IND;04/11/2026;Memphis;17;2;8;1;0;0;0
+Jared McCain;OKC;25/11/2026;Minnesota;28;9;1;1;1;0;0
 Jared McCain;OKC;23/11/2026;Indiana;36;13;5;0;1;1;1
 Jared McCain;OKC;22/11/2026;Miami;29;20;2;3;2;0;0
 Jared McCain;OKC;20/11/2026;New Orleans;30;18;3;0;3;1;1
@@ -1018,7 +1019,6 @@ Jared McCain;OKC;13/11/2026;L.A. Clippers;31;23;4;2;7;0;0
 Jared McCain;OKC;11/11/2026;Portland;31;10;6;3;2;1;0
 Jared McCain;OKC;10/11/2026;Portland;31;21;3;3;4;0;0
 Jared McCain;OKC;07/11/2026;Washington;23;19;5;2;2;1;1
-Jared McCain;OKC;06/11/2026;Memphis;29;21;5;0;3;4;1
 Jaren Jackson Jr.;UTA;23/11/2026;L.A. Lakers;0;0;0;0;0;0;0
 Jaren Jackson Jr.;UTA;22/11/2026;Dallas;0;0;0;0;0;0;0
 Jaren Jackson Jr.;UTA;20/11/2026;Phoenix;0;0;0;0;0;0;0
@@ -1029,6 +1029,7 @@ Jaren Jackson Jr.;UTA;13/11/2026;Houston;0;0;0;0;0;0;0
 Jaren Jackson Jr.;UTA;11/11/2026;Orlando;0;0;0;0;0;0;0
 Jaren Jackson Jr.;UTA;10/11/2026;Miami;0;0;0;0;0;0;0
 Jaren Jackson Jr.;UTA;08/11/2026;Minnesota;0;0;0;0;0;0;0
+Jarrett Allen;CLE;25/11/2026;New York;32;10;5;1;0;2;0
 Jarrett Allen;CLE;23/11/2026;Chicago;29;16;4;0;0;0;1
 Jarrett Allen;CLE;20/11/2026;Indiana;31;6;8;4;0;0;2
 Jarrett Allen;CLE;18/11/2026;Memphis;30;19;9;4;0;1;0
@@ -1038,7 +1039,7 @@ Jarrett Allen;CLE;13/11/2026;Miami;32;9;8;1;0;1;1
 Jarrett Allen;CLE;11/11/2026;New York;32;11;14;3;0;1;1
 Jarrett Allen;CLE;09/11/2026;Charlotte;19;12;7;1;1;0;1
 Jarrett Allen;CLE;07/11/2026;New York;0;0;0;0;0;0;0
-Jarrett Allen;CLE;06/11/2026;Philadelphia;0;0;0;0;0;0;0
+Jaylen Brown;PHI;25/11/2026;Miami;17;6;1;1;0;0;0
 Jaylen Brown;PHI;23/11/2026;Portland;29;20;2;4;1;2;0
 Jaylen Brown;PHI;21/11/2026;Milwaukee;0;0;0;0;0;0;0
 Jaylen Brown;PHI;18/11/2026;Orlando;0;0;0;0;0;0;0
@@ -1048,7 +1049,7 @@ Jaylen Brown;PHI;12/11/2026;Toronto;36;18;6;2;0;2;1
 Jaylen Brown;PHI;10/11/2026;Boston;26;13;5;2;1;2;1
 Jaylen Brown;PHI;08/11/2026;Chicago;35;29;7;4;2;1;0
 Jaylen Brown;PHI;06/11/2026;Cleveland;34;20;5;5;2;1;0
-Jaylen Brown;PHI;04/11/2026;Detroit;37;30;7;1;3;1;1
+Jaylen Wells;MEM;25/11/2026;L.A. Clippers;27;19;6;1;3;1;0
 Jaylen Wells;MEM;23/11/2026;Charlotte;20;8;2;0;2;0;1
 Jaylen Wells;MEM;21/11/2026;Minnesota;25;8;1;0;0;1;0
 Jaylen Wells;MEM;19/11/2026;Golden St.;24;22;7;0;4;0;0
@@ -1058,7 +1059,6 @@ Jaylen Wells;MEM;14/11/2026;Brooklyn;25;5;2;2;1;0;0
 Jaylen Wells;MEM;13/11/2026;New Orleans;27;11;2;1;2;3;0
 Jaylen Wells;MEM;11/11/2026;Denver;31;22;2;1;5;0;0
 Jaylen Wells;MEM;09/11/2026;Toronto;26;14;4;1;4;0;0
-Jaylen Wells;MEM;06/11/2026;Oklahoma City;25;7;0;0;1;1;0
 Jayson Tatum;BOS;24/11/2026;Washington;37;41;6;8;6;1;2
 Jayson Tatum;BOS;22/11/2026;Golden St.;38;27;10;6;4;1;0
 Jayson Tatum;BOS;21/11/2026;Sacramento;0;0;0;0;0;0;0
@@ -1069,6 +1069,7 @@ Jayson Tatum;BOS;11/11/2026;Toronto;38;24;7;8;2;0;2
 Jayson Tatum;BOS;10/11/2026;Philadelphia;32;21;6;4;3;0;2
 Jayson Tatum;BOS;08/11/2026;Milwaukee;29;21;4;6;5;1;1
 Jayson Tatum;BOS;06/11/2026;Charlotte;29;34;8;9;5;1;1
+Jerami Grant;MEM;25/11/2026;L.A. Clippers;0;0;0;0;0;0;0
 Jerami Grant;MEM;23/11/2026;Charlotte;0;0;0;0;0;0;0
 Jerami Grant;MEM;21/11/2026;Minnesota;0;0;0;0;0;0;0
 Jerami Grant;MEM;19/11/2026;Golden St.;5;3;0;0;1;0;0
@@ -1078,7 +1079,6 @@ Jerami Grant;MEM;14/11/2026;Brooklyn;0;0;0;0;0;0;0
 Jerami Grant;MEM;13/11/2026;New Orleans;26;22;1;1;3;0;0
 Jerami Grant;MEM;11/11/2026;Denver;20;14;2;2;2;0;0
 Jerami Grant;MEM;09/11/2026;Toronto;22;17;3;2;3;1;1
-Jerami Grant;MEM;06/11/2026;Oklahoma City;22;10;0;2;2;0;0
 Jeremiah Fears;NOP;23/11/2026;Phoenix;40;7;7;11;0;4;0
 Jeremiah Fears;NOP;21/11/2026;San Antonio;34;29;5;4;2;2;0
 Jeremiah Fears;NOP;20/11/2026;Oklahoma City;38;22;6;5;3;0;0
@@ -1089,6 +1089,7 @@ Jeremiah Fears;NOP;13/11/2026;Memphis;34;18;5;7;0;1;2
 Jeremiah Fears;NOP;11/11/2026;Brooklyn;28;14;4;5;2;0;0
 Jeremiah Fears;NOP;09/11/2026;Golden St.;29;11;3;8;1;0;1
 Jeremiah Fears;NOP;08/11/2026;L.A. Clippers;29;25;6;5;3;2;0
+Jimmy Butler;GSW;25/11/2026;Sacramento;0;0;0;0;0;0;0
 Jimmy Butler;GSW;22/11/2026;Boston;0;0;0;0;0;0;0
 Jimmy Butler;GSW;19/11/2026;Memphis;0;0;0;0;0;0;0
 Jimmy Butler;GSW;18/11/2026;Dallas;0;0;0;0;0;0;0
@@ -1098,7 +1099,7 @@ Jimmy Butler;GSW;11/11/2026;Houston;0;0;0;0;0;0;0
 Jimmy Butler;GSW;09/11/2026;New Orleans;0;0;0;0;0;0;0
 Jimmy Butler;GSW;07/11/2026;Orlando;0;0;0;0;0;0;0
 Jimmy Butler;GSW;05/11/2026;Miami;0;0;0;0;0;0;0
-Jimmy Butler;GSW;02/11/2026;Phoenix;0;0;0;0;0;0;0
+Joel Embiid;PHI;25/11/2026;Miami;0;0;0;0;0;0;0
 Joel Embiid;PHI;23/11/2026;Portland;0;0;0;0;0;0;0
 Joel Embiid;PHI;21/11/2026;Milwaukee;34;26;17;9;0;0;1
 Joel Embiid;PHI;18/11/2026;Orlando;36;26;6;7;0;2;3
@@ -1108,7 +1109,6 @@ Joel Embiid;PHI;12/11/2026;Toronto;28;20;4;3;0;1;1
 Joel Embiid;PHI;10/11/2026;Boston;31;16;6;1;1;0;0
 Joel Embiid;PHI;08/11/2026;Chicago;29;18;10;5;0;2;0
 Joel Embiid;PHI;06/11/2026;Cleveland;25;6;7;1;0;0;2
-Joel Embiid;PHI;04/11/2026;Detroit;33;26;15;2;0;1;0
 John Collins;DET;24/11/2026;Orlando;26;12;4;0;2;0;2
 John Collins;DET;22/11/2026;Atlanta;22;18;6;0;4;1;1
 John Collins;DET;20/11/2026;Toronto;20;3;6;1;0;0;0
@@ -1119,6 +1119,7 @@ John Collins;DET;12/11/2026;Washington;25;10;4;0;2;0;1
 John Collins;DET;09/11/2026;Washington;28;24;10;3;2;2;1
 John Collins;DET;08/11/2026;L.A. Lakers;32;8;4;1;1;1;2
 John Collins;DET;04/11/2026;Philadelphia;26;16;1;0;0;0;0
+Jonathan Kuminga;MIN;25/11/2026;Oklahoma City;32;7;5;1;0;1;1
 Jonathan Kuminga;MIN;23/11/2026;Brooklyn;26;15;5;4;1;1;0
 Jonathan Kuminga;MIN;21/11/2026;Memphis;37;16;4;2;2;0;1
 Jonathan Kuminga;MIN;19/11/2026;New York;35;23;3;3;2;0;3
@@ -1128,7 +1129,7 @@ Jonathan Kuminga;MIN;14/11/2026;Chicago;35;11;3;3;0;1;0
 Jonathan Kuminga;MIN;12/11/2026;Dallas;24;14;8;5;1;2;0
 Jonathan Kuminga;MIN;08/11/2026;Utah;25;4;0;0;0;0;0
 Jonathan Kuminga;MIN;06/11/2026;New Orleans;34;17;8;4;1;1;0
-Jonathan Kuminga;MIN;04/11/2026;Houston;32;16;8;5;4;1;1
+Jordan Hawkins;CHI;25/11/2026;Charlotte;21;10;3;2;3;0;0
 Jordan Hawkins;CHI;23/11/2026;Cleveland;18;19;1;2;4;0;0
 Jordan Hawkins;CHI;22/11/2026;Denver;14;6;1;1;2;0;0
 Jordan Hawkins;CHI;20/11/2026;Washington;0;0;0;0;0;0;0
@@ -1138,7 +1139,6 @@ Jordan Hawkins;CHI;14/11/2026;Minnesota;0;0;0;0;0;0;0
 Jordan Hawkins;CHI;13/11/2026;Atlanta;0;0;0;0;0;0;0
 Jordan Hawkins;CHI;11/11/2026;San Antonio;24;7;4;2;1;2;1
 Jordan Hawkins;CHI;08/11/2026;Philadelphia;17;9;0;1;1;0;1
-Jordan Hawkins;CHI;04/11/2026;New York;7;2;1;0;0;0;0
 Jordan Poole;NOP;23/11/2026;Phoenix;27;28;0;3;6;1;0
 Jordan Poole;NOP;21/11/2026;San Antonio;31;25;3;2;3;0;0
 Jordan Poole;NOP;20/11/2026;Oklahoma City;13;6;0;1;2;0;0
@@ -1149,6 +1149,7 @@ Jordan Poole;NOP;13/11/2026;Memphis;21;13;2;5;1;0;0
 Jordan Poole;NOP;11/11/2026;Brooklyn;21;14;0;1;2;0;1
 Jordan Poole;NOP;09/11/2026;Golden St.;34;7;3;2;1;0;1
 Jordan Poole;NOP;08/11/2026;L.A. Clippers;0;0;0;0;0;0;0
+Josh Giddey;CHI;25/11/2026;Charlotte;34;12;11;7;0;0;0
 Josh Giddey;CHI;23/11/2026;Cleveland;22;4;2;11;0;1;1
 Josh Giddey;CHI;22/11/2026;Denver;41;23;14;22;2;0;1
 Josh Giddey;CHI;20/11/2026;Washington;23;2;6;7;0;0;0
@@ -1158,7 +1159,7 @@ Josh Giddey;CHI;14/11/2026;Minnesota;26;8;8;5;2;0;1
 Josh Giddey;CHI;13/11/2026;Atlanta;39;15;10;14;3;0;3
 Josh Giddey;CHI;11/11/2026;San Antonio;25;9;2;7;1;0;0
 Josh Giddey;CHI;08/11/2026;Philadelphia;34;19;7;15;1;1;0
-Josh Giddey;CHI;04/11/2026;New York;27;10;1;6;1;0;0
+Josh Hart;NYK;25/11/2026;Cleveland;36;15;7;11;1;3;1
 Josh Hart;NYK;22/11/2026;Indiana;39;10;11;10;0;1;0
 Josh Hart;NYK;21/11/2026;Portland;35;0;8;6;0;2;0
 Josh Hart;NYK;19/11/2026;Minnesota;28;11;6;2;3;0;0
@@ -1168,7 +1169,7 @@ Josh Hart;NYK;13/11/2026;Indiana;23;0;5;4;0;0;0
 Josh Hart;NYK;11/11/2026;Cleveland;26;6;4;3;0;0;0
 Josh Hart;NYK;10/11/2026;Milwaukee;0;0;0;0;0;0;0
 Josh Hart;NYK;07/11/2026;Cleveland;0;0;0;0;0;0;0
-Josh Hart;NYK;04/11/2026;Chicago;0;0;0;0;0;0;0
+Jrue Holiday;POR;25/11/2026;San Antonio;32;11;6;7;3;0;0
 Jrue Holiday;POR;23/11/2026;Philadelphia;28;18;2;5;4;2;0
 Jrue Holiday;POR;21/11/2026;New York;31;13;9;7;1;2;0
 Jrue Holiday;POR;19/11/2026;Milwaukee;31;22;2;7;2;4;0
@@ -1178,7 +1179,7 @@ Jrue Holiday;POR;13/11/2026;Sacramento;27;6;5;5;0;1;0
 Jrue Holiday;POR;11/11/2026;Oklahoma City;30;19;3;5;5;2;0
 Jrue Holiday;POR;10/11/2026;Oklahoma City;25;11;1;2;2;0;0
 Jrue Holiday;POR;07/11/2026;San Antonio;20;11;0;0;1;1;0
-Jrue Holiday;POR;06/11/2026;L.A. Lakers;31;12;1;7;3;0;0
+Julian Champagnie;SAS;25/11/2026;Portland;37;11;4;1;1;1;1
 Julian Champagnie;SAS;23/11/2026;Sacramento;30;22;7;3;6;0;1
 Julian Champagnie;SAS;21/11/2026;New Orleans;25;9;3;3;3;0;1
 Julian Champagnie;SAS;19/11/2026;L.A. Clippers;29;20;4;1;4;0;0
@@ -1188,7 +1189,7 @@ Julian Champagnie;SAS;13/11/2026;Golden St.;23;7;8;3;1;0;1
 Julian Champagnie;SAS;11/11/2026;Chicago;35;12;0;2;3;2;1
 Julian Champagnie;SAS;09/11/2026;Phoenix;27;11;3;2;3;2;0
 Julian Champagnie;SAS;07/11/2026;Portland;21;14;4;0;4;0;0
-Julian Champagnie;SAS;06/11/2026;Sacramento;22;8;7;2;2;0;0
+Julius Randle;BRK;25/11/2026;Milwaukee;39;28;9;3;2;0;0
 Julius Randle;BRK;23/11/2026;Minnesota;35;29;4;4;2;0;0
 Julius Randle;BRK;20/11/2026;Orlando;39;27;9;6;1;3;0
 Julius Randle;BRK;18/11/2026;Chicago;27;17;0;4;3;1;0
@@ -1198,7 +1199,6 @@ Julius Randle;BRK;11/11/2026;New Orleans;29;17;4;5;0;0;0
 Julius Randle;BRK;08/11/2026;Dallas;30;13;4;4;0;0;1
 Julius Randle;BRK;07/11/2026;Atlanta;34;19;6;8;1;1;0
 Julius Randle;BRK;04/11/2026;Charlotte;31;22;3;4;2;1;0
-Julius Randle;BRK;02/11/2026;New York;36;21;11;2;0;1;0
 Justin Champagnie;WAS;24/11/2026;Boston;0;0;0;0;0;0;0
 Justin Champagnie;WAS;22/11/2026;Orlando;0;0;0;0;0;0;0
 Justin Champagnie;WAS;20/11/2026;Chicago;0;0;0;0;0;0;0
@@ -1209,6 +1209,7 @@ Justin Champagnie;WAS;12/11/2026;Detroit;0;0;0;0;0;0;0
 Justin Champagnie;WAS;11/11/2026;Indiana;0;0;0;0;0;0;0
 Justin Champagnie;WAS;09/11/2026;Detroit;0;0;0;0;0;0;0
 Justin Champagnie;WAS;07/11/2026;Oklahoma City;0;0;0;0;0;0;0
+Karl-Anthony Towns;NYK;25/11/2026;Cleveland;33;12;10;7;1;1;3
 Karl-Anthony Towns;NYK;22/11/2026;Indiana;29;30;13;5;4;3;2
 Karl-Anthony Towns;NYK;21/11/2026;Portland;0;0;0;0;0;0;0
 Karl-Anthony Towns;NYK;19/11/2026;Minnesota;33;22;12;4;2;0;3
@@ -1218,7 +1219,6 @@ Karl-Anthony Towns;NYK;13/11/2026;Indiana;34;23;15;5;3;3;0
 Karl-Anthony Towns;NYK;11/11/2026;Cleveland;34;21;11;8;2;0;1
 Karl-Anthony Towns;NYK;10/11/2026;Milwaukee;27;21;16;3;2;2;1
 Karl-Anthony Towns;NYK;07/11/2026;Cleveland;34;29;13;3;2;2;0
-Karl-Anthony Towns;NYK;04/11/2026;Chicago;25;17;12;1;2;1;0
 Kawhi Leonard;TOR;23/11/2026;Milwaukee;0;0;0;0;0;0;0
 Kawhi Leonard;TOR;20/11/2026;Detroit;0;0;0;0;0;0;0
 Kawhi Leonard;TOR;18/11/2026;Washington;0;0;0;0;0;0;0
@@ -1229,6 +1229,7 @@ Kawhi Leonard;TOR;11/11/2026;Boston;0;0;0;0;0;0;0
 Kawhi Leonard;TOR;09/11/2026;Memphis;0;0;0;0;0;0;0
 Kawhi Leonard;TOR;06/11/2026;Milwaukee;0;0;0;0;0;0;0
 Kawhi Leonard;TOR;04/11/2026;Denver;0;0;0;0;0;0;0
+Keaton Wagler;LAC;25/11/2026;Memphis;21;12;2;0;0;0;0
 Keaton Wagler;LAC;23/11/2026;Houston;17;2;1;2;0;1;0
 Keaton Wagler;LAC;21/11/2026;Dallas;19;7;7;3;1;1;0
 Keaton Wagler;LAC;19/11/2026;San Antonio;17;7;5;2;1;1;0
@@ -1238,7 +1239,7 @@ Keaton Wagler;LAC;13/11/2026;Oklahoma City;18;14;2;1;2;0;0
 Keaton Wagler;LAC;10/11/2026;Phoenix;23;11;0;4;1;2;0
 Keaton Wagler;LAC;08/11/2026;New Orleans;18;15;2;4;3;1;0
 Keaton Wagler;LAC;04/11/2026;Miami;16;11;2;1;3;0;0
-Keaton Wagler;LAC;02/11/2026;Toronto;24;6;4;4;0;0;1
+Keegan Murray;SAC;25/11/2026;Golden St.;42;18;4;2;2;1;0
 Keegan Murray;SAC;23/11/2026;San Antonio;39;14;2;1;2;0;1
 Keegan Murray;SAC;21/11/2026;Boston;40;15;12;0;0;1;0
 Keegan Murray;SAC;20/11/2026;L.A. Lakers;40;13;7;4;2;1;0
@@ -1248,7 +1249,6 @@ Keegan Murray;SAC;13/11/2026;Portland;40;16;7;4;2;2;0
 Keegan Murray;SAC;10/11/2026;Orlando;24;11;2;1;2;0;4
 Keegan Murray;SAC;08/11/2026;Miami;23;10;1;2;0;2;1
 Keegan Murray;SAC;06/11/2026;San Antonio;0;0;0;0;0;0;0
-Keegan Murray;SAC;04/11/2026;L.A. Lakers;0;0;0;0;0;0;0
 Kelly Oubre Jr.;IND;23/11/2026;Oklahoma City;28;20;4;2;4;1;2
 Kelly Oubre Jr.;IND;22/11/2026;New York;27;15;5;0;0;0;0
 Kelly Oubre Jr.;IND;20/11/2026;Cleveland;23;17;6;0;3;0;2
@@ -1259,6 +1259,7 @@ Kelly Oubre Jr.;IND;11/11/2026;Washington;34;14;6;1;0;4;1
 Kelly Oubre Jr.;IND;09/11/2026;Dallas;23;14;2;2;1;0;0
 Kelly Oubre Jr.;IND;07/11/2026;Denver;16;2;1;0;0;0;2
 Kelly Oubre Jr.;IND;04/11/2026;Memphis;0;0;0;0;0;0;0
+Keon Ellis;BRK;25/11/2026;Milwaukee;23;7;2;3;1;2;0
 Keon Ellis;BRK;23/11/2026;Minnesota;16;6;0;0;2;0;0
 Keon Ellis;BRK;20/11/2026;Orlando;8;0;1;1;0;0;1
 Keon Ellis;BRK;18/11/2026;Chicago;6;3;1;0;1;0;0
@@ -1268,7 +1269,7 @@ Keon Ellis;BRK;11/11/2026;New Orleans;26;11;4;3;2;1;0
 Keon Ellis;BRK;08/11/2026;Dallas;22;3;1;4;1;1;0
 Keon Ellis;BRK;07/11/2026;Atlanta;0;0;0;0;0;0;0
 Keon Ellis;BRK;04/11/2026;Charlotte;10;1;2;0;0;1;0
-Keon Ellis;BRK;02/11/2026;New York;25;5;1;0;1;1;3
+Kevin Durant;HOU;25/11/2026;Phoenix;33;20;10;2;1;1;0
 Kevin Durant;HOU;23/11/2026;L.A. Clippers;33;32;9;4;4;0;1
 Kevin Durant;HOU;20/11/2026;Denver;35;16;4;4;0;0;0
 Kevin Durant;HOU;18/11/2026;Indiana;32;21;2;3;4;0;0
@@ -1278,7 +1279,6 @@ Kevin Durant;HOU;13/11/2026;Utah;33;22;3;6;2;0;0
 Kevin Durant;HOU;11/11/2026;Golden St.;34;20;4;5;1;0;0
 Kevin Durant;HOU;09/11/2026;Denver;36;23;12;8;1;0;1
 Kevin Durant;HOU;07/11/2026;Phoenix;38;21;10;3;1;1;0
-Kevin Durant;HOU;04/11/2026;Minnesota;35;21;5;2;2;1;1
 Keyonte George;UTA;23/11/2026;L.A. Lakers;33;14;4;2;2;2;0
 Keyonte George;UTA;22/11/2026;Dallas;26;15;5;7;2;0;0
 Keyonte George;UTA;20/11/2026;Phoenix;36;14;2;6;0;1;0
@@ -1299,6 +1299,7 @@ Khris Middleton;WAS;12/11/2026;Detroit;0;0;0;0;0;0;0
 Khris Middleton;WAS;11/11/2026;Indiana;0;0;0;0;0;0;0
 Khris Middleton;WAS;09/11/2026;Detroit;0;0;0;0;0;0;0
 Khris Middleton;WAS;07/11/2026;Oklahoma City;0;0;0;0;0;0;0
+Klay Thompson;MIA;25/11/2026;Philadelphia;31;7;0;1;1;1;1
 Klay Thompson;MIA;22/11/2026;Oklahoma City;23;9;6;4;3;1;1
 Klay Thompson;MIA;18/11/2026;Milwaukee;23;13;1;1;4;0;1
 Klay Thompson;MIA;16/11/2026;Houston;22;17;0;2;5;0;1
@@ -1308,7 +1309,7 @@ Klay Thompson;MIA;10/11/2026;Utah;30;11;1;2;2;1;2
 Klay Thompson;MIA;08/11/2026;Sacramento;32;23;2;4;7;0;2
 Klay Thompson;MIA;05/11/2026;Golden St.;23;11;0;3;2;0;2
 Klay Thompson;MIA;04/11/2026;L.A. Clippers;35;30;5;3;8;0;1
-Klay Thompson;MIA;02/11/2026;L.A. Lakers;27;19;1;1;4;0;0
+Kyle Kuzma;MIL;25/11/2026;Brooklyn;31;13;3;2;3;0;0
 Kyle Kuzma;MIL;23/11/2026;Toronto;32;18;5;3;2;0;0
 Kyle Kuzma;MIL;21/11/2026;Philadelphia;33;12;5;1;2;0;0
 Kyle Kuzma;MIL;19/11/2026;Portland;0;0;0;0;0;0;0
@@ -1318,7 +1319,6 @@ Kyle Kuzma;MIL;13/11/2026;Orlando;31;14;4;2;1;2;1
 Kyle Kuzma;MIL;11/11/2026;L.A. Lakers;24;9;1;1;1;2;1
 Kyle Kuzma;MIL;10/11/2026;New York;26;5;5;3;1;0;1
 Kyle Kuzma;MIL;08/11/2026;Boston;31;27;4;0;6;1;1
-Kyle Kuzma;MIL;06/11/2026;Toronto;32;13;4;3;1;2;0
 Kyrie Irving;DAL;24/11/2026;Denver;34;11;5;6;1;1;1
 Kyrie Irving;DAL;22/11/2026;Utah;27;16;1;8;4;1;0
 Kyrie Irving;DAL;21/11/2026;L.A. Clippers;35;25;6;4;3;0;0
@@ -1339,6 +1339,7 @@ Kyshawn George;WAS;12/11/2026;Detroit;26;14;1;5;3;0;1
 Kyshawn George;WAS;11/11/2026;Indiana;39;25;9;3;5;0;0
 Kyshawn George;WAS;09/11/2026;Detroit;35;12;3;2;2;1;1
 Kyshawn George;WAS;07/11/2026;Oklahoma City;30;14;7;6;2;0;3
+LaMelo Ball;MIN;25/11/2026;Oklahoma City;29;19;7;8;5;1;0
 LaMelo Ball;MIN;23/11/2026;Brooklyn;30;17;2;3;2;1;1
 LaMelo Ball;MIN;21/11/2026;Memphis;32;12;5;7;1;1;1
 LaMelo Ball;MIN;19/11/2026;New York;35;15;8;8;3;0;0
@@ -1348,7 +1349,6 @@ LaMelo Ball;MIN;14/11/2026;Chicago;30;19;8;6;4;4;0
 LaMelo Ball;MIN;12/11/2026;Dallas;25;22;3;9;6;2;0
 LaMelo Ball;MIN;08/11/2026;Utah;30;24;3;5;4;2;0
 LaMelo Ball;MIN;06/11/2026;New Orleans;35;22;2;8;3;0;0
-LaMelo Ball;MIN;04/11/2026;Houston;31;20;2;6;4;3;1
 Lauri Markkanen;UTA;23/11/2026;L.A. Lakers;0;0;0;0;0;0;0
 Lauri Markkanen;UTA;22/11/2026;Dallas;0;0;0;0;0;0;0
 Lauri Markkanen;UTA;20/11/2026;Phoenix;0;0;0;0;0;0;0
@@ -1359,6 +1359,7 @@ Lauri Markkanen;UTA;13/11/2026;Houston;0;0;0;0;0;0;0
 Lauri Markkanen;UTA;11/11/2026;Orlando;0;0;0;0;0;0;0
 Lauri Markkanen;UTA;10/11/2026;Miami;0;0;0;0;0;0;0
 Lauri Markkanen;UTA;08/11/2026;Minnesota;0;0;0;0;0;0;0
+LeBron James;PHI;25/11/2026;Miami;35;25;10;12;4;1;0
 LeBron James;PHI;23/11/2026;Portland;30;23;6;3;4;0;0
 LeBron James;PHI;21/11/2026;Milwaukee;35;21;6;6;0;3;1
 LeBron James;PHI;18/11/2026;Orlando;31;22;3;6;1;0;0
@@ -1368,7 +1369,6 @@ LeBron James;PHI;12/11/2026;Toronto;0;0;0;0;0;0;0
 LeBron James;PHI;10/11/2026;Boston;29;11;8;5;1;0;0
 LeBron James;PHI;08/11/2026;Chicago;33;22;5;5;2;1;0
 LeBron James;PHI;06/11/2026;Cleveland;32;8;7;3;0;2;1
-LeBron James;PHI;04/11/2026;Detroit;33;13;10;8;1;1;1
 Lu Dort;ATL;22/11/2026;Detroit;31;16;7;1;2;3;0
 Lu Dort;ATL;20/11/2026;Charlotte;23;2;1;0;0;0;1
 Lu Dort;ATL;18/11/2026;Oklahoma City;31;16;3;0;3;2;0
@@ -1389,6 +1389,7 @@ Luka Doncic;LAL;09/11/2026;Atlanta;39;32;8;10;3;5;2
 Luka Doncic;LAL;08/11/2026;Detroit;0;0;0;0;0;0;0
 Luka Doncic;LAL;06/11/2026;Portland;38;53;5;5;5;1;0
 Luka Doncic;LAL;04/11/2026;Sacramento;35;40;9;7;6;1;1
+Malik Monk;SAC;25/11/2026;Golden St.;13;5;0;4;0;1;0
 Malik Monk;SAC;23/11/2026;San Antonio;16;15;3;4;4;1;0
 Malik Monk;SAC;21/11/2026;Boston;10;3;0;1;0;0;1
 Malik Monk;SAC;20/11/2026;L.A. Lakers;12;2;0;3;0;0;1
@@ -1398,7 +1399,7 @@ Malik Monk;SAC;13/11/2026;Portland;18;7;4;3;0;1;0
 Malik Monk;SAC;10/11/2026;Orlando;2;1;0;0;0;0;0
 Malik Monk;SAC;08/11/2026;Miami;21;9;2;3;0;1;0
 Malik Monk;SAC;06/11/2026;San Antonio;18;12;0;7;2;0;0
-Malik Monk;SAC;04/11/2026;L.A. Lakers;24;13;2;3;3;0;0
+Matas Buzelis;CHI;25/11/2026;Charlotte;34;24;5;0;0;0;0
 Matas Buzelis;CHI;23/11/2026;Cleveland;27;15;6;0;4;1;0
 Matas Buzelis;CHI;22/11/2026;Denver;38;21;5;3;4;0;2
 Matas Buzelis;CHI;20/11/2026;Washington;25;9;5;1;1;1;0
@@ -1408,7 +1409,7 @@ Matas Buzelis;CHI;14/11/2026;Minnesota;30;18;9;2;2;0;0
 Matas Buzelis;CHI;13/11/2026;Atlanta;29;11;6;2;3;1;3
 Matas Buzelis;CHI;11/11/2026;San Antonio;31;13;3;2;3;0;0
 Matas Buzelis;CHI;08/11/2026;Philadelphia;31;19;5;2;3;0;1
-Matas Buzelis;CHI;04/11/2026;New York;26;12;5;3;1;1;0
+Meleek Thomas;CLE;25/11/2026;New York;16;8;3;1;2;0;0
 Meleek Thomas;CLE;23/11/2026;Chicago;21;13;3;2;1;1;0
 Meleek Thomas;CLE;20/11/2026;Indiana;20;4;1;4;0;4;0
 Meleek Thomas;CLE;18/11/2026;Memphis;22;14;2;2;4;1;0
@@ -1418,7 +1419,7 @@ Meleek Thomas;CLE;13/11/2026;Miami;18;12;0;3;2;1;0
 Meleek Thomas;CLE;11/11/2026;New York;22;14;4;1;2;2;0
 Meleek Thomas;CLE;09/11/2026;Charlotte;27;18;3;3;4;2;2
 Meleek Thomas;CLE;07/11/2026;New York;24;9;4;0;3;0;0
-Meleek Thomas;CLE;06/11/2026;Philadelphia;27;12;1;3;2;2;0
+Michael Porter Jr.;BRK;25/11/2026;Milwaukee;34;12;11;4;2;1;0
 Michael Porter Jr.;BRK;23/11/2026;Minnesota;31;11;6;2;0;1;0
 Michael Porter Jr.;BRK;20/11/2026;Orlando;34;16;4;5;3;2;0
 Michael Porter Jr.;BRK;18/11/2026;Chicago;27;5;3;1;1;1;0
@@ -1428,7 +1429,7 @@ Michael Porter Jr.;BRK;11/11/2026;New Orleans;28;22;6;3;4;1;0
 Michael Porter Jr.;BRK;08/11/2026;Dallas;29;19;9;0;4;1;0
 Michael Porter Jr.;BRK;07/11/2026;Atlanta;36;25;9;1;3;1;0
 Michael Porter Jr.;BRK;04/11/2026;Charlotte;38;26;10;0;4;0;0
-Michael Porter Jr.;BRK;02/11/2026;New York;37;18;5;2;4;1;1
+Mikal Bridges;NYK;25/11/2026;Cleveland;37;19;8;2;1;0;1
 Mikal Bridges;NYK;22/11/2026;Indiana;31;8;3;1;2;1;0
 Mikal Bridges;NYK;21/11/2026;Portland;28;12;2;3;2;1;0
 Mikal Bridges;NYK;19/11/2026;Minnesota;31;8;3;3;2;2;1
@@ -1438,7 +1439,7 @@ Mikal Bridges;NYK;13/11/2026;Indiana;29;18;3;3;2;2;0
 Mikal Bridges;NYK;11/11/2026;Cleveland;17;2;1;2;0;0;0
 Mikal Bridges;NYK;10/11/2026;Milwaukee;17;4;5;1;0;3;1
 Mikal Bridges;NYK;07/11/2026;Cleveland;31;9;6;4;1;0;2
-Mikal Bridges;NYK;04/11/2026;Chicago;22;7;4;4;1;1;0
+Mikel Brown Jr.;BRK;25/11/2026;Milwaukee;23;6;2;2;0;1;0
 Mikel Brown Jr.;BRK;23/11/2026;Minnesota;29;17;5;7;4;1;0
 Mikel Brown Jr.;BRK;20/11/2026;Orlando;24;18;1;0;3;0;0
 Mikel Brown Jr.;BRK;18/11/2026;Chicago;27;15;1;4;2;0;0
@@ -1448,7 +1449,7 @@ Mikel Brown Jr.;BRK;11/11/2026;New Orleans;0;0;0;0;0;0;0
 Mikel Brown Jr.;BRK;08/11/2026;Dallas;0;0;0;0;0;0;0
 Mikel Brown Jr.;BRK;07/11/2026;Atlanta;25;18;1;3;3;1;0
 Mikel Brown Jr.;BRK;04/11/2026;Charlotte;20;18;2;4;3;1;1
-Mikel Brown Jr.;BRK;02/11/2026;New York;27;13;2;3;1;0;0
+Miles Bridges;PHO;25/11/2026;Houston;25;2;8;4;0;0;0
 Miles Bridges;PHO;23/11/2026;New Orleans;35;14;11;5;2;3;0
 Miles Bridges;PHO;20/11/2026;Utah;25;18;9;4;1;1;1
 Miles Bridges;PHO;18/11/2026;Sacramento;29;13;6;5;1;1;1
@@ -1458,7 +1459,6 @@ Miles Bridges;PHO;12/11/2026;Charlotte;25;11;6;3;0;1;0
 Miles Bridges;PHO;10/11/2026;L.A. Clippers;18;8;4;2;2;0;0
 Miles Bridges;PHO;09/11/2026;San Antonio;26;7;5;0;0;0;2
 Miles Bridges;PHO;07/11/2026;Houston;31;13;10;7;1;0;1
-Miles Bridges;PHO;05/11/2026;Orlando;31;18;13;5;3;2;0
 Mitchell Robinson;BOS;24/11/2026;Washington;0;0;0;0;0;0;0
 Mitchell Robinson;BOS;22/11/2026;Golden St.;0;0;0;0;0;0;0
 Mitchell Robinson;BOS;21/11/2026;Sacramento;0;0;0;0;0;0;0
@@ -1469,6 +1469,7 @@ Mitchell Robinson;BOS;11/11/2026;Toronto;11;2;2;0;0;0;0
 Mitchell Robinson;BOS;10/11/2026;Philadelphia;17;2;6;2;0;1;1
 Mitchell Robinson;BOS;08/11/2026;Milwaukee;18;12;7;2;0;5;1
 Mitchell Robinson;BOS;06/11/2026;Charlotte;15;6;7;0;0;0;1
+Moritz Wagner;BRK;25/11/2026;Milwaukee;4;2;0;0;0;0;0
 Moritz Wagner;BRK;23/11/2026;Minnesota;14;11;0;1;2;2;0
 Moritz Wagner;BRK;20/11/2026;Orlando;22;3;5;2;1;2;0
 Moritz Wagner;BRK;18/11/2026;Chicago;20;11;2;3;2;1;0
@@ -1478,7 +1479,7 @@ Moritz Wagner;BRK;11/11/2026;New Orleans;19;16;3;4;2;0;0
 Moritz Wagner;BRK;08/11/2026;Dallas;16;12;3;1;1;0;0
 Moritz Wagner;BRK;07/11/2026;Atlanta;16;9;2;0;1;2;0
 Moritz Wagner;BRK;04/11/2026;Charlotte;20;6;1;0;0;0;0
-Moritz Wagner;BRK;02/11/2026;New York;20;6;1;2;1;1;0
+Moussa Diabate;CHO;25/11/2026;Chicago;38;14;14;2;0;1;0
 Moussa Diabate;CHO;23/11/2026;Memphis;35;10;10;3;0;2;2
 Moussa Diabate;CHO;20/11/2026;Atlanta;30;21;15;2;0;1;0
 Moussa Diabate;CHO;17/11/2026;L.A. Lakers;38;5;16;2;0;0;1
@@ -1488,7 +1489,7 @@ Moussa Diabate;CHO;09/11/2026;Cleveland;0;0;0;0;0;0;0
 Moussa Diabate;CHO;06/11/2026;Boston;0;0;0;0;0;0;0
 Moussa Diabate;CHO;04/11/2026;Brooklyn;29;7;6;2;0;0;0
 Moussa Diabate;CHO;02/11/2026;Detroit;24;7;9;2;0;3;1
-Moussa Diabate;CHO;31/10/2026;Philadelphia;28;10;8;3;0;0;2
+Myles Turner;MIL;25/11/2026;Brooklyn;26;3;6;2;1;1;3
 Myles Turner;MIL;23/11/2026;Toronto;28;27;11;1;5;0;2
 Myles Turner;MIL;21/11/2026;Philadelphia;26;5;6;5;1;1;4
 Myles Turner;MIL;19/11/2026;Portland;0;0;0;0;0;0;0
@@ -1498,7 +1499,6 @@ Myles Turner;MIL;13/11/2026;Orlando;31;14;11;3;4;2;0
 Myles Turner;MIL;11/11/2026;L.A. Lakers;0;0;0;0;0;0;0
 Myles Turner;MIL;10/11/2026;New York;27;3;3;2;1;0;1
 Myles Turner;MIL;08/11/2026;Boston;24;3;6;7;0;0;1
-Myles Turner;MIL;06/11/2026;Toronto;24;0;7;0;0;1;2
 Naji Marshall;DAL;24/11/2026;Denver;22;14;1;2;1;1;0
 Naji Marshall;DAL;22/11/2026;Utah;25;6;0;4;1;5;0
 Naji Marshall;DAL;21/11/2026;L.A. Clippers;14;4;3;1;0;1;0
@@ -1509,6 +1509,7 @@ Naji Marshall;DAL;12/11/2026;Minnesota;23;13;1;4;1;2;0
 Naji Marshall;DAL;09/11/2026;Indiana;25;6;5;2;0;1;0
 Naji Marshall;DAL;08/11/2026;Brooklyn;15;8;1;2;1;1;0
 Naji Marshall;DAL;06/11/2026;Utah;25;7;1;5;0;1;1
+Naz Reid;CHO;25/11/2026;Chicago;35;18;8;2;2;0;2
 Naz Reid;CHO;23/11/2026;Memphis;38;24;6;3;3;2;0
 Naz Reid;CHO;20/11/2026;Atlanta;39;12;10;3;2;0;0
 Naz Reid;CHO;17/11/2026;L.A. Lakers;42;23;11;4;4;2;2
@@ -1518,7 +1519,6 @@ Naz Reid;CHO;09/11/2026;Cleveland;32;25;13;4;4;2;0
 Naz Reid;CHO;06/11/2026;Boston;26;14;6;2;2;1;0
 Naz Reid;CHO;04/11/2026;Brooklyn;36;28;9;2;2;0;1
 Naz Reid;CHO;02/11/2026;Detroit;27;13;6;2;2;0;0
-Naz Reid;CHO;31/10/2026;Philadelphia;36;14;5;2;0;0;1
 Nickeil Alexander-Walker;ATL;22/11/2026;Detroit;28;27;2;1;6;0;0
 Nickeil Alexander-Walker;ATL;20/11/2026;Charlotte;32;17;4;3;2;0;0
 Nickeil Alexander-Walker;ATL;18/11/2026;Oklahoma City;32;19;4;7;3;1;0
@@ -1549,6 +1549,7 @@ Nikola Vucevic;ORL;11/11/2026;Utah;14;3;5;1;0;0;0
 Nikola Vucevic;ORL;10/11/2026;Sacramento;18;5;4;1;1;0;0
 Nikola Vucevic;ORL;07/11/2026;Golden St.;6;0;1;2;0;0;0
 Nikola Vucevic;ORL;05/11/2026;Phoenix;4;0;0;0;0;0;0
+Nolan Traore;BRK;25/11/2026;Milwaukee;0;0;0;0;0;0;0
 Nolan Traore;BRK;23/11/2026;Minnesota;0;0;0;0;0;0;0
 Nolan Traore;BRK;20/11/2026;Orlando;18;4;0;2;0;0;0
 Nolan Traore;BRK;18/11/2026;Chicago;23;13;1;4;1;0;0
@@ -1558,7 +1559,7 @@ Nolan Traore;BRK;11/11/2026;New Orleans;0;0;0;0;0;0;0
 Nolan Traore;BRK;08/11/2026;Dallas;21;14;1;2;2;0;0
 Nolan Traore;BRK;07/11/2026;Atlanta;23;19;1;2;2;5;0
 Nolan Traore;BRK;04/11/2026;Charlotte;27;16;4;2;2;3;0
-Nolan Traore;BRK;02/11/2026;New York;24;17;3;4;5;1;1
+Norman Powell;CHI;25/11/2026;Charlotte;0;0;0;0;0;0;0
 Norman Powell;CHI;23/11/2026;Cleveland;0;0;0;0;0;0;0
 Norman Powell;CHI;22/11/2026;Denver;0;0;0;0;0;0;0
 Norman Powell;CHI;20/11/2026;Washington;33;16;3;2;1;1;0
@@ -1568,7 +1569,6 @@ Norman Powell;CHI;14/11/2026;Minnesota;30;24;5;3;3;1;2
 Norman Powell;CHI;13/11/2026;Atlanta;31;33;5;2;4;1;0
 Norman Powell;CHI;11/11/2026;San Antonio;0;0;0;0;0;0;0
 Norman Powell;CHI;08/11/2026;Philadelphia;0;0;0;0;0;0;0
-Norman Powell;CHI;04/11/2026;New York;22;12;1;1;0;0;0
 Obi Toppin;IND;23/11/2026;Oklahoma City;24;17;6;4;2;0;0
 Obi Toppin;IND;22/11/2026;New York;22;9;5;1;0;0;0
 Obi Toppin;IND;20/11/2026;Cleveland;26;17;3;2;2;0;0
@@ -1579,6 +1579,7 @@ Obi Toppin;IND;11/11/2026;Washington;16;8;3;1;2;0;0
 Obi Toppin;IND;09/11/2026;Dallas;19;10;2;4;0;0;0
 Obi Toppin;IND;07/11/2026;Denver;22;10;7;2;2;0;0
 Obi Toppin;IND;04/11/2026;Memphis;19;11;5;1;1;0;0
+OG Anunoby;NYK;25/11/2026;Cleveland;0;0;0;0;0;0;0
 OG Anunoby;NYK;22/11/2026;Indiana;0;0;0;0;0;0;0
 OG Anunoby;NYK;21/11/2026;Portland;0;0;0;0;0;0;0
 OG Anunoby;NYK;19/11/2026;Minnesota;36;15;7;2;1;1;2
@@ -1588,7 +1589,6 @@ OG Anunoby;NYK;13/11/2026;Indiana;33;11;2;1;2;1;1
 OG Anunoby;NYK;11/11/2026;Cleveland;34;14;6;2;2;2;1
 OG Anunoby;NYK;10/11/2026;Milwaukee;29;19;3;2;5;0;0
 OG Anunoby;NYK;07/11/2026;Cleveland;34;15;6;2;3;1;1
-OG Anunoby;NYK;04/11/2026;Chicago;24;18;5;2;1;3;0
 Onyeka Okongwu;ATL;22/11/2026;Detroit;29;6;9;2;1;0;1
 Onyeka Okongwu;ATL;20/11/2026;Charlotte;34;16;7;1;2;1;0
 Onyeka Okongwu;ATL;18/11/2026;Oklahoma City;36;28;9;2;5;0;1
@@ -1649,6 +1649,7 @@ Payton Pritchard;BOS;11/11/2026;Toronto;31;14;1;1;2;0;0
 Payton Pritchard;BOS;10/11/2026;Philadelphia;30;18;6;5;4;1;0
 Payton Pritchard;BOS;08/11/2026;Milwaukee;29;12;5;4;4;0;0
 Payton Pritchard;BOS;06/11/2026;Charlotte;23;12;6;5;4;1;0
+Pelle Larsson;MIA;25/11/2026;Philadelphia;28;8;4;1;1;0;0
 Pelle Larsson;MIA;22/11/2026;Oklahoma City;30;21;3;5;3;3;0
 Pelle Larsson;MIA;18/11/2026;Milwaukee;15;4;2;2;1;1;0
 Pelle Larsson;MIA;16/11/2026;Houston;0;0;0;0;0;0;0
@@ -1658,7 +1659,7 @@ Pelle Larsson;MIA;10/11/2026;Utah;31;14;7;2;2;1;0
 Pelle Larsson;MIA;08/11/2026;Sacramento;22;11;3;3;3;1;0
 Pelle Larsson;MIA;05/11/2026;Golden St.;29;13;1;4;3;3;0
 Pelle Larsson;MIA;04/11/2026;L.A. Clippers;35;7;3;4;0;1;0
-Pelle Larsson;MIA;02/11/2026;L.A. Lakers;30;9;3;2;1;1;0
+Peyton Watson;CLE;25/11/2026;New York;27;8;5;2;2;2;2
 Peyton Watson;CLE;23/11/2026;Chicago;29;8;10;3;1;0;6
 Peyton Watson;CLE;20/11/2026;Indiana;29;15;4;3;3;2;1
 Peyton Watson;CLE;18/11/2026;Memphis;0;0;0;0;0;0;0
@@ -1668,7 +1669,6 @@ Peyton Watson;CLE;13/11/2026;Miami;30;4;4;2;0;0;0
 Peyton Watson;CLE;11/11/2026;New York;30;7;5;4;2;0;4
 Peyton Watson;CLE;09/11/2026;Charlotte;21;13;2;1;2;0;0
 Peyton Watson;CLE;07/11/2026;New York;29;12;6;3;1;1;2
-Peyton Watson;CLE;06/11/2026;Philadelphia;28;13;9;2;1;0;0
 PJ Washington;DAL;24/11/2026;Denver;25;14;6;0;1;2;1
 PJ Washington;DAL;22/11/2026;Utah;0;0;0;0;0;0;0
 PJ Washington;DAL;21/11/2026;L.A. Clippers;0;0;0;0;0;0;0
@@ -1679,6 +1679,7 @@ PJ Washington;DAL;12/11/2026;Minnesota;16;10;3;0;1;0;0
 PJ Washington;DAL;09/11/2026;Indiana;35;13;9;1;2;2;2
 PJ Washington;DAL;08/11/2026;Brooklyn;25;6;5;0;2;1;1
 PJ Washington;DAL;06/11/2026;Utah;33;26;6;1;6;1;1
+Precious Achiuwa;SAC;25/11/2026;Golden St.;17;11;4;2;1;1;0
 Precious Achiuwa;SAC;23/11/2026;San Antonio;10;9;3;0;0;1;0
 Precious Achiuwa;SAC;21/11/2026;Boston;22;5;7;1;0;0;1
 Precious Achiuwa;SAC;20/11/2026;L.A. Lakers;0;0;0;0;0;0;0
@@ -1688,7 +1689,6 @@ Precious Achiuwa;SAC;13/11/2026;Portland;0;0;0;0;0;0;0
 Precious Achiuwa;SAC;10/11/2026;Orlando;14;10;3;0;1;1;0
 Precious Achiuwa;SAC;08/11/2026;Miami;36;7;14;2;0;0;1
 Precious Achiuwa;SAC;06/11/2026;San Antonio;22;9;4;0;1;0;2
-Precious Achiuwa;SAC;04/11/2026;L.A. Lakers;17;7;3;1;1;0;2
 Quentin Grimes;LAL;23/11/2026;Utah;30;9;3;8;1;0;1
 Quentin Grimes;LAL;20/11/2026;Sacramento;35;13;5;7;1;0;0
 Quentin Grimes;LAL;18/11/2026;Utah;35;20;7;4;4;0;0
@@ -1699,6 +1699,7 @@ Quentin Grimes;LAL;09/11/2026;Atlanta;0;0;0;0;0;0;0
 Quentin Grimes;LAL;08/11/2026;Detroit;32;12;1;4;2;1;1
 Quentin Grimes;LAL;06/11/2026;Portland;20;2;0;0;0;2;0
 Quentin Grimes;LAL;04/11/2026;Sacramento;25;6;1;1;0;1;0
+Reed Sheppard;HOU;25/11/2026;Phoenix;15;7;1;1;1;0;0
 Reed Sheppard;HOU;23/11/2026;L.A. Clippers;17;5;3;5;1;0;1
 Reed Sheppard;HOU;20/11/2026;Denver;14;0;2;0;0;1;0
 Reed Sheppard;HOU;18/11/2026;Indiana;25;20;4;2;6;1;1
@@ -1708,7 +1709,6 @@ Reed Sheppard;HOU;13/11/2026;Utah;19;0;0;3;0;1;2
 Reed Sheppard;HOU;11/11/2026;Golden St.;20;13;1;1;3;1;0
 Reed Sheppard;HOU;09/11/2026;Denver;17;8;0;0;2;0;0
 Reed Sheppard;HOU;07/11/2026;Phoenix;13;6;0;0;2;1;0
-Reed Sheppard;HOU;04/11/2026;Minnesota;21;14;2;2;3;3;0
 RJ Barrett;TOR;23/11/2026;Milwaukee;0;0;0;0;0;0;0
 RJ Barrett;TOR;20/11/2026;Detroit;0;0;0;0;0;0;0
 RJ Barrett;TOR;18/11/2026;Washington;0;0;0;0;0;0;0
@@ -1719,6 +1719,7 @@ RJ Barrett;TOR;11/11/2026;Boston;31;12;8;7;0;2;1
 RJ Barrett;TOR;09/11/2026;Memphis;36;19;3;2;1;0;1
 RJ Barrett;TOR;06/11/2026;Milwaukee;37;27;7;4;0;0;0
 RJ Barrett;TOR;04/11/2026;Denver;33;22;5;3;3;0;0
+Rudy Gobert;MIN;25/11/2026;Oklahoma City;32;9;7;0;0;1;0
 Rudy Gobert;MIN;23/11/2026;Brooklyn;27;7;6;3;0;4;0
 Rudy Gobert;MIN;21/11/2026;Memphis;32;7;11;2;0;1;3
 Rudy Gobert;MIN;19/11/2026;New York;35;9;7;0;0;2;0
@@ -1728,7 +1729,7 @@ Rudy Gobert;MIN;14/11/2026;Chicago;27;1;10;4;0;0;1
 Rudy Gobert;MIN;12/11/2026;Dallas;23;9;6;1;0;1;2
 Rudy Gobert;MIN;08/11/2026;Utah;31;10;15;2;0;0;0
 Rudy Gobert;MIN;06/11/2026;New Orleans;25;8;11;0;0;0;1
-Rudy Gobert;MIN;04/11/2026;Houston;33;8;11;2;0;0;4
+Rui Hachimura;LAC;25/11/2026;Memphis;37;14;12;5;1;0;0
 Rui Hachimura;LAC;23/11/2026;Houston;29;19;3;3;2;0;1
 Rui Hachimura;LAC;21/11/2026;Dallas;29;19;8;1;4;0;0
 Rui Hachimura;LAC;19/11/2026;San Antonio;32;17;7;2;2;1;0
@@ -1738,7 +1739,7 @@ Rui Hachimura;LAC;13/11/2026;Oklahoma City;32;7;11;3;1;1;0
 Rui Hachimura;LAC;10/11/2026;Phoenix;23;13;5;1;3;2;0
 Rui Hachimura;LAC;08/11/2026;New Orleans;26;14;3;2;2;1;0
 Rui Hachimura;LAC;04/11/2026;Miami;37;21;9;7;1;1;0
-Rui Hachimura;LAC;02/11/2026;Toronto;0;0;0;0;0;0;0
+Ryan Rollins;MIL;25/11/2026;Brooklyn;19;2;3;3;0;1;0
 Ryan Rollins;MIL;23/11/2026;Toronto;22;6;1;3;0;0;1
 Ryan Rollins;MIL;21/11/2026;Philadelphia;28;8;6;1;0;0;1
 Ryan Rollins;MIL;19/11/2026;Portland;21;15;3;6;1;4;0
@@ -1748,7 +1749,6 @@ Ryan Rollins;MIL;13/11/2026;Orlando;29;8;10;2;0;1;0
 Ryan Rollins;MIL;11/11/2026;L.A. Lakers;24;8;7;4;2;1;0
 Ryan Rollins;MIL;10/11/2026;New York;24;14;5;2;4;1;0
 Ryan Rollins;MIL;08/11/2026;Boston;20;7;4;6;2;1;0
-Ryan Rollins;MIL;06/11/2026;Toronto;14;10;1;1;1;2;0
 Saddiq Bey;NOP;23/11/2026;Phoenix;40;21;4;3;2;2;0
 Saddiq Bey;NOP;21/11/2026;San Antonio;32;2;4;2;0;0;0
 Saddiq Bey;NOP;20/11/2026;Oklahoma City;37;21;6;3;4;0;1
@@ -1779,6 +1779,7 @@ Santi Aldama;DAL;12/11/2026;Minnesota;10;3;1;1;1;1;1
 Santi Aldama;DAL;09/11/2026;Indiana;19;10;4;1;1;0;0
 Santi Aldama;DAL;08/11/2026;Brooklyn;15;12;2;0;2;1;0
 Santi Aldama;DAL;06/11/2026;Utah;13;8;9;1;0;0;0
+Scoot Henderson;POR;25/11/2026;San Antonio;23;10;5;1;1;0;0
 Scoot Henderson;POR;23/11/2026;Philadelphia;26;17;3;3;3;0;1
 Scoot Henderson;POR;21/11/2026;New York;23;3;1;1;0;1;0
 Scoot Henderson;POR;19/11/2026;Milwaukee;35;27;7;3;5;1;1
@@ -1788,7 +1789,6 @@ Scoot Henderson;POR;13/11/2026;Sacramento;23;11;0;1;2;0;0
 Scoot Henderson;POR;11/11/2026;Oklahoma City;19;5;2;2;1;0;0
 Scoot Henderson;POR;10/11/2026;Oklahoma City;23;11;1;4;3;0;0
 Scoot Henderson;POR;07/11/2026;San Antonio;24;13;2;1;0;1;1
-Scoot Henderson;POR;06/11/2026;L.A. Lakers;23;2;2;0;0;0;0
 Scottie Barnes;TOR;23/11/2026;Milwaukee;38;31;5;8;2;2;4
 Scottie Barnes;TOR;20/11/2026;Detroit;37;29;5;5;0;1;0
 Scottie Barnes;TOR;18/11/2026;Washington;0;0;0;0;0;0;0
@@ -1799,6 +1799,7 @@ Scottie Barnes;TOR;11/11/2026;Boston;0;0;0;0;0;0;0
 Scottie Barnes;TOR;09/11/2026;Memphis;0;0;0;0;0;0;0
 Scottie Barnes;TOR;06/11/2026;Milwaukee;0;0;0;0;0;0;0
 Scottie Barnes;TOR;04/11/2026;Denver;32;17;6;6;1;3;0
+Shaedon Sharpe;POR;25/11/2026;San Antonio;0;0;0;0;0;0;0
 Shaedon Sharpe;POR;23/11/2026;Philadelphia;0;0;0;0;0;0;0
 Shaedon Sharpe;POR;21/11/2026;New York;0;0;0;0;0;0;0
 Shaedon Sharpe;POR;19/11/2026;Milwaukee;0;0;0;0;0;0;0
@@ -1808,7 +1809,7 @@ Shaedon Sharpe;POR;13/11/2026;Sacramento;0;0;0;0;0;0;0
 Shaedon Sharpe;POR;11/11/2026;Oklahoma City;0;0;0;0;0;0;0
 Shaedon Sharpe;POR;10/11/2026;Oklahoma City;0;0;0;0;0;0;0
 Shaedon Sharpe;POR;07/11/2026;San Antonio;0;0;0;0;0;0;0
-Shaedon Sharpe;POR;06/11/2026;L.A. Lakers;0;0;0;0;0;0;0
+Shai Gilgeous-Alexander;OKC;25/11/2026;Minnesota;37;32;3;5;1;0;2
 Shai Gilgeous-Alexander;OKC;23/11/2026;Indiana;38;38;5;7;4;0;1
 Shai Gilgeous-Alexander;OKC;22/11/2026;Miami;0;0;0;0;0;0;0
 Shai Gilgeous-Alexander;OKC;20/11/2026;New Orleans;37;40;3;8;4;0;1
@@ -1818,7 +1819,7 @@ Shai Gilgeous-Alexander;OKC;13/11/2026;L.A. Clippers;38;40;4;5;2;1;0
 Shai Gilgeous-Alexander;OKC;11/11/2026;Portland;36;31;4;2;0;1;0
 Shai Gilgeous-Alexander;OKC;10/11/2026;Portland;29;26;8;3;0;0;1
 Shai Gilgeous-Alexander;OKC;07/11/2026;Washington;29;30;2;9;3;0;1
-Shai Gilgeous-Alexander;OKC;06/11/2026;Memphis;30;28;3;4;3;1;1
+Stephen Curry;GSW;25/11/2026;Sacramento;0;0;0;0;0;0;0
 Stephen Curry;GSW;22/11/2026;Boston;0;0;0;0;0;0;0
 Stephen Curry;GSW;19/11/2026;Memphis;0;0;0;0;0;0;0
 Stephen Curry;GSW;18/11/2026;Dallas;0;0;0;0;0;0;0
@@ -1828,7 +1829,7 @@ Stephen Curry;GSW;11/11/2026;Houston;6;3;0;0;1;0;0
 Stephen Curry;GSW;09/11/2026;New Orleans;21;25;5;2;4;0;0
 Stephen Curry;GSW;07/11/2026;Orlando;36;41;6;6;5;0;0
 Stephen Curry;GSW;05/11/2026;Miami;28;29;1;4;6;1;0
-Stephen Curry;GSW;02/11/2026;Phoenix;33;34;6;7;5;1;0
+Stephon Castle;SAS;25/11/2026;Portland;34;20;6;9;2;0;0
 Stephon Castle;SAS;23/11/2026;Sacramento;37;28;8;11;4;0;0
 Stephon Castle;SAS;21/11/2026;New Orleans;29;19;3;6;5;0;0
 Stephon Castle;SAS;19/11/2026;L.A. Clippers;33;21;6;12;2;4;0
@@ -1838,7 +1839,7 @@ Stephon Castle;SAS;13/11/2026;Golden St.;25;32;5;6;5;0;1
 Stephon Castle;SAS;11/11/2026;Chicago;29;11;1;3;1;2;0
 Stephon Castle;SAS;09/11/2026;Phoenix;30;4;7;7;0;1;0
 Stephon Castle;SAS;07/11/2026;Portland;24;14;7;5;2;0;1
-Stephon Castle;SAS;06/11/2026;Sacramento;28;19;3;7;1;0;0
+Steven Adams;HOU;25/11/2026;Phoenix;16;6;7;1;0;2;1
 Steven Adams;HOU;23/11/2026;L.A. Clippers;16;4;6;0;0;0;0
 Steven Adams;HOU;20/11/2026;Denver;12;2;2;2;0;0;0
 Steven Adams;HOU;18/11/2026;Indiana;16;4;5;2;0;0;0
@@ -1848,7 +1849,7 @@ Steven Adams;HOU;13/11/2026;Utah;0;0;0;0;0;0;0
 Steven Adams;HOU;11/11/2026;Golden St.;0;0;0;0;0;0;0
 Steven Adams;HOU;09/11/2026;Denver;0;0;0;0;0;0;0
 Steven Adams;HOU;07/11/2026;Phoenix;0;0;0;0;0;0;0
-Steven Adams;HOU;04/11/2026;Minnesota;0;0;0;0;0;0;0
+Tari Eason;HOU;25/11/2026;Phoenix;15;7;2;0;1;1;0
 Tari Eason;HOU;23/11/2026;L.A. Clippers;22;10;4;4;2;2;0
 Tari Eason;HOU;20/11/2026;Denver;23;7;6;1;1;0;1
 Tari Eason;HOU;18/11/2026;Indiana;25;11;4;3;1;2;0
@@ -1858,7 +1859,7 @@ Tari Eason;HOU;13/11/2026;Utah;33;14;11;2;2;0;0
 Tari Eason;HOU;11/11/2026;Golden St.;22;6;3;0;0;0;1
 Tari Eason;HOU;09/11/2026;Denver;19;12;5;2;2;2;1
 Tari Eason;HOU;07/11/2026;Phoenix;23;2;7;2;0;1;1
-Tari Eason;HOU;04/11/2026;Minnesota;24;9;6;1;1;2;0
+Terrence Shannon Jr.;MIN;25/11/2026;Oklahoma City;20;8;2;3;0;0;0
 Terrence Shannon Jr.;MIN;23/11/2026;Brooklyn;24;17;1;5;2;0;0
 Terrence Shannon Jr.;MIN;21/11/2026;Memphis;26;15;5;2;3;1;0
 Terrence Shannon Jr.;MIN;19/11/2026;New York;21;10;4;3;0;1;0
@@ -1868,7 +1869,7 @@ Terrence Shannon Jr.;MIN;14/11/2026;Chicago;22;14;6;0;0;0;0
 Terrence Shannon Jr.;MIN;12/11/2026;Dallas;21;6;2;4;0;1;0
 Terrence Shannon Jr.;MIN;08/11/2026;Utah;18;5;3;3;0;0;0
 Terrence Shannon Jr.;MIN;06/11/2026;New Orleans;0;0;0;0;0;0;0
-Terrence Shannon Jr.;MIN;04/11/2026;Houston;0;0;0;0;0;0;0
+Toumani Camara;POR;25/11/2026;San Antonio;31;8;4;2;1;1;0
 Toumani Camara;POR;23/11/2026;Philadelphia;29;5;5;3;1;0;0
 Toumani Camara;POR;21/11/2026;New York;34;6;5;0;1;0;1
 Toumani Camara;POR;19/11/2026;Milwaukee;37;18;6;4;4;2;3
@@ -1878,7 +1879,6 @@ Toumani Camara;POR;13/11/2026;Sacramento;36;14;2;1;2;2;1
 Toumani Camara;POR;11/11/2026;Oklahoma City;38;14;5;3;2;1;2
 Toumani Camara;POR;10/11/2026;Oklahoma City;30;12;3;3;2;0;0
 Toumani Camara;POR;07/11/2026;San Antonio;21;4;4;0;0;0;0
-Toumani Camara;POR;06/11/2026;L.A. Lakers;30;18;6;1;4;0;0
 Trae Young;WAS;24/11/2026;Boston;35;17;0;12;1;2;0
 Trae Young;WAS;22/11/2026;Orlando;28;11;4;11;3;1;0
 Trae Young;WAS;20/11/2026;Chicago;35;16;2;5;4;3;0
@@ -1889,6 +1889,7 @@ Trae Young;WAS;12/11/2026;Detroit;45;37;2;14;4;0;0
 Trae Young;WAS;11/11/2026;Indiana;34;15;3;4;3;1;0
 Trae Young;WAS;09/11/2026;Detroit;38;20;1;7;3;2;0
 Trae Young;WAS;07/11/2026;Oklahoma City;28;4;5;3;0;1;0
+Tre Jones;CHI;25/11/2026;Charlotte;20;10;4;8;0;1;0
 Tre Jones;CHI;23/11/2026;Cleveland;27;16;4;9;1;2;0
 Tre Jones;CHI;22/11/2026;Denver;12;9;2;4;0;0;0
 Tre Jones;CHI;20/11/2026;Washington;25;12;1;7;0;1;0
@@ -1898,7 +1899,6 @@ Tre Jones;CHI;14/11/2026;Minnesota;24;16;0;4;1;0;2
 Tre Jones;CHI;13/11/2026;Atlanta;15;4;1;3;0;1;1
 Tre Jones;CHI;11/11/2026;San Antonio;28;13;1;3;1;0;0
 Tre Jones;CHI;08/11/2026;Philadelphia;14;6;1;1;0;1;0
-Tre Jones;CHI;04/11/2026;New York;18;14;3;4;1;0;0
 Trey Murphy III;NOP;23/11/2026;Phoenix;35;9;9;2;1;2;0
 Trey Murphy III;NOP;21/11/2026;San Antonio;0;0;0;0;0;0;0
 Trey Murphy III;NOP;20/11/2026;Oklahoma City;29;17;4;1;3;2;1
@@ -1919,6 +1919,7 @@ Tristan da Silva;ORL;11/11/2026;Utah;0;0;0;0;0;0;0
 Tristan da Silva;ORL;10/11/2026;Sacramento;0;0;0;0;0;0;0
 Tristan da Silva;ORL;07/11/2026;Golden St.;39;19;7;2;5;1;0
 Tristan da Silva;ORL;05/11/2026;Phoenix;30;18;2;1;4;0;0
+Ty Jerome;MEM;25/11/2026;L.A. Clippers;25;17;5;7;1;4;1
 Ty Jerome;MEM;23/11/2026;Charlotte;29;29;4;3;7;2;0
 Ty Jerome;MEM;21/11/2026;Minnesota;27;18;4;6;3;2;0
 Ty Jerome;MEM;19/11/2026;Golden St.;0;0;0;0;0;0;0
@@ -1928,7 +1929,7 @@ Ty Jerome;MEM;14/11/2026;Brooklyn;0;0;0;0;0;0;0
 Ty Jerome;MEM;13/11/2026;New Orleans;29;17;2;9;2;1;0
 Ty Jerome;MEM;11/11/2026;Denver;32;22;2;5;1;0;0
 Ty Jerome;MEM;09/11/2026;Toronto;32;27;6;2;5;0;0
-Ty Jerome;MEM;06/11/2026;Oklahoma City;28;21;2;5;2;0;0
+Tyler Herro;MIL;25/11/2026;Brooklyn;37;28;2;5;3;3;0
 Tyler Herro;MIL;23/11/2026;Toronto;37;32;6;8;4;1;1
 Tyler Herro;MIL;21/11/2026;Philadelphia;40;50;11;7;7;1;0
 Tyler Herro;MIL;19/11/2026;Portland;31;19;4;3;4;1;0
@@ -1938,7 +1939,6 @@ Tyler Herro;MIL;13/11/2026;Orlando;34;18;1;2;2;2;1
 Tyler Herro;MIL;11/11/2026;L.A. Lakers;35;27;2;7;2;0;1
 Tyler Herro;MIL;10/11/2026;New York;0;0;0;0;0;0;0
 Tyler Herro;MIL;08/11/2026;Boston;27;13;1;2;1;0;0
-Tyler Herro;MIL;06/11/2026;Toronto;35;23;5;10;1;1;0
 Tyrese Haliburton;IND;23/11/2026;Oklahoma City;0;0;0;0;0;0;0
 Tyrese Haliburton;IND;22/11/2026;New York;0;0;0;0;0;0;0
 Tyrese Haliburton;IND;20/11/2026;Cleveland;0;0;0;0;0;0;0
@@ -1949,6 +1949,7 @@ Tyrese Haliburton;IND;11/11/2026;Washington;0;0;0;0;0;0;0
 Tyrese Haliburton;IND;09/11/2026;Dallas;0;0;0;0;0;0;0
 Tyrese Haliburton;IND;07/11/2026;Denver;0;0;0;0;0;0;0
 Tyrese Haliburton;IND;04/11/2026;Memphis;0;0;0;0;0;0;0
+Tyrese Maxey;PHI;25/11/2026;Miami;37;30;4;6;3;1;0
 Tyrese Maxey;PHI;23/11/2026;Portland;35;22;2;5;2;0;0
 Tyrese Maxey;PHI;21/11/2026;Milwaukee;36;17;4;4;0;0;1
 Tyrese Maxey;PHI;18/11/2026;Orlando;0;0;0;0;0;0;0
@@ -1958,7 +1959,7 @@ Tyrese Maxey;PHI;12/11/2026;Toronto;35;27;2;8;1;2;1
 Tyrese Maxey;PHI;10/11/2026;Boston;34;24;1;4;3;0;0
 Tyrese Maxey;PHI;08/11/2026;Chicago;36;27;4;7;3;0;0
 Tyrese Maxey;PHI;06/11/2026;Cleveland;32;17;3;4;2;1;0
-Tyrese Maxey;PHI;04/11/2026;Detroit;34;19;1;7;3;0;0
+Victor Wembanyama;SAS;25/11/2026;Portland;35;44;16;3;3;1;2
 Victor Wembanyama;SAS;23/11/2026;Sacramento;0;0;0;0;0;0;0
 Victor Wembanyama;SAS;21/11/2026;New Orleans;32;50;18;1;5;4;5
 Victor Wembanyama;SAS;19/11/2026;L.A. Clippers;33;32;11;3;2;1;1
@@ -1968,7 +1969,7 @@ Victor Wembanyama;SAS;13/11/2026;Golden St.;21;12;12;6;0;1;2
 Victor Wembanyama;SAS;11/11/2026;Chicago;32;32;9;1;2;2;5
 Victor Wembanyama;SAS;09/11/2026;Phoenix;25;40;11;3;2;0;8
 Victor Wembanyama;SAS;07/11/2026;Portland;24;29;7;3;3;1;2
-Victor Wembanyama;SAS;06/11/2026;Sacramento;26;30;14;2;4;0;2
+VJ Edgecombe;PHI;25/11/2026;Miami;36;18;6;5;2;2;0
 VJ Edgecombe;PHI;23/11/2026;Portland;35;12;7;7;1;2;0
 VJ Edgecombe;PHI;21/11/2026;Milwaukee;38;16;3;6;1;2;1
 VJ Edgecombe;PHI;18/11/2026;Orlando;43;24;8;6;4;2;0
@@ -1978,7 +1979,6 @@ VJ Edgecombe;PHI;12/11/2026;Toronto;36;15;8;8;1;3;1
 VJ Edgecombe;PHI;10/11/2026;Boston;32;8;4;5;0;1;1
 VJ Edgecombe;PHI;08/11/2026;Chicago;35;13;6;3;3;3;0
 VJ Edgecombe;PHI;06/11/2026;Cleveland;32;19;3;2;3;4;0
-VJ Edgecombe;PHI;04/11/2026;Detroit;35;11;6;3;1;1;0
 Walker Kessler;LAL;23/11/2026;Utah;36;10;12;0;0;1;2
 Walker Kessler;LAL;20/11/2026;Sacramento;30;15;7;2;1;1;3
 Walker Kessler;LAL;18/11/2026;Utah;31;10;11;1;0;0;0
@@ -1999,6 +1999,7 @@ Wendell Carter Jr.;ORL;11/11/2026;Utah;28;9;7;3;0;0;0
 Wendell Carter Jr.;ORL;10/11/2026;Sacramento;33;8;11;1;0;1;3
 Wendell Carter Jr.;ORL;07/11/2026;Golden St.;40;19;11;0;3;0;2
 Wendell Carter Jr.;ORL;05/11/2026;Phoenix;34;27;13;2;2;1;1
+Yaxel Lendeborg;GSW;25/11/2026;Sacramento;31;15;8;2;0;3;1
 Yaxel Lendeborg;GSW;22/11/2026;Boston;34;12;8;3;1;0;0
 Yaxel Lendeborg;GSW;19/11/2026;Memphis;33;11;8;7;1;1;2
 Yaxel Lendeborg;GSW;18/11/2026;Dallas;30;13;5;4;0;2;0
@@ -2008,7 +2009,6 @@ Yaxel Lendeborg;GSW;11/11/2026;Houston;36;25;10;0;2;2;0
 Yaxel Lendeborg;GSW;09/11/2026;New Orleans;27;23;7;4;4;1;0
 Yaxel Lendeborg;GSW;07/11/2026;Orlando;37;23;8;3;2;0;3
 Yaxel Lendeborg;GSW;05/11/2026;Miami;30;17;8;6;1;3;1
-Yaxel Lendeborg;GSW;02/11/2026;Phoenix;29;16;5;5;2;1;1
 Yves Missi;NOP;23/11/2026;Phoenix;22;4;8;0;0;0;2
 Yves Missi;NOP;21/11/2026;San Antonio;35;9;14;1;0;2;1
 Yves Missi;NOP;20/11/2026;Oklahoma City;23;4;8;0;0;0;0
@@ -2029,6 +2029,7 @@ Zaccharie Risacher;DAL;12/11/2026;Minnesota;25;22;6;3;4;2;1
 Zaccharie Risacher;DAL;09/11/2026;Indiana;15;4;2;0;0;0;0
 Zaccharie Risacher;DAL;08/11/2026;Brooklyn;16;11;6;1;1;0;0
 Zaccharie Risacher;DAL;06/11/2026;Utah;21;4;4;1;0;0;2
+Zach Edey;MEM;25/11/2026;L.A. Clippers;9;7;4;2;0;0;2
 Zach Edey;MEM;23/11/2026;Charlotte;23;8;11;1;0;0;1
 Zach Edey;MEM;21/11/2026;Minnesota;23;8;2;0;0;2;0
 Zach Edey;MEM;19/11/2026;Golden St.;0;0;0;0;0;0;0
@@ -2038,7 +2039,7 @@ Zach Edey;MEM;14/11/2026;Brooklyn;0;0;0;0;0;0;0
 Zach Edey;MEM;13/11/2026;New Orleans;0;0;0;0;0;0;0
 Zach Edey;MEM;11/11/2026;Denver;20;2;5;0;0;0;1
 Zach Edey;MEM;09/11/2026;Toronto;23;8;9;1;0;0;1
-Zach Edey;MEM;06/11/2026;Oklahoma City;20;14;6;1;0;0;0
+Zach LaVine;SAC;25/11/2026;Golden St.;0;0;0;0;0;0;0
 Zach LaVine;SAC;23/11/2026;San Antonio;30;18;6;2;2;0;1
 Zach LaVine;SAC;21/11/2026;Boston;30;13;3;0;2;1;1
 Zach LaVine;SAC;20/11/2026;L.A. Lakers;39;19;7;4;2;2;1
@@ -2048,7 +2049,6 @@ Zach LaVine;SAC;13/11/2026;Portland;36;12;3;6;3;1;1
 Zach LaVine;SAC;10/11/2026;Orlando;33;31;3;2;6;2;0
 Zach LaVine;SAC;08/11/2026;Miami;25;15;4;2;1;0;0
 Zach LaVine;SAC;06/11/2026;San Antonio;35;14;4;3;1;1;0
-Zach LaVine;SAC;04/11/2026;L.A. Lakers;35;21;4;1;3;1;2
 Ziaire Williams;LAL;23/11/2026;Utah;19;9;4;0;2;0;0
 Ziaire Williams;LAL;20/11/2026;Sacramento;28;5;0;1;1;0;0
 Ziaire Williams;LAL;18/11/2026;Utah;18;7;2;0;1;0;0
